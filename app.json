@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/searchPeople/searchPeople",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F5D33F",
+    "navigationBarTitleText": "华工失物招领平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "borderStyle": "white",
+    "backgroundColor": "#F4F4F4",
+    "selectedColor": "#D5237B",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "寻物",
+        "iconPath": "/images/searchGoods.png",
+        "selectedIconPath": "/images/selectGood.png"
+      },
+      {
+        "pagePath": "pages/searchPeople/searchPeople",
+        "text": "寻失主",
+        "iconPath": "/images/searchPeople.png",
+        "selectedIconPath": "/images/selectPeople.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/selectMy.png"
+      }
+    ]
+  }
+}
