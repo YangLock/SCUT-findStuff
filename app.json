@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/searchPeople/searchPeople",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,5 +37,6 @@
         "selectedIconPath": "/images/selectMy.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap9.json"
 }

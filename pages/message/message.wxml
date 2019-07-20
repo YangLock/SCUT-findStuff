@@ -1,0 +1,16 @@
+<!-- message.wxml -->
+
+<!-- 消息列表的实现 -->
+<view class='List'>
+  <block wx:for='{{messageList}}' wx:key='list' wx:for-item="item">
+    <view class="list_item">
+      <view class="picture">
+        <image src="{{item.user_img}}" class="userAvatar"></image>
+      </view>
+      <view class='messageText'>
+        <view class="userName">{{item.user_name}}</view>
+        <view class="messageContent">{{item.content}}</view>
+      </view>
+    </view>
+  </block>
+</view>

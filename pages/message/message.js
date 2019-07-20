@@ -6,7 +6,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    messageList: [
+      {
+        user_img: "/images/avatar.png",
+        user_name: "Alice",
+        content: "我找到了你的书"
+      },{
+        user_img: "/images/avatar.png",
+        user_name: "Smith",
+        content: "我找的了你的笔"
+      },{
+        user_img: "/images/avatar.png",
+        user_name: "Stan",
+        content: "我找到了你的帽子"
+      },{
+        user_img: "/images/avatar.png",
+        user_name:"Sean",
+        content: "我找到了你的篮球"
+      },{
+        user_img: "/images/avatar.png",
+        user_name: "Jack",
+        content: "我在C10找到了你的水杯"
+      },{
+        user_img: "/images/avatar.png",
+        user_name: "Miachel",
+        content: "我找到了你的女朋友"
+      }
+    ]
   },
 
   /**
@@ -70,11 +96,6 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
-  },
-  go: function(){
-    wx.navigateTo({
-      url: '../message/message',
     })
   }
 })
