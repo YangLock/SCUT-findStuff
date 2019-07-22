@@ -117,3 +117,10 @@ image {
   font-size: 15px;
   color: #707070;
 }
+input{
+  margin-left: 10rpx;
+}
+textarea{
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+}
