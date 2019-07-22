@@ -100,5 +100,10 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  release: function () {
+    wx.navigateTo({
+      url: '../find/release/people',
+    })
   }
 })

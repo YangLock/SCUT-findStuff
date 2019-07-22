@@ -15,18 +15,18 @@
 <view class="buttonStuff">
   <text class="firstTitle">我的</text>
   <view class="icons">
-    <view class="good">
+    <view class="good" bindtap='mythings'>
       <image src="/images/stuff.png" class="myGoods"></image>
       <text id="goodsText">我的寻物</text>
     </view>
-    <view class="people">
+    <view class="people" bindtap='mypeople'>
       <image src="/images/people.png" class="myPeople"></image>
       <text id="peopleText">我的寻主</text>
     </view>
   </view>
 </view>
 <view class="buttonClass">
-  <button id="checkMessage" plain="false">
+  <button id="checkMessage" plain="false" bindtap='edit'>
     <view class="buttonMessage">
       <text>个人信息编辑</text>
       <image src="/images/icon_next_arrow.png"></image>

@@ -1,5 +1,4 @@
-const app = getApp()
-
+// pages/my/edit.js
 Page({
 
   /**
@@ -63,33 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  go: function () {
-    wx.navigateTo({
-      url: '../message/message',
-    })
-  },
-  edit: function(){
-    wx.navigateTo({
-      url: 'edit',
-    })
-  },
-  mythings: function () {
-    wx.navigateTo({
-      url: 'myfounds/things',
-    })
-  },
-  mypeople: function () {
-    wx.navigateTo({
-      url: 'myfounds/people',
-    })
   }
 })
