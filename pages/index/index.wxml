@@ -1,0 +1,69 @@
+<!-- index.wxml -->
+
+<!-- 顶栏所有组件的实现 -->
+<view class="button-line">
+  <view class="search">
+    <view class="my-search">
+      <icon class="searchIcon" size="18" type="search"></icon>
+      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}"></input>
+    </view>
+  </view>
+  <view class="button-line1">
+    <view class="my-book">
+      <image class="book" src="/images/book.png"></image>
+      <text id="book-message">书籍</text>
+    </view>
+    <view class="my-stationery">
+      <image class="stationery" src="/images/stationery.png"></image>
+      <text id="stationery-message">文具</text>
+    </view>
+    <view class="my-electronics">
+      <image class="electronics" src="/images/electronics.png"></image>
+      <text id="electronics-message">电子产品</text>
+    </view>
+    <view class="my-clothes">
+      <image class="clothes" src="/images/clothes.png"></image>
+      <text id="clothes-message">服饰</text>
+    </view>
+  </view>
+  <view class="button-line2">
+    <view class="my-dailyStuff">
+      <image class="dailyStuff" src="/images/dailyStuff.png"></image>
+      <text id="dailyStuff-message">日用品</text>
+    </view>
+    <view class="my-document">
+      <image class="document" src="/images/document.png"></image>
+      <text id="document-message">证件</text>
+    </view>
+    <view class="my-wallet">
+      <image class="wallet" src="/images/wallet.png"></image>
+      <text id="wallet-message">钱包/钱</text>
+    </view>
+    <view class="my-card">
+      <image class="card" src="/images/card.png"></image>
+      <text id="card-message">卡</text>
+    </view>
+  </view>
+</view>
+<view class="my-release" bindtap='release'>
+  <image class="release" src="/images/release.png"></image>
+</view>
+
+<!-- 丢失物品信息的实现 -->
+<view class='list'>
+  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+    <view class="list_item">
+      <navigator url='details?id={{item.goods_id}}'>
+        <view class='img'>
+          <image src="{{item.goods_img}}"  mode="scaleToFill"/>
+        </view>
+        <view class='info'>
+          <view class='title'>{{item.goods_title}}</view>
+          <view class='name'>失主姓名：{{item.person_name}}</view>
+          <view class='place'>丢失地点：{{item.goods_place}}</view>
+          <view class="time">丢失时间：{{item.goods_time}}</view>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view>
