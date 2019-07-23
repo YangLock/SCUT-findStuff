@@ -11,18 +11,22 @@
   /* height: 60rpx; */
   margin: 10%;
   border:1rpx solid #707070;
-  border-radius: 25rpx;
+  border-radius: 12rpx;
 }
 .fonts{
   margin-left:5rpx; 
   font-size: 30rpx;
-  color: #fff;
+  color: black;
+  vertical-align: middle;
 }
 .btn-stytle{
   background-color: #F29C13;
   height: 39px;
   width: 132px;
 }
+.btn-stytle .fonts{
+  color: #fff;
+}
 .temp-edit{
-  font-size: 20rpx;
+  font-size: 25rpx;
 }
