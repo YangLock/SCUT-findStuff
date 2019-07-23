@@ -107,6 +107,8 @@ image {
   justify-content: center;
   font-size: 30rpx;
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 .big-text{
   font-size: 20px;

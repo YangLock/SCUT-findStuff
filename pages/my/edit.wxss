@@ -23,9 +23,12 @@
   background-color: #F29C13;
   height: 39px;
   width: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn-stytle .fonts{
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 .temp-edit{
   font-size: 25rpx;
