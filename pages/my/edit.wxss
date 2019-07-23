@@ -1,0 +1,28 @@
+/* pages/my/edit.wxss */
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin-left: 70rpx;
+  margin-top: 62rpx;
+  border-radius: 50%;
+}
+.info{
+  width: 80%;
+  /* height: 60rpx; */
+  margin: 10%;
+  border:1rpx solid #707070;
+  border-radius: 25rpx;
+}
+.fonts{
+  margin-left:5rpx; 
+  font-size: 30rpx;
+  color: #fff;
+}
+.btn-stytle{
+  background-color: #F29C13;
+  height: 39px;
+  width: 132px;
+}
+.temp-edit{
+  font-size: 20rpx;
+}

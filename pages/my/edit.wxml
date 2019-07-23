@@ -1,0 +1,20 @@
+<!--pages/my/edit.wxml-->
+<view class='swiper'>
+  <image class='userinfo-avatar' src='1.png'></image>
+  <view class='info'>
+    <input class='fonts' type='text' placeholder='用户名' placeholder-class="temp-edit"></input>
+  </view>
+  <view class='info'>
+    <input  class='fonts' type='text' placeholder='手机号码' placeholder-class="temp-edit"></input>
+  </view>
+  <view class='info'>
+    <input class='fonts' type='text' placeholder='微信' placeholder-class="temp-edit"></input>
+  </view>
+  <view class='info'>
+    <input class='fonts' type='text' placeholder='QQ' placeholder-class="temp-edit"></input>
+  </view>
+  <button class="btn-stytle" form-type='submit' placeholder-class="temp-edit">
+    <text class='fonts'>确认修改</text>
+  </button>
+</view>
+

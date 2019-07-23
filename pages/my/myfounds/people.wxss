@@ -1,0 +1,22 @@
+/* pages/my/myfounds/people.wxss */
+.swiper-tab{
+  width: 100%;
+  /* border-bottom: 2rpx solid #ccc;  */
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+} 
+.swiper-tab-item{
+  background-color: #fff;
+  width: 50%; 
+  font-size: 25rpx;
+}
+.active{
+  background-color: #ccc;
+}
+swiper{
+  text-align: center;
+}

@@ -1,0 +1,11 @@
+<!--pages/my/myfounds/things.wxml-->
+<view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">已找回</view>
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">未找回</view>
+</view>
+
+<swiper current="{{currentTab}}" duration="200"  bindchange="swiperTab">
+    <swiper-item><view>已找回</view></swiper-item>
+    <swiper-item><view>未找回</view></swiper-item>
+</swiper>
+

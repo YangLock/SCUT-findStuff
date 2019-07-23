@@ -1,0 +1,48 @@
+<!--pages/find/details.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" >
+<view>
+         <block wx:for="{{imgUrls}}">  
+
+           <swiper-item>  
+               <image src="{{item}}" class='slide-image' />  
+           </swiper-item>  
+
+         </block>
+         </view>  
+
+ </swiper>
+ <text class='title'>联系方式</text>
+ <view class='contract'>
+ <text>电话：{电话号码}</text>
+ </view>
+  <view class='contract'>
+ <text>微信：{微信号}</text>
+ </view>
+  <view class='contract'>
+ <text>QQ：{QQ号码}</text>
+ </view>
+  <text class='title'>详情描述</text>
+   <view class='contract'>
+  <text>{描述内容}aaaaaaaa
+  aaaaaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  aaaaaaaa
+  </text>
+  </view>
+  <button class="round-click" >留言</button>
+  <text class='title'>留言：</text>

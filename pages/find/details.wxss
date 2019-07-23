@@ -1,0 +1,30 @@
+/* pages/find/details.wxss */
+.slide-image{
+ height: 150px;
+ width: 100%;
+}
+.title{
+  font-size: 20px;
+  color: #707070;
+  margin: 20rpx;
+}
+.contract{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30rpx;
+  margin-left: 50rpx;
+  word-break:break-all;
+}
+  .round-click{
+    height: 70rpx;
+    width: 140rpx;
+    background-color: #F29C13;
+    position: fixed;
+    bottom: 80rpx;
+    right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    z-index: 9;
+    font-size: 30rpx;
+}

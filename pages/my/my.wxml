@@ -1,0 +1,35 @@
+<!-- my.wxml -->
+<view class="userinfo">
+  <open-data type="userAvatarUrl" class="userAvatar"></open-data>
+  <open-data type="userNickName" class="userName"></open-data>
+</view>
+
+<view class="buttonClass">
+  <button id="checkMessage" plain="false" bindtap="go">
+    <view class="buttonMessage">
+      <text>消息</text>
+      <image src="/images/icon_next_arrow.png"></image>
+    </view>
+  </button>
+</view>
+<view class="buttonStuff">
+  <text class="firstTitle">我的</text>
+  <view class="icons">
+    <view class="good" bindtap='mythings'>
+      <image src="/images/stuff.png" class="myGoods"></image>
+      <text id="goodsText">我的寻物</text>
+    </view>
+    <view class="people" bindtap='mypeople'>
+      <image src="/images/people.png" class="myPeople"></image>
+      <text id="peopleText">我的寻主</text>
+    </view>
+  </view>
+</view>
+<view class="buttonClass">
+  <button id="checkMessage" plain="false" bindtap='edit'>
+    <view class="buttonMessage">
+      <text>个人信息编辑</text>
+      <image src="/images/icon_next_arrow.png"></image>
+    </view>
+  </button>
+</view>
