@@ -1,11 +1,56 @@
-<!--pages/my/myfounds/things.wxml-->
+<!--pages/my/myfounds/people.wxml-->
 <view class="swiper-tab">
     <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">已找回</view>
     <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">未找回</view>
 </view>
 
-<swiper current="{{currentTab}}" duration="200"  bindchange="swiperTab">
-    <swiper-item><view>已找回</view></swiper-item>
-    <swiper-item><view>未找回</view></swiper-item>
+<swiper  current="{{currentTab}}" duration="200"  bindchange="swiperTab" style="height:{{aheight}}rpx">
+<swiper-item>
+<view class='list'>
+  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+    <view class="list_item">
+      <navigator url='details?id={{item.goods_id}}'>
+        <view class='img'> 
+          <image src="{{item.goods_img}}"  mode="aspectFit"/>
+        </view>
+        <view class='info'>
+          <view class='title'>{{item.goods_title}}</view>
+          <view class='name'>失主姓名：{{item.person_name}}</view>
+          <view class='place'>丢失地点：{{item.goods_place}}</view>
+          <view class="time">丢失时间：{{item.goods_time}}</view>
+        </view>
+        <view class='btn'>
+        <button>编辑</button>
+        <button>刷新</button>
+        <button>删除</button>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view>
+</swiper-item>
+    <swiper-item><view class='list'>
+  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+    <view class="list_item">
+      <navigator url='details?id={{item.goods_id}}'>
+        <view class='img'> 
+          <image src="{{item.goods_img}}"  mode="aspectFit"/>
+        </view>
+        <view class='info'>
+          <view class='title'>{{item.goods_title}}</view>
+          <view class='name'>失主姓名：{{item.person_name}}</view>
+          <view class='place'>丢失地点：{{item.goods_place}}</view>
+          <view class="time">丢失时间：{{item.goods_time}}</view>
+        </view>
+        <view class='btn'>
+        <button>确认找回</button>
+        <button>编辑</button>
+        <button>刷新</button>
+        <button>删除</button>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view></swiper-item>
 </swiper>
 

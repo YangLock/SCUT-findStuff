@@ -4,13 +4,14 @@
   /* border-bottom: 2rpx solid #ccc;  */
   text-align: center;
   height: 88rpx;
-  line-height: 88rpx;
+  line-height: 88rpx; 
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+
 } 
 .swiper-tab-item{
-  background-color: #fff;
+  background-color: white;
   width: 50%; 
   font-size: 25rpx;
 }
@@ -19,4 +20,72 @@
 }
 swiper{
   text-align: center;
+  
 }
+.list{
+  margin-top:10rpx;
+}
+ 
+.list .list_item{
+  margin-top:4rpx;
+  padding:45rpx;
+  height:275rpx;
+  border-bottom:1rpx solid #E8E8E8;
+}
+.list .list_item .img{
+  float:left;
+  width:40%;
+  height:175rpx;
+}
+.list .list_item .img image{
+   width:100%;
+   height:100%;
+}
+ 
+.list .list_item .info{
+  width:60%;
+  float:right;
+  height:175rpx;
+  position:relative;
+}
+.list .list_item .info .title{
+  color:#333;
+  margin-left:22rpx;
+  font-size: 25rpx;
+}
+ 
+.list .list_item .info .name{
+  color:#747474;
+  margin-left:22rpx;
+  margin-top: 55rpx;
+  font-size:20rpx;
+}
+ 
+.list .list_item .info .place{
+  color:#747474;
+  margin-left:22rpx;
+  font-size:20rpx;
+}
+
+.list .list_item .info .time{
+  color: #747474;
+  margin-left: 22rpx;
+  font-size: 20rpx;
+}
+.list .list_item .btn{
+  float:left;
+  width:100%;
+  height:100rpx;
+  display: flex;
+}
+
+.list .list_item .btn button{
+   margin-top: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  width: 140rpx;
+  font-size: 17rpx;
+}
+
