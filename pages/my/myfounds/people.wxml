@@ -43,7 +43,7 @@
           <view class="time">丢失时间：{{item.goods_time}}</view>
         </view>
         <view class='btn'>
-        <button>确认找回</button>
+        <button>已被认领</button>
         <button>编辑</button>
         <button>刷新</button>
         <button>删除</button>
