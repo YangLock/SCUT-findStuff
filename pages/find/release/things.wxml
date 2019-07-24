@@ -9,8 +9,8 @@
   </view>
 
   <view class='picture_item'>
-    <view class="add-image" bindtap='uploadpic'>
-    <image src="../../index/2.png"></image>
+    <view  class="add-image" bindtap='uploadpic'>
+    <text>+</text>
     </view>
   </view>
   </view>

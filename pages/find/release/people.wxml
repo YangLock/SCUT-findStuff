@@ -10,7 +10,7 @@
 
   <view class='picture_item'>
     <view class="add-image" bindtap='uploadpic'>
-    <image src="../../index/2.png"></image>
+    <text>+</text>
     </view>
   </view>
   </view>
