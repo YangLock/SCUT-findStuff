@@ -2,6 +2,7 @@
 .search{
   width: 80%;
 }
+
 .my-search{
   display: flex;
   flex-direction: row;
@@ -150,7 +151,7 @@
 .my-release{
   position: fixed;
   bottom: 50rpx;
-  right: 0;
+  right: 10rpx;
 }
 .release{
   height: 70rpx;

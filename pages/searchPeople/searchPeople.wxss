@@ -149,7 +149,7 @@
 .my-release{
   position: fixed;
   bottom: 50rpx;
-  right: 0;
+  right: 10rpx;
 }
 .release{
   height: 70rpx;

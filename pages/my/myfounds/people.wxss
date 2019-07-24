@@ -11,12 +11,12 @@
 
 } 
 .swiper-tab-item{
-  background-color: white;
+  background-color: #ccc;
   width: 50%; 
   font-size: 25rpx;
 }
 .active{
-  background-color: #ccc;
+  background-color: #fff;
 }
 swiper{
   text-align: center;
