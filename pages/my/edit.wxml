@@ -1,6 +1,11 @@
 <!--pages/my/edit.wxml-->
 <view class='swiper'>
-  <image class='userinfo-avatar' src='1.png'></image>
+  <view class='head_img' bindtap='upShopLogo'>
+    <view class='img'>
+      <image class='userinfo-avatar' src='{{userimg}}'></image>
+      <text id="words">点击图片编辑头像</text>
+    </view>
+  </view>
   <view class='info'>
     <input class='fonts' type='text' placeholder='用户名' placeholder-class="temp-edit"></input>
   </view>

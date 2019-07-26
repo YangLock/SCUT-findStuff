@@ -36,8 +36,18 @@ image {
   position: relative;
   width: 160rpx;
   height: 160rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 15rpx;
 }
+#words{
+  margin-left: 38rpx;
+  font-size: 20rpx;
+  color: #707070;
+}
+#plus{
+  color: #515151;
 
+}
 .picture_item .del {
   position: absolute;
   top: -11rpx;
@@ -109,6 +119,7 @@ image {
   color: #fff;
   display: flex;
   align-items: center;
+  margin-bottom: 10rpx;
 }
 .big-text{
   font-size: 20px;

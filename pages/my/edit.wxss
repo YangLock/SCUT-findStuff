@@ -6,6 +6,13 @@
   margin-top: 62rpx;
   border-radius: 50%;
 }
+#words{
+  font-size: 25rpx;
+  color: #707070;
+  position: absolute;
+  left: 238rpx;
+  top: 114rpx;
+}
 .info{
   width: 80%;
   /* height: 60rpx; */
