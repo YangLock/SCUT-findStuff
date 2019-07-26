@@ -154,8 +154,8 @@
   right: 10rpx;
 }
 .release{
-  height: 70rpx;
-  width: 70rpx;
+  height: 100rpx;
+  width: 100rpx;
 }
 
 .clear{

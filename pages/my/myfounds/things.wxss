@@ -88,4 +88,19 @@ swiper{
   width: 140rpx;
   font-size: 17rpx;
 }
+.list .list_item .btn1{
+  float:left;
+  width:100%;
+  height:100rpx;
+}
+.list .list_item .btn1 button{
+  margin-top: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  width: 140rpx;
+  font-size: 17rpx;
+  float: right;
+}
 

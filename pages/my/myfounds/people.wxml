@@ -19,12 +19,10 @@
           <view class='place'>丢失地点：{{item.goods_place}}</view>
           <view class="time">丢失时间：{{item.goods_time}}</view>
         </view>
-        <view class='btn'>
-        <button>编辑</button>
-        <button>刷新</button>
+      </navigator>
+        <view class='btn1'>
         <button>删除</button>
         </view>
-      </navigator>
     </view>
   </block>
 </view>
@@ -42,13 +40,13 @@
           <view class='place'>丢失地点：{{item.goods_place}}</view>
           <view class="time">丢失时间：{{item.goods_time}}</view>
         </view>
+      </navigator>
         <view class='btn'>
         <button>已被认领</button>
         <button>编辑</button>
         <button>刷新</button>
         <button>删除</button>
         </view>
-      </navigator>
     </view>
   </block>
 </view></swiper-item>
