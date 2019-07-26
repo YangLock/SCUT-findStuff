@@ -94,9 +94,9 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: [type],
       success: function (res) {
-        that.data.userimg = res.tempFilePaths[0],
-        that.upload_file(urldate.upimg + 'shop/shopIcon', res.tempFilePaths[0])
-        userimg = res.tempFilePaths[0];
+        that.data.userimg = res.tempFilePaths[0]
+        // that.upload_file(urldate.upimg + 'shop/shopIcon', res.tempFilePaths[0])
+        let userimg = res.tempFilePaths[0];
         that.setData({
           userimg: userimg
         })

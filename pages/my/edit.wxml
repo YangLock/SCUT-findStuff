@@ -1,8 +1,7 @@
 <!--pages/my/edit.wxml-->
-<view class='swiper'>
-  <view class='head_img' bindtap='upShopLogo'>
+  <view class='head_img'>
     <view class='img'>
-      <image class='userinfo-avatar' src='{{userimg}}'></image>
+      <image class='userinfo-avatar' src='{{userimg}}' bindtap='upShopLogo'></image>
       <text id="words">点击图片编辑头像</text>
     </view>
   </view>
@@ -21,5 +20,4 @@
   <button class="btn-stytle" form-type='submit' placeholder-class="temp-edit">
     <text class='fonts'>确认修改</text>
   </button>
-</view>
 
