@@ -39,9 +39,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.get_mes();
   },
+  //从数据库获得新数据
+  get_mes: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this;
+    wx.request({
+      url: 'https://www.4singledogs.cn/get/get_mes',
+      data: {
+        userID: app.globalData.open_id
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "GET",
+      success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
+        console.log(res.data);
+        let array2 = res.data;
+        let array1 = that.data.messageList;
+        array1 = array1.concat(array2);
+        that.setData({
+          messageList: array1
+        });
 
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
