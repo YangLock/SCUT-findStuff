@@ -45,10 +45,41 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     //动态计算高度
+    this.find_person();
       var line = this.data.dataList.length;
       this.setData({
         aheight:  369 * line
       });
+  },
+
+  find_person:function(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this;
+    wx.request({
+      url: 'https://www.4singledogs.cn/get/find_persons',
+      data: {
+        userID: app.globalData.open_id
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "GET",
+      success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
+        console.log(res.data);
+        let array2 = res.data;
+        let array1 = that.data.dataList;
+        array1 = array1.concat(array2);
+        that.setData({
+          dataList: array1
+        });
+
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      }
+    })
   },
   //滑动切换
   swiperTab: function (e) {
