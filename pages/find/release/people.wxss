@@ -137,3 +137,55 @@ textarea{
   margin-left: 10rpx;
   margin-top: 10rpx;
 }
+
+.select_box{
+  background: #fff;
+  width: 504rpx;
+  position: relative;
+}
+.select{
+  box-sizing: border-box;
+  width: 100%;
+  height: 60rpx;
+  border:1px solid #efefef;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+.select_text{
+  font-size: 15px;
+  flex: 1;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  transition:transform 0.3s;
+}
+.select_img_rotate{
+  transform:rotate(180deg); 
+}
+.option_box{
+  position: absolute;
+  width: 100%;
+  border:1px solid #efefef;
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background: #fff;
+  transition: height 0.3s;
+}
+.option{
+  display: block;
+  line-height: 40rpx;
+  font-size: 15px;
+  border-bottom: 1px solid #efefef;
+  padding: 10rpx;
+}
+.drop-list{
+  display: flex;
+  flex-direction: row;
+  margin-left: 106rpx;
+}

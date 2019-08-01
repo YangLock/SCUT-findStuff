@@ -15,16 +15,16 @@
   margin-left: 50rpx;
   word-break:break-all;
 }
-  .round-click{
-    height: 70rp+x;
-    width: 140rpx;
-    background-color: #F29C13;
-    position: fixed;
-    bottom: 80rpx;
-    right: 20rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    z-index: 9;
-    font-size: 30rpx;
+.round-click{
+  height: 70rpx;
+  width: 140rpx;
+  background-color: #F29C13;
+  position: fixed;
+  bottom: 80rpx;
+  right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  z-index: 9;
+  font-size: 30rpx;
 }

@@ -10,9 +10,30 @@ Page({
      */
     imgs: [],
     list: '',
-    upload_picture_list: []
+    upload_picture_list: [],
+    show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
+    selectData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包/钱', '卡'], //下拉列表要显示的内容
+    index: 0      //选择的下拉列表的下标，默认是0
+  },
+  /**
+   * 点击下拉按钮
+   */
+  selectTap() {
+    this.setData({
+      show: !this.data.show
+    });
   },
 
+  /**
+   * 点击下拉框中的内容
+   */
+  optionTap(e) {
+    let Index = e.currentTarget.dataset.index;
+    this.setData({
+      index: Index,
+      show: !this.data.show
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
