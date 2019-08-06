@@ -45,7 +45,7 @@
     </view>
   </view>
 </view>
-<view class="my-release" bindtap='release'>
+<view class="my-release" bindtap='get_goods'>
   <image class="release" src="/images/release.png"></image>
 </view>
 

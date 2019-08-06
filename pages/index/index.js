@@ -88,7 +88,7 @@ Page({
     })
     var that = this;
     wx.request({
-      url: 'https://www.4singledogs.cn/get/get_goods',
+      url: 'https://www.scutfind.xyz/api/get_goods',
       data: {
         userID: app.globalData.open_id
       },
