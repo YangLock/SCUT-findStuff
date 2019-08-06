@@ -1,88 +1,98 @@
 create database Train;
 use  train;
 create table userInfor
-(user_id numeric(12,0) not null comment'ÓÃ»§ID',
-user_name varchar(20) comment'ÓÃ»§Ãû',
-wechat_num varchar(20) comment'Î¢ĞÅºÅ',
-qq_num  numeric(15,0) comment'QQºÅ',
-tel_num numeric(11,0) comment'ÊÖ»úºÅ',
+(user_id numeric(12,0) not null comment'ç”¨æˆ·ID',
+user_name varchar(20) comment'ç”¨æˆ·å§“å',
+wechat_num varchar(20) comment'å¾®ä¿¡å·',
+qq_num  numeric(15,0) comment'QQå·',
+tel_num numeric(11,0) comment'æ‰‹æœºå·',
 primary key(user_id)
 );
 create table find_good(
-good_id numeric(12,0) not null comment'ÎïÆ·ID',
-good_title varchar(70) comment'±êÌâ',
-lost_place varchar(50) comment'ÒÅÊ§µØµã' ,
-detail varchar(120) comment'ÏêÏ¸ÃèÊö',
-typeof varchar(16) comment'ÎïÆ·ÀàĞÍ',
-diliver_time datetime comment'·¢²¼Ê±¼ä',
-deliver numeric(12,0) comment'·¢²¼Õß',
-stateof varchar(10) comment'ÎïÆ·×´Ì¬',
-p1 varchar(96) comment'Í¼1',
-p2 varchar(96) comment'Í¼2',
-p3 varchar(96) comment'Í¼3',
-p4 varchar(96) comment'Í¼4',
-p5 varchar(96) comment'Í¼5',
-p6 varchar(96) comment'Í¼6',
-p7 varchar(96) comment'Í¼7',
-p8 varchar(96) comment'Í¼8',
+good_id numeric(12,0) not null comment'ç‰©å“ID',
+good_title varchar(70) comment'æ ‡é¢˜',
+lost_place varchar(50) comment'é—å¤±åœ°ç‚¹' ,
+detail varchar(120) comment'è¯¦ç»†æè¿°',
+typeof varchar(16) comment'ç‰©å“ç±»å‹',
+diliver_time datetime comment'å‘å¸ƒæ—¶é—´',
+deliver numeric(12,0) comment'å‘å¸ƒè€…',
+stateof varchar(10) comment'ç‰©å“çŠ¶æ€',
+p1 MediumBlob comment'å›¾1',
+p2 MediumBlob comment'å›¾2',
+p3 MediumBlob comment'å›¾3',
+p4 MediumBlob comment'å›¾4',
+p5 MediumBlob comment'å›¾5',
+p6 MediumBlob comment'å›¾6',
+p7 MediumBlob comment'å›¾7',
+p8 MediumBlob comment'å›¾8',
 primary key (good_id),
 foreign key(deliver) references userInfor(user_id) on delete set null
 );
 create table find_person(
-good_id numeric(12,0) not null comment'ÎïÆ·ID',
-good_title varchar(70) comment'±êÌâ',
-lost_place varchar(50) comment'Ê°ÒÅµØµã' ,
-detail varchar(120) comment'ÏêÏ¸ÃèÊö',
-typeof varchar(16) comment'ÎïÆ·ÀàĞÍ',
-diliver_time datetime comment'·¢²¼Ê±¼ä',
-deliver numeric(12,0) comment'·¢²¼Õß',
-stateof varchar(10) comment'ÎïÆ·×´Ì¬',
-p1 varchar(96) comment'Í¼1',
-p2 varchar(96) comment'Í¼2',
-p3 varchar(96) comment'Í¼3',
-p4 varchar(96) comment'Í¼4',
-p5 varchar(96) comment'Í¼5',
-p6 varchar(96) comment'Í¼6',
-p7 varchar(96) comment'Í¼7',
-p8 varchar(96) comment'Í¼8',
+good_id numeric(12,0) not null comment'ç‰©å“ID',
+good_title varchar(70) comment'æ ‡é¢˜',
+find_place varchar(50) comment'æ‹¾é—åœ°ç‚¹' ,
+detail varchar(120) comment'è¯¦ç»†æè¿°',
+typeof varchar(16) comment'ç‰©å“ç±»å‹',
+diliver_time datetime comment'å‘å¸ƒæ—¶é—´',
+deliver numeric(12,0) comment'å‘å¸ƒè€…',
+stateof varchar(10) comment'ç‰©å“çŠ¶æ€',
+p1 MediumBlob comment'å›¾1',
+p2 MediumBlob comment'å›¾2',
+p3 MediumBlob comment'å›¾3',
+p4 MediumBlob comment'å›¾4',
+p5 MediumBlob comment'å›¾5',
+p6 MediumBlob comment'å›¾6',
+p7 MediumBlob comment'å›¾7',
+p8 MediumBlob comment'å›¾8',
 primary key (good_id),
 foreign key(deliver) references userInfor(user_id) on delete set null
 );
-
-create table combinationOfgood_id(
-good_id1 numeric(13,0) not null comment'ÎïÆ·IDµÄID',
-good_id2 numeric(12,0) comment'ÎïÆ·ID',
-typeof varchar(16) comment'·¢²¼ÀàĞÍ',
-primary key (good_id1)
-);
-
-create table temporary(
-good_id numeric(12,0) not null comment'ÎïÆ·ID',
-wechat_num varchar(20) comment'Î¢ĞÅºÅ',
-qq_num  numeric(15,0) comment'QQºÅ',
-tel_num numeric(11,0) comment'ÊÖ»úºÅ',
+create table good_temporary(
+good_id numeric(12,0) not null comment'ç‰©å“ID',
+wechat_num varchar(20) comment'å¾®ä¿¡å·',
+qq_num  numeric(15,0) comment'QQå·',
+tel_num numeric(11,0) comment'æ‰‹æœºå·',
 primary key (good_id),
-foreign key(good_id) references combinationOfgood_id(good_id2)
+foreign key(good_id) references find_good(good_id)
+);
+create table person_temporary(
+good_id numeric(12,0) not null comment'ç‰©å“ID',
+wechat_num varchar(20) comment'å¾®ä¿¡å·',
+qq_num  numeric(15,0) comment'QQå·',
+tel_num numeric(11,0) comment'æ‰‹æœºå·',
+primary key (good_id),
+foreign key(good_id) references find_person(good_id)
 );
 create table my_find_good(
-my_id numeric(12,0) not null comment'ÎÒµÄID',
-good_id numeric(12,0) comment'Ñ°ÎïID',
+my_id numeric(12,0) not null comment'æˆ‘çš„ID',
+good_id numeric(12,0) comment'ç‰©å“ID',
 primary key (my_id),
 foreign key(good_id) references find_good(good_id)
 );
 create table my_find_person(
-my_id numeric(12,0) not null comment'ÎÒµÄID',
-good_id numeric(12,0) comment'Ñ°ÎïÖ÷ID',
+my_id numeric(12,0) not null comment'æˆ‘çš„ID',
+good_id numeric(12,0) comment'ç‰©å“ID',
 primary key (my_id),
 foreign key(good_id) references find_person(good_id)
 );
-create table com(
-com_id numeric(12,0) not null comment'ÁôÑÔID',
-com_time datetime comment'ÁôÑÔÊ±¼ä',
-com_detail varchar(120) comment'ÁôÑÔÄÚÈİ',
-com_deliver numeric(12,0) comment'ÁôÑÔÕß',
-good_id numeric(12,0) comment'ÎïÆ·ID',
+create table good_com(
+com_id numeric(12,0) not null comment'ç•™è¨€ID',
+com_time datetime comment'ç•™è¨€æ—¶é—´',
+com_detail varchar(120) comment'ç•™è¨€å†…å®¹',
+com_deliver numeric(12,0) comment'ç•™è¨€è€…',
+good_id numeric(12,0) comment'ç‰©å“ID',
 primary key (com_id),
-foreign key(good_id) references combinationOfgood_id(good_id2)on delete set null,
+foreign key(good_id) references find_good(good_id)on delete set null,
+foreign key(com_deliver) references userInfor(user_id)on delete set null
+);
+create table person_com(
+com_id numeric(12,0) not null comment'ç•™è¨€ID',
+com_time datetime comment'ç•™è¨€æ—¶é—´',
+com_detail varchar(120) comment'ç•™è¨€å†…å®¹',
+com_deliver numeric(12,0) comment'ç•™è¨€è€…',
+good_id numeric(12,0) comment'ç‰©å“ID',
+primary key (com_id),
+foreign key(good_id) references find_person(good_id)on delete set null,
 foreign key(com_deliver) references userInfor(user_id)on delete set null
 );

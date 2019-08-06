@@ -1,8 +1,8 @@
 const db = require('../db');
 
-module.exports = db.defineModel('temporary',{
+module.exports = db.defineModel('good_temporary',{
     good_id: {
-        type: db.NUMERIC(12,0),
+        type: db.BIGINT(12),
         primaryKey: true,
         references: {
             model: find_good,
@@ -10,7 +10,7 @@ module.exports = db.defineModel('temporary',{
         },
         allowNull: false
     },
-    wechat_num: db.VARCHAR(20),
-    qq_num: db.NUMERIC(15,0),
-    tel_num: db.NUMERIC(11,0)
+    wechat_num: db.STRING(20),
+    qq_num:  db.BIGINT(15),
+    tel_num: db.BIGINT(11),
 });
