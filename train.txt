@@ -17,14 +17,14 @@ typeof varchar(16) comment'物品类型',
 diliver_time datetime comment'发布时间',
 deliver numeric(12,0) comment'发布者',
 stateof varchar(10) comment'物品状态',
-p1 MediumBlob comment'图1',
-p2 MediumBlob comment'图2',
-p3 MediumBlob comment'图3',
-p4 MediumBlob comment'图4',
-p5 MediumBlob comment'图5',
-p6 MediumBlob comment'图6',
-p7 MediumBlob comment'图7',
-p8 MediumBlob comment'图8',
+p1 varchar(96) comment'图1',
+p2 varchar(96) comment'图2',
+p3 varchar(96) comment'图3',
+p4 varchar(96) comment'图4',
+p5 varchar(96) comment'图5',
+p6 varchar(96) comment'图6',
+p7 varchar(96) comment'图7',
+p8 varchar(96) comment'图8',
 primary key (good_id),
 foreign key(deliver) references userInfor(user_id) on delete set null
 );
@@ -37,25 +37,32 @@ typeof varchar(16) comment'物品类型',
 diliver_time datetime comment'发布时间',
 deliver numeric(12,0) comment'发布者',
 stateof varchar(10) comment'物品状态',
-p1 MediumBlob comment'图1',
-p2 MediumBlob comment'图2',
-p3 MediumBlob comment'图3',
-p4 MediumBlob comment'图4',
-p5 MediumBlob comment'图5',
-p6 MediumBlob comment'图6',
-p7 MediumBlob comment'图7',
-p8 MediumBlob comment'图8',
+p1 varchar(96) comment'图1',
+p2 varchar(96) comment'图2',
+p3 varchar(96) comment'图3',
+p4 varchar(96) comment'图4',
+p5 varchar(96) comment'图5',
+p6 varchar(96) comment'图6',
+p7 varchar(96) comment'图7',
+p8 varchar(96) comment'图8',
 primary key (good_id),
 foreign key(deliver) references userInfor(user_id) on delete set null
 );
+
+create table combinationOfgood_id(
+good_id1 numeric(13,0) not null comment'物品ID的ID',
+good_id2 numeric(12,0) comment'物品ID',
+typeof varchar(16) comment'发布类型',
+primary key (good_id1)
+);
+
 create table temporary(
 good_id numeric(12,0) not null comment'物品ID',
 wechat_num varchar(20) comment'微信号',
 qq_num  numeric(15,0) comment'QQ号',
 tel_num numeric(11,0) comment'手机号',
 primary key (good_id),
-foreign key(good_id) references find_good(good_id),
-foreign key(good_id) references find_person(good_id)
+foreign key(good_id) references combinationOfgood_id(good_id2)
 );
 create table my_find_good(
 my_id numeric(12,0) not null comment'我的ID',
@@ -76,7 +83,6 @@ com_detail varchar(120) comment'留言内容',
 com_deliver numeric(12,0) comment'留言者',
 good_id numeric(12,0) comment'物品ID',
 primary key (com_id),
-foreign key(good_id) references find_good(good_id)on delete set null,
-foreign key(good_id) references find_person(good_id)on delete set null,
+foreign key(good_id) references combinationOfgood_id(good_id2)on delete set null,
 foreign key(com_deliver) references userInfor(user_id)on delete set null
 );
