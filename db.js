@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 console.log('init sequelize...');
 var sequelize = new Sequelize('train','root','xieyangwu',{
-    host: 'localhost',
+    host: '49.235.25.134',
     dialect: 'mysql',
     pool:{
         max: 5,
