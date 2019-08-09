@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
 console.log('init sequelize...');
-var sequelize = new Sequelize('train','root','xieyangwu',{
-    host: '49.235.25.134',
+var sequelize = new Sequelize('developTrain','root','victor0306',{
+    host: 'localhost',
     dialect: 'mysql',
     pool:{
         max: 5,

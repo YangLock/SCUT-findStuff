@@ -9,6 +9,7 @@ module.exports = {
             if (ctx.request.path.startsWith(pathPrefix)) {
                 // 绑定rest()方法:
                 ctx.rest = (data) => {
+                    ctx.response.status = 200;
                     ctx.response.type = 'application/json';
                     ctx.response.body = data;
                 }
