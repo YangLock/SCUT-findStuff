@@ -74,7 +74,6 @@ Page({
         that.setData({
           dataList: array1
         });
-
       },
       fail: function (res) {
         wx.hideLoading();
@@ -98,5 +97,10 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  jumpTo: function(){
+    wx.navigateTo({
+      url: '/pages/reedit/reedit',
+    })
   }
 })

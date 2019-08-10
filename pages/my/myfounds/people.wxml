@@ -43,7 +43,7 @@
       </navigator>
         <view class='btn'>
         <button>已被认领</button>
-        <button>编辑</button>
+        <button bindtap="jumpTo">编辑</button>
         <button>刷新</button>
         <button>删除</button>
         </view>

@@ -97,5 +97,10 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  jumpTo: function(){
+    wx.navigateTo({
+      url: '/pages/reedit/reedit',
+    })
   }
 })

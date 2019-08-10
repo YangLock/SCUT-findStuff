@@ -1,0 +1,75 @@
+<!--pages/find/release/people.wxml-->
+<view class="picture_list">
+  <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
+    <image wx:if="{{item.upload_percent < 100}}" src="{{item.path}}" mode="aspectFill"></image>
+    <image wx:if="{{item.upload_percent == 100}}" src="{{item.path_server}}" mode="aspectFill"></image>
+    <!-- <view class="upload_progress" wx:if="{{item.upload_percent < 100}}" data-index="{{index}}" bindtap="previewImg">{{item.upload_percent}}%
+    </view> -->
+    <text class='del' bindtap='deleteImg' data-src='{{image}}' style='display:{{isDel}}' data-index="{{index}}">×
+    </text>
+  </view>
+
+  <view class='picture_item'>
+    <view class="add-image" bindtap='uploadpic'>
+      <text id="plus">+</text>
+    </view>
+    <text id="words">上传图片</text>
+  </view>
+</view>
+<form>
+  <view class="section">
+    <view class="search">
+      <input name="title" />
+    </view>
+    <text class='small-text'>标题：</text>
+  </view>
+  <!-- 下拉列表的实现 -->
+  <view class="drop-list">
+    <text class="small-text">种类：</text>
+    <view class='select_box'>
+      <view class='select' bindtap='selectTap'>
+        <text class='select_text'>{{selectData[index]}}</text>
+        <image class='select_img {{show&&"select_img_rotate"}}' src='/images/bottom.png'></image>            </view>
+      <view class='option_box' style='height:{{show?(selectData.length>5?240:selectData.length*60):0}}rpx;'>
+        <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' bindtap='optionTap'>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="search">
+      <input name="who" />
+    </view>
+    <text class='small-text'>联系人：</text>
+  </view>
+  <view class="section">
+    <view class="search">
+      <input name="place"/>
+    </view>
+    <text class='small-text'>地点：</text>
+  </view>
+  <text class='big-text'>详情描述：</text>
+  <view class='discribe'>
+    <textarea ></textarea>
+  </view>
+  <text class='big-text'>联系方式：</text>
+  <view class="section">
+    <view class="search">
+      <input name="TEL" />
+    </view>
+    <text class='small-text'>TEL：</text>
+  </view>
+  <view class="section">
+    <view class="search">
+      <input name="WECHAT" />
+    </view>
+    <text class='small-text'>微信：</text>
+  </view>
+  <view class="section">
+    <view class="search">
+      <input name="QQ"/>
+    </view>
+    <text class='small-text'>QQ：</text>
+  </view>
+  <button class="btn-stytle" form-type='submit' >确认编辑</button>
+  </form>

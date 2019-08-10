@@ -10,7 +10,8 @@
     "pages/my/myfounds/things",
     "pages/find/details",
     "pages/find/release/things",
-    "pages/find/release/people"
+    "pages/find/release/people",
+    "pages/reedit/reedit"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -44,5 +45,5 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap9.json"
+  "sitemapLocation": "sitemap.json"
 }

@@ -19,4 +19,12 @@ module.exports = db.defineModel('find_person',{
         }
     },
     stateof: db.STRING(10),
+    p1: db.STRING(100),
+    p2: db.STRING(100),
+    p3: db.STRING(100),
+    p4: db.STRING(100),
+    p5: db.STRING(100),
+    p6: db.STRING(100),
+    p7: db.STRING(100),
+    p8: db.STRING(100),
 });
