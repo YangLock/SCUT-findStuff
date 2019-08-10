@@ -11,7 +11,7 @@ var sequelize = new Sequelize('developTrain','root','victor0306',{
     }
 });
 
-function defineModel(name, attributes) {
+var defineModel = function(name, attributes) {
     var attrs = {};
     for (let key in attributes) {
         let value = attributes[key];
@@ -59,4 +59,11 @@ function defineModel(name, attributes) {
             }
         }
     });
+};
+
+module.exports = {
+    defineModel,
+    STRING: Sequelize.STRING,
+    BIGINT: Sequelize.BIGINT,
+    DATE: Sequelize.DATE
 }
