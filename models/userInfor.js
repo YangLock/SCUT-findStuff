@@ -6,6 +6,7 @@ module.exports = db.defineModel('userInfo',{
         type: db.BIGINT(12),
         allowNull: false
     },
+    user_avatar: db.STRING(100),
     user_name: db.STRING(20),
     wechat_num: db.STRING(20),
     qq_num: db.BIGINT(15),

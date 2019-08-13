@@ -1,12 +1,11 @@
 /**
- *  api/be found
- *  api/reedit
- *  api/refresh
- *  api/delete
- *  api/edit info我的界面
+ *  api/be found ✅
+ *  api/reedit   ✅
+ *  api/refresh  ✅
+ *  api/delete   ✅
+ *  api/edit info我的界面 ✅
  */
 const APIError = require('../rest').APIError;
-const model = require('../model');
 const records = require('./records');
 
 module.exports = {
@@ -58,4 +57,34 @@ module.exports = {
             throw new APIError('record:not_found', 'record not found by id');
         }
     },
+    'PUT /api/editMyInfo/:id': async(ctx, next) =>{
+        console.log('edit user ${ctx.params.id} own information');
+        var record = records.editUserInfo(ctx.params.id);
+        if(record){
+            ctx.rest(record);
+        }
+        else{
+            throw new APIError('record:not_found', 'record not found by id');
+        }
+    },
+    'PUT /api/refresh/findGood/:id': async(ctx, next) =>{
+        console.log('refresh record ${ctx.params.id}...');
+        var record = records.refreshFromGood(ctx.params.id);
+        if(record){
+            ctx.rest(record);
+        }
+        else{
+            throw new APIError('record:not_found', 'record not found by id');
+        }
+    },
+    'PUT /api/refresh/findPerson/:id': async(ctx, next) =>{
+        console.log('refresh record ${ctx.params.id}...');
+        var record = records.reeditRecordFromPerson(ctx.params.id);
+        if(record){
+            ctx.rest(record);
+        }
+        else{
+            throw new APIError('record:not_found', 'record not found by id');
+        }
+    }
 };

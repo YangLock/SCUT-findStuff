@@ -118,5 +118,47 @@ module.exports = {
             await user.save();
         })();
         return {find_people, user};
+    },
+    editUserInfo: (id)=>{
+        (async ()=>{
+            var userinfo = await userInfo.findAll({
+                where: {
+                    user_id: id
+                }
+            });
+            const {avatar, userID, userName, wechat, tel, qq} = ctx.request.body;
+            userinfo.user_avatar = avatar;
+            userinfo.user_id = userID;
+            userinfo.user_name = userName;
+            userinfo.wechat_num = wechat;
+            userinfo.tel_num = tel;
+            userinfo.qq_num = qq;
+            await userinfo.save();
+        })();
+        return userinfo;
+    },
+    refreshFromGood: (id)=>{
+        (async ()=>{
+            var find_goods = await find_goods.findAll({
+                where: {
+                    good_id: id
+                }
+            });
+            find_goods.deliver_time = new Date();
+            await find_goods.save();
+        })();
+        return find_goods;
+    },
+    refreshFromPerson: (id)=>{
+        (async ()=>{
+            var find_people = await find_people.findAll({
+                where: {
+                    good_id: id
+                }
+            });
+            find_people.deliver_time = new Date();
+            await find_people.save();
+        })();
+        return find_people;
     }
 };
