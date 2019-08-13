@@ -16,10 +16,10 @@
     <text id="words">上传图片</text>
   </view>
 </view>
-<form>
+<form bindsubmit='formSubmit'>
   <view class="section">
     <view class="search">
-      <input name="title" />
+      <input name="title" bindinput='getTitle'/>
     </view>
     <text class='small-text'>标题：</text>
   </view>
@@ -38,38 +38,38 @@
 
   <view class="section">
     <view class="search">
-      <input name="who" />
+      <input name="who" bindinput='getWho'/>
     </view>
     <text class='small-text'>联系人：</text>
   </view>
   <view class="section">
     <view class="search">
-      <input name="place"/>
+      <input name="place" bindinput='getPlace'/>
     </view>
     <text class='small-text'>地点：</text>
   </view>
   <text class='big-text'>详情描述：</text>
   <view class='discribe'>
-    <textarea ></textarea>
+    <textarea bindinput='getDescribe'></textarea>
   </view>
   <text class='big-text'>联系方式：</text>
   <view class="section">
     <view class="search">
-      <input name="TEL" />
+      <input name="TEL" bindinput='getTel'/>
     </view>
     <text class='small-text'>TEL：</text>
   </view>
   <view class="section">
     <view class="search">
-      <input name="WECHAT" />
+      <input name="WECHAT" bindinput='getWechat'/>
     </view>
     <text class='small-text'>微信：</text>
   </view>
   <view class="section">
     <view class="search">
-      <input name="QQ"/>
+      <input name="QQ" bindinput='getQQ'/>
     </view>
     <text class='small-text'>QQ：</text>
   </view>
-  <button class="btn-stytle" form-type='submit' >确认编辑</button>
+  <button class="btn-stytle" form-type='submit'>确认编辑</button>
   </form>

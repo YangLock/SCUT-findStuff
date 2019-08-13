@@ -13,7 +13,14 @@ Page({
     upload_picture_list: [],
     show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
     selectData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包/钱', '卡'], //下拉列表要显示的内容
-    index: 0      //选择的下拉列表的下标，默认是0
+    index: 0,      //选择的下拉列表的下标，默认是0
+    getTitle: null,
+    getWho: null,
+    getPlace: null,
+    getDescribe: null,
+    getTel: null,
+    getWechat: null,
+    getQQ: null
   },
   /**
    * 点击下拉按钮
@@ -110,7 +117,62 @@ Page({
       urls: imgs
     })
   },
-
+  /**
+   * 获取用户输入的标题
+   */
+  getTitle: function(e){
+    this.setData({
+      getTitle: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的联系人
+   */
+  getWho: function(e){
+    this.setData({
+      getWho: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的地点
+   */
+  getPlace: function(e){
+    this.setData({
+      getPlace: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的详情描述
+   */
+  getDescribe: function(e){
+    this.setData({
+      getDescribe: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的电话号码
+   */
+  getTel: function(e){
+    this.setData({
+      getTel: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的微信
+   */
+  getWechat: function(e){
+    this.setData({
+      getWechat: e.detail.value
+    })
+  },
+  /**
+   * 获取用户输入的QQ
+   */
+  getQQ: function(e){
+    this.setData({
+      getQQ: e.detail.value
+    })
+  },
   /**
    * 用户点击右上角分享
    */

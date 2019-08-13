@@ -10,7 +10,7 @@ module.exports = db.defineModel('find_good',{
     lost_place: db.STRING(50),
     detail: db.STRING(120),
     typeof: db.STRING(16),
-    diliver_time: db.DATE(),
+    diliver_time: db.DATE,
     deliver: {
         type: db.BIGINT(12),
         references: {
