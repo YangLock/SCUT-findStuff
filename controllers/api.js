@@ -38,8 +38,24 @@ module.exports = {
             throw new APIError('record:not_found', 'record not found by id');
         }
     },
-    'PUT /api/reEdit/:id': async(ctx, next) =>{
+    'PUT /api/reEdit/findGood/:id': async(ctx, next) =>{
         console.log('reedit record ${ctx.params.id}...');
-        
-    }
+        var record = records.reeditRecordFromGood(ctx.params.id);
+        if(record[0]&&record[1]){
+            ctx.rest(record);
+        }
+        else{
+            throw new APIError('record:not_found', 'record not found by id');
+        }
+    },
+    'PUT /api/reEdit/findPerson/:id': async(ctx, next) =>{
+        console.log('reedit record ${ctx.params.id}...');
+        var record = records.reeditRecordFromPerson(ctx.params.id);
+        if(record[0]&&record[1]){
+            ctx.rest(record);
+        }
+        else{
+            throw new APIError('record:not_found', 'record not found by id');
+        }
+    },
 };

@@ -54,7 +54,34 @@ module.exports = {
                     good_id: id
                 }
             });
+            var user = await userInfo.findAll({
+                where: {
+                    user_id: find_people.deliver
+                }
+            });
+            const {pictures, title, type, who, place, describe, tel, wechat, qq} = ctx.request.body;
+            find_goods.good_title = title;
+            find_goods.find_place = place;
+            find_goods.detail = describe;
+            find_goods.typeof = type;
+            find_goods.deliver_time = new Date();
+            find_goods.p1 = pictures[0];
+            find_goods.p2 = pictures[1];
+            find_goods.p3 = pictures[2];
+            find_goods.p4 = pictures[3];
+            find_goods.p5 = pictures[4];
+            find_goods.p6 = pictures[5];
+            find_goods.p7 = pictures[6];
+            find_goods.p8 = pictures[7];
+
+            user.user_name = who;
+            user.tel_num = tel;
+            user.wechat_num = wechat;
+            user.qq_num = qq;
+            await find_people.save();
+            await user.save();
         })();
+        return {find_goods, user};
     },
     reeditRecordFromPerson: (id)=>{
         (async ()=>{
@@ -68,16 +95,28 @@ module.exports = {
                     user_id: find_people.deliver
                 }
             });
-            find_people.good_title = '';
-            find_people.find_place = '';
-            find_people.detail = '';
+            const {pictures, title, type, who, place, describe, tel, wechat, qq} = ctx.request.body;
+            find_people.good_title = title;
+            find_people.find_place = place;
+            find_people.detail = describe;
+            find_people.typeof = type;
             find_people.deliver_time = new Date();
-            user.user_name = '';
-            user.wechat_num = '';
-            user.qq_num = '';
-            user.tel_num = '';
+            find_people.p1 = pictures[0];
+            find_people.p2 = pictures[1];
+            find_people.p3 = pictures[2];
+            find_people.p4 = pictures[3];
+            find_people.p5 = pictures[4];
+            find_people.p6 = pictures[5];
+            find_people.p7 = pictures[6];
+            find_people.p8 = pictures[7];
+
+            user.user_name = who;
+            user.tel_num = tel;
+            user.wechat_num = wechat;
+            user.qq_num = qq;
             await find_people.save();
             await user.save();
         })();
+        return {find_people, user};
     }
 };
