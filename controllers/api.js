@@ -6,7 +6,7 @@
  *  api/edit info我的界面 ✅
  */
 const APIError = require('../rest').APIError;
-const records = require('./records');
+const records = require('../records');
 
 module.exports = {
     'DELETE /api/delete/findGood/:id': async(ctx, next) =>{

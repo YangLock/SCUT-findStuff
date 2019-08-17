@@ -1,7 +1,10 @@
-const model = require('../model');
+const model = require('./model');
 let findGood = model.findGood;
 let findPerson = model.findPerson;
 let userInfo = model.userInfo;
+/**
+ * 将实现接口需要的逻辑单独写成了几个函数，在接口文件中直接调用应该就可以
+ */
 module.exports = {
     deleteRecordFromGood: (id)=>{
         (async ()=>{
