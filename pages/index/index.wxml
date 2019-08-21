@@ -55,13 +55,13 @@
     <view class="list_item">
       <navigator url='details?id={{item.goods_id}}'>
         <view class='img'>
-          <image src="{{item.goods_img}}"  mode="scaleToFill"/>
+          <image src="{{item.p1}}"  mode="scaleToFill"/>
         </view>
         <view class='info'>
           <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>失主姓名：{{item.person_name}}</view>
-          <view class='place'>丢失地点：{{item.goods_place}}</view>
-          <view class="time">丢失时间：{{item.goods_time}}</view>
+          <view class='name'>失主姓名：{{item.deliver}}</view>
+          <view class='place'>丢失地点：{{item.lost_place}}</view>
+          <view class="time">丢失时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
     </view>
