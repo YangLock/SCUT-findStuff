@@ -5,19 +5,20 @@
       <text id="words">点击图片编辑头像</text>
     </view>
   </view>
-  <view class='info'>
-    <input class='fonts' type='text' placeholder='用户名' placeholder-class="temp-edit"></input>
-  </view>
-  <view class='info'>
-    <input  class='fonts' type='text' placeholder='手机号码' placeholder-class="temp-edit"></input>
-  </view>
-  <view class='info'>
-    <input class='fonts' type='text' placeholder='微信' placeholder-class="temp-edit"></input>
-  </view>
-  <view class='info'>
-    <input class='fonts' type='text' placeholder='QQ' placeholder-class="temp-edit"></input>
-  </view>
-  <button class="btn-stytle" form-type='submit' placeholder-class="temp-edit">
-    <text class='fonts'>确认修改</text>
-  </button>
-
+  <form bindsubmit="formSubmit">
+    <view class='info'>
+      <input class='fonts' type='text' name='username' placeholder='用户名' placeholder-class="temp-edit"></input>
+    </view>
+    <view class='info'>
+      <input  class='fonts' type='text' name='telnum' placeholder='手机号码' placeholder-class="temp-edit"></input>
+    </view>
+    <view class='info'>
+      <input class='fonts' type='text' name='wechat' placeholder='微信' placeholder-class="temp-edit"></input>
+    </view>
+    <view class='info'>
+      <input class='fonts' type='text' name='qqnum' placeholder='QQ' placeholder-class="temp-edit"></input>
+    </view>
+    <button class="btn-stytle" form-type='submit' placeholder-class="temp-edit">
+      <text class='fonts'>确认修改</text>
+    </button>
+  </form>

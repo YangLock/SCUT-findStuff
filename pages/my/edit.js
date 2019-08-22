@@ -1,4 +1,8 @@
 // pages/my/edit.js
+
+const app = getApp();
+const generate = require('/utils/generateID.js');
+
 Page({
 
   /**
@@ -64,6 +68,25 @@ Page({
 
   },
 
+  //提交表单内容
+  formSubmit: function(e){
+    wx.request({
+      url: app.globalData.baseurl + '/api/editMyInfo/' + generate.generateGoodID(),
+      method: 'PUT',
+      data:{
+        userName: e.detail.value.userName,
+        telNum: e.detail.value.telnum,
+        weChat: e.detail.value.wechat,
+        qqNum: e.detail.value.qqnum
+      },
+      header:{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res.data);
+      }
+    })
+  },
   //点击上传图片
   upShopLogo: function () 
   {
@@ -95,7 +118,7 @@ Page({
       sourceType: [type],
       success: function (res) {
         that.data.userimg = res.tempFilePaths[0]
-        // that.upload_file(urldate.upimg + 'shop/shopIcon', res.tempFilePaths[0])
+        that.upload_file(app.globalData.baseurl + '/upload', res.tempFilePaths[0])
         let userimg = res.tempFilePaths[0];
         that.setData({
           userimg: userimg
@@ -107,21 +130,13 @@ Page({
   //上传图片到服务器
   upload_file: function (url, filePath) {
     var that = this;
-    var signature = signa.signaturetik('token=' + token, 'userAccessToken=' + userAccessToken, 'studentAccessToken=' + studentAccessToken);
     wx.uploadFile({
-      url: urldate.upimg,//后台处理接口
+      url: url, //后台处理接口
       filePath: filePath,
-      name: 'file',
+      name: 'images',
       header: {
         'content-type': 'multipart/form-data'
       }, // 设置请求的 header
-
-      formData: {//需要的参数
-        'token': token,
-        'signature': signature,
-        'userAccessToken': userAccessToken,
-        'studentAccessToken': studentAccessToken
-      }, // HTTP 请求中其他额外的 form data
       success: function (res) {
         var data = JSON.parse(res.data);
         that.setData({

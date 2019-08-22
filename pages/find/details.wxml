@@ -13,17 +13,17 @@
  </swiper>
  <text class='title'>联系方式</text>
  <view class='contract'>
- <text>电话：{电话号码}</text>
+ <text>电话：{{telnum}}</text>
  </view>
   <view class='contract'>
- <text>微信：{微信号}</text>
+ <text>微信：{{wechat}}</text>
  </view>
   <view class='contract'>
- <text>QQ：{QQ号码}</text>
+ <text>QQ：{{qqnum}}</text>
  </view>
   <text class='title'>详情描述</text>
    <view class='contract'>
-  <text>{描述内容}aaaaaaaa
+  <text>{{content}}aaaaaaaa
   aaaaaaaaaaa
   aaaaaaaa
   aaaaaaaa
