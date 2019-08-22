@@ -6,12 +6,12 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUse: false,
     dataList: [
       {
         goods_id: 1,
         goods_title: '物品标题1',
-        goods_img: '/images/wallet.png',
+        goods_img: 'http://localhost:3001/1566226210749.png',
         person_name: '谢振轩',
         goods_place: 'A1-308',
         goods_time: '上午3、4节'
@@ -46,20 +46,58 @@ Page({
       }
     ],
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.getopenid();
+    this.get_goods('all');
+  },
+//从数据库获得新数据
+  get_goods:function(key){
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl +'/api/get/findGood/'+key,
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "GET",
+      success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
+      
+      var data=res.data;
+      console.log(data);
+          that.setData({
+            dataList: res.data
+          });
+        wx.hideLoading();
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      }
     })
   },
-  onLoad: function () {
-    this.get_goods();
+
+  getUserInfo: function(e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+  release: function () {
+    wx.navigateTo({
+      url: '../find/release/things',
+    })
+  },
+  getopenid: function () {
+    var that = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -80,49 +118,47 @@ Page({
         }
       })
     }
-  },
-//从数据库获得新数据
-  get_goods:function(){
-    wx.showLoading({
-      title: '加载中',
-    })
-    var that = this;
-    wx.request({
-      url: 'https://www.scutfind.xyz/api/get_goods',
-      data: {
-        userID: app.globalData.open_id
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: "GET",
-      success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
-        console.log(res.data);
-          let array2 = res.data;
-          let array1 = that.data.dataList;
-          array1 = array1.concat(array2);
-          that.setData({
-            dataList: array1
+    //登录凭证校验。通过 wx.login() 接口获得临时登录凭证 code 后传到开发者服务器调用此接口完成登录流程。
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          console.log("res.code:" + res.code);
+          var d = app.globalData;//这里存储了appid、secret、token串  
+          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + d.appid + '&secret=' + d.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+          wx.request({
+            url: l,
+            data: {},
+            method: 'GET',
+            success: function (res) {
+              var obj = {};
+              obj.openid = res.data.openid;
+              app.globalData.open_id = obj.openid;
+              console.log("openid:" + obj.openid);
+              console.log("session_key:" + res.data.session_key);
+              obj.expires_in = Date.now() + res.data.expires_in;
+              wx.setStorageSync('user', obj);//存储openid 
+              that.getcheck(app.globalData.open_id, app.globalData.userInfo.nickName, app.globalData.userInfo.avatarUrl);
+            }
           });
-        
-      },
-      fail: function (res) {
-        wx.hideLoading();
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
       }
-    })
+    });
   },
-
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  release: function () {
-    wx.navigateTo({
-      url: '../find/release/things',
-    })
+  getcheck:function(user_id,user_name,user_avatar){
+    var that=this;
+    wx.request({
+      url: app.globalData.baseurl+'/api/get/checkuser',
+      data:{
+        user_id:user_id,
+        user_name:user_name,
+        user_avatar: user_avatar
+      },
+      method:'GET',
+      success: function (res) {
+        console.log(res.data);
+      }
+    });
   }
 })
