@@ -3,44 +3,8 @@ var app = getApp()
 Page({
   data: {
     currentTab: 0,
-    dataList: [
-      {
-        goods_id: 1,
-        goods_title: '物品标题1',
-        goods_img: '/images/wallet.png',
-        person_name: '谢振轩',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题2',
-        goods_img: '/images/wallet.png',
-        person_name: '吴斌峰',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题3',
-        goods_img: '/images/wallet.png',
-        person_name: '杨宗霖',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题4',
-        goods_img: '/images/wallet.png',
-        person_name: '熊景涛',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题5',
-        goods_img: '/images/wallet.png',
-        person_name: '方思政',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }
-    ],
+    dataList1: '',
+    dataList2: ''
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -52,7 +16,59 @@ Page({
     });
   },
 
-  myFindPerson:function(){
+  //确认认领
+  confirm: function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl + '/api/claimConfirm/' + ID,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "PUT",
+      success: function(res){
+
+      },
+      fail: function(res){
+
+      }
+    })
+  },
+
+  //刷新记录
+  refresh: function(){
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl + '/api/refresh/findPerson/' + ID,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "PUT",
+      success: function(res){
+
+      },
+      fail: function(res){
+
+      }
+    })
+  },
+
+  //删除记录
+  deleteRecord: function(){
+    wx.request({
+      url: app.globalData.baseurl + '/api/delete/findPerson/' + ID,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "PUT",
+      success: function(res){
+
+      },
+      fail: function(res){
+        
+      }
+    })
+  },
+  myFindPerson: function(){
     wx.showLoading({
       title: '加载中',
     })

@@ -21,7 +21,7 @@
         </view>
       </navigator>
         <view class='btn1'>
-        <button bindtap="delete">删除</button>
+        <button bindtap="deleteRecord">删除</button>
         </view>
     </view>
   </block>
@@ -45,7 +45,7 @@
         <button bindtap="confirm">已被认领</button>
         <button bindtap="jumpTo">编辑</button>
         <button bindtap="refresh">刷新</button>
-        <button bindtap="delete">删除</button>
+        <button bindtap="deleteRecord">删除</button>
         </view>
     </view>
   </block>
