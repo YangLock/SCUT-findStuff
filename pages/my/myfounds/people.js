@@ -20,7 +20,7 @@ Page({
   confirm: function(){
     var that = this;
     wx.request({
-      url: app.globalData.baseurl + '/api/claimConfirm/' + ID,
+      url: app.globalData.baseurl + '/api/claimConfirm/' + goodID,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -38,7 +38,7 @@ Page({
   refresh: function(){
     var that = this;
     wx.request({
-      url: app.globalData.baseurl + '/api/refresh/findPerson/' + ID,
+      url: app.globalData.baseurl + '/api/refresh/findPerson/' + goodID,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -55,7 +55,7 @@ Page({
   //删除记录
   deleteRecord: function(){
     wx.request({
-      url: app.globalData.baseurl + '/api/delete/findPerson/' + ID,
+      url: app.globalData.baseurl + '/api/delete/findPerson/' + goodID,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -64,7 +64,7 @@ Page({
 
       },
       fail: function(res){
-        
+
       }
     })
   },
