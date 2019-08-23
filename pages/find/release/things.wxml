@@ -21,7 +21,7 @@
 <form>
 <view class="section">
   <view class="search">
-    <input name="title" />
+    <input name="title" bindinput="titleinput"/>
   </view>
   <text class='small-text'>标题：</text>
 </view>
@@ -42,40 +42,40 @@
 
 <view class="section">
   <view class="search">
-    <input name="who" />
+    <input name="who" bindinput="whoinput"/>
   </view>
   <text class='small-text'>联系人：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="place"/>
+    <input name="place" bindinput="placeinput"/>
   </view>
-  <text class='small-text'>地点：</text>
+  <text class='small-text'>丢失地点：</text>
 </view>
 
 <text class='big-text'>详情描述：</text>
 <view class='discribe'>
-  <textarea ></textarea>
+  <textarea bindinput="detailinput"></textarea>
 </view>
 <text class='big-text'>联系方式：</text>
 <view class="section">
   <view class="search">
-    <input name="TEL" />
+    <input name="TEL" bindinput="telinput"/>
   </view>
   <text class='small-text'>TEL：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="WECHAT" />
+    <input name="WECHAT" bindinput="wechatinput"/>
   </view>
   <text class='small-text'>微信：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="QQ"/>
+    <input name="QQ" bindinput="qqinput"/>
   </view>
   <text class='small-text'>QQ：</text>
 </view>
-<button class="btn-stytle" form-type='submit' >确认发布</button>
+<button class="btn-stytle" form-type='submit' bindtap="release" >确认发布</button>
 </form>
 </view>

@@ -39,6 +39,5 @@ App({
     secret: '3af2793e330b5ad415b7bc64dc4a7803',
     appid: 'wx1f08d278ddf3988e',
     baseurl:'http://localhost:3000',
-    //goodurl:'http://localhost:3001'
   }
 })
