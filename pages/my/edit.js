@@ -71,10 +71,12 @@ Page({
   //提交表单内容
   formSubmit: function(e){
     wx.request({
-      url: app.globalData.baseurl + '/api/editMyInfo/' + generate.generateGoodID(),
+      url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
       method: 'PUT',
       data:{
-        userName: e.detail.value.userName,
+        userID: app.globalData.open_id,
+        userAva: userimg,
+        userName: e.detail.value.username,
         telNum: e.detail.value.telnum,
         weChat: e.detail.value.wechat,
         qqNum: e.detail.value.qqnum

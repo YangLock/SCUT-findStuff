@@ -7,7 +7,7 @@
 <swiper  current="{{currentTab}}" duration="200"  bindchange="swiperTab" style="height:{{aheight}}rpx">
 <swiper-item>
 <view class='list'>
-  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+  <block wx:for='{{dataList1}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
       <navigator url='details?id={{item.goods_id}}'>
         <view class='img'> 
@@ -21,14 +21,14 @@
         </view>
       </navigator>
         <view class='btn1'>
-        <button>删除</button>
+        <button bindtap="delete">删除</button>
         </view>
     </view>
   </block>
 </view>
 </swiper-item>
     <swiper-item><view class='list'>
-  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+  <block wx:for='{{dataList2}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
       <navigator url='details?id={{item.goods_id}}'>
         <view class='img'> 
@@ -42,10 +42,10 @@
         </view>
       </navigator>
         <view class='btn'>
-        <button>已被认领</button>
+        <button bindtap="confirm">已被认领</button>
         <button bindtap="jumpTo">编辑</button>
-        <button>刷新</button>
-        <button>删除</button>
+        <button bindtap="refresh">刷新</button>
+        <button bindtap="delete">删除</button>
         </view>
     </view>
   </block>

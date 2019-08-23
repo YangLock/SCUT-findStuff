@@ -66,10 +66,10 @@ Page({
       
       var data=res.data;
       console.log(data);
-          that.setData({
-            dataList: res.data
-          });
-        wx.hideLoading();
+      that.setData({
+        dataList: res.data
+      });
+      wx.hideLoading();
       },
       fail: function (res) {
         wx.hideLoading();
