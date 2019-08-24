@@ -70,24 +70,7 @@ Page({
   //提交表单内容
   formSubmit: function(e){
     var that = this;
-    wx.request({
-      url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
-      method: 'PUT',
-      data:{
-        userID: app.globalData.open_id,
-        userAva: that.data.userimg,
-        userName: e.detail.value.username,
-        telNum: e.detail.value.telnum,
-        weChat: e.detail.value.wechat,
-        qqNum: e.detail.value.qqnum
-      },
-      header:{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res.data);
-      }
-    })
+    upload_file_server(app.globalData.baseurl+'/upload',that,that.data.userimg,e);
   },
   //点击上传图片
   upShopLogo: function () 
@@ -119,35 +102,68 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: [type],
       success: function (res) {
-        that.data.userimg = res.tempFilePaths[0]
-        that.upload_file(app.globalData.baseurl + '/upload', res.tempFilePaths[0])
-        let userimg = res.tempFilePaths[0];
+        let userimg= res.tempFilePaths[0];
         that.setData({
-          userimg: userimg
+          userimg:userimg
         })
       }
     })
   },
 
   //上传图片到服务器
-  upload_file: function (url, filePath) {
-    var that = this;
-    wx.uploadFile({
-      url: url, //后台处理接口
-      filePath: filePath,
-      name: 'images',
-      header: {
-        'content-type': 'multipart/form-data'
-      }, // 设置请求的 header
-      success: function (res) {
-        var data = JSON.parse(res.data);
-        that.setData({
-          userimg: data.path,
-        });
-        that.showMessage('上传成功');
-      },
-      fail: function (res) {
-      }
-    })
-  },
 })
+async function upload_file_server(url, that, upload_picture,e) {
+  //上传返回值
+  const upload_task = wx.uploadFile({
+    // 模拟https
+    url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
+    filePath: upload_picture, //上传的文件本地地址
+    header: {
+      'content-type': 'multipart/form-data'
+    },
+    name: 'file',
+    //附近数据，这里为路径     
+    success: function (res) {
+      console.log(res.data);
+      var data = JSON.parse(res.data);
+      // //字符串转化为JSON  
+      var file = data.file;
+      upload_picture = file
+      console.log(upload_picture);
+      that.setData({
+        userimg: upload_picture
+      });
+      console.log(e.detail.value.telnum);
+      wx.request({
+        url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
+        method: 'PUT',
+        data: {
+          userID: app.globalData.open_id,
+          userAva: that.data.userimg,
+          userName: e.detail.value.username,
+          telNum: e.detail.value.telnum,
+          weChat: e.detail.value.wechat,
+          qqNum: e.detail.value.qqnum
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success(res) {
+          console.log(res.data);
+        }
+      })
+      //wx.setStorageSync('imgs', userimg);
+    },
+    fail: function () {
+      console.log('fail');
+    }
+  })
+  const a = console.log('ok');
+  //上传 进度方法
+  // upload_task.onProgressUpdate((res) => {
+  //   upload_picture_list[j]['upload_percent'] = res.progress
+  //   that.setData({
+  //     upload_picture_list: upload_picture_list
+  //   });
+  // });
+}

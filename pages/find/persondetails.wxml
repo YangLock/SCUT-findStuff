@@ -38,7 +38,7 @@
           <image class="img" src="{{item.userPhoto}}" mode="aspectFit"></image>
           <view class="box">
             <view class="shead clear">
-              <view class="names fl">{{item.userName}}
+              <view class="names fl">{{item.user_name}}
 
               </view>
             </view>
@@ -46,12 +46,12 @@
         </view>
         <view class="addr-info">
           <view class="addr-text">
-            {{item.comment}}
+            {{item.com_detail}}
           </view>
         </view>
         <view class="info">
           <view class="text">
-            <text decode="true">{{item.insertTime}}</text>
+            <text decode="true">{{item.com_time}}</text>
           </view>
         </view>
       </view>
