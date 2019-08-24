@@ -7,6 +7,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: false,
+    searchvalue:null,
     dataList: [
       {
         goods_id: 1,
@@ -160,5 +161,58 @@ Page({
         console.log(res.data);
       }
     });
+  },
+  getbook:function(){
+    this.get_goods('书籍');
+  },
+  getstationery: function () {
+    this.get_goods('文具');
+  }, 
+  getelectronics: function () {
+    this.get_goods('电子产品');
+  }, 
+  getclothes: function () {
+    this.get_goods('服饰');
+  },
+  getdailyStuff: function () {
+    this.get_goods('日用品');
+  }, 
+  getdocument: function () {
+    this.get_goods('证件');
+  },
+  getwallet: function () {
+    this.get_goods('钱包');
+  }, 
+  getcard: function () {
+    this.get_goods('卡');
+  },
+  searchinput: function (e) {
+    this.setData({
+      searchvalue: e.detail.value
+    })
+  },
+  getsearch:function(){
+    var that=this;
+    console.log(that.data);
+    var keyword=that.data.searchvalue;
+    console.log(keyword)
+    that.search(keyword);
+  },
+  search:function(keyword){
+    var that =this;
+    wx.request({
+      url: app.globalData.baseurl +'/api/get/searchGood/'+keyword,
+      header: {
+        'content-type': 'application/json'
+      },
+      method:'GET',
+      success:(res)=>{
+        var data = res.data;
+        console.log(data);
+        that.setData({
+          dataList: res.data
+        });
+      }
+      })
   }
-})
+  })

@@ -1,8 +1,7 @@
 // pages/my/edit.js
 
 const app = getApp();
-const generate = require('/utils/generateID.js');
-
+const generate = require('../../utils/generateID.js');
 Page({
 
   /**

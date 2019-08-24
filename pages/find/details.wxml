@@ -11,9 +11,10 @@
          </view>  
 
  </swiper>
+
  <text class='title'>联系方式</text>
  <view class='contract'>
- <text>电话：{{telnum}}</text>
+ <text>电话：{{this.data.what}}</text>
  </view>
   <view class='contract'>
  <text>微信：{{wechat}}</text>

@@ -17,8 +17,10 @@ Page({
   },
 
   //确认认领
-  confirm: function(){
+  confirm: function(event){
     var that = this;
+    console.log(event.currentTarget.good_id);
+    var goodID = event.currentTarget.good_id;
     wx.request({
       url: app.globalData.baseurl + '/api/claimConfirm/' + goodID,
       header: {
@@ -26,17 +28,19 @@ Page({
       },
       method: "PUT",
       success: function(res){
-
+        console.log('successfully confirm the record');
+        that.myFindPerson();
       },
       fail: function(res){
-
+        console.log('fail to confirm the record');
       }
     })
   },
 
   //刷新记录
-  refresh: function(){
+  refresh: function(event){
     var that = this;
+    var goodID = event.currentTarget.good_id;
     wx.request({
       url: app.globalData.baseurl + '/api/refresh/findPerson/' + goodID,
       header: {
@@ -44,16 +48,19 @@ Page({
       },
       method: "PUT",
       success: function(res){
-
+        console.log('successfully refresh the record');
+        that.myFindPerson();
       },
       fail: function(res){
-
+        console.log('fail to refresh the record');
       }
     })
   },
 
   //删除记录
-  deleteRecord: function(){
+  deleteRecord: function(event){
+    var that = this;
+    var goodID = event.currentTarget.good_id;
     wx.request({
       url: app.globalData.baseurl + '/api/delete/findPerson/' + goodID,
       header: {
@@ -61,10 +68,11 @@ Page({
       },
       method: "PUT",
       success: function(res){
-
+        console.log('successfully delete the record');
+        that.myFindPerson();
       },
       fail: function(res){
-
+        console.log('fail to delete the record');
       }
     })
   },

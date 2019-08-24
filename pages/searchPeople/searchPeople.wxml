@@ -5,41 +5,42 @@
   <view class="search">
     <view class="my-search">
       <icon class="searchIcon" size="18" type="search"></icon>
-      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}"></input>
+      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput'></input>
+      <button bindtap="getsearch"></button>
     </view>
   </view>
   <view class="button-line1">
-    <view class="my-book">
+    <view class="my-book" bindtap="getbook">
       <image class="book" src="/images/book.png"></image>
       <text id="book-message">书籍</text>
     </view>
-    <view class="my-stationery">
+    <view class="my-stationery" bindtap="getstationery">
       <image class="stationery" src="/images/stationery.png"></image>
       <text id="stationery-message">文具</text>
     </view>
-    <view class="my-electronics">
+    <view class="my-electronics" bindtap="getelectronics">
       <image class="electronics" src="/images/electronics.png"></image>
       <text id="electronics-message">电子产品</text>
     </view>
-    <view class="my-clothes">
+    <view class="my-clothes" bindtap="getclothes">
       <image class="clothes" src="/images/clothes.png"></image>
       <text id="clothes-message">服饰</text>
     </view>
   </view>
   <view class="button-line2">
-    <view class="my-dailyStuff">
+    <view class="my-dailyStuff" bindtap="getdailyStuff">
       <image class="dailyStuff" src="/images/dailyStuff.png"></image>
       <text id="dailyStuff-message">日用品</text>
     </view>
-    <view class="my-document">
+    <view class="my-document" bindtap="getdocument">
       <image class="document" src="/images/document.png"></image>
       <text id="document-message">证件</text>
     </view>
-    <view class="my-wallet">
+    <view class="my-wallet" bindtap="getwallet">
       <image class="wallet" src="/images/wallet.png"></image>
       <text id="wallet-message">钱包/钱</text>
     </view>
-    <view class="my-card">
+    <view class="my-card" bindtap="getcard">
       <image class="card" src="/images/card.png"></image>
       <text id="card-message">卡</text>
     </view>
@@ -49,19 +50,19 @@
   <image class="release" src="/images/release.png"></image>
 </view>
 
-<!-- 找到物品信息的实现 -->
+<!-- 丢失物品信息的实现 -->
 <view class='list'>
   <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
-      <navigator url='details?id={{item.goods_id}}'>
+      <navigator url='../find/details?good_id={{item.good_id}}&what=1'>
         <view class='img'>
-          <image src="{{item.goods_img}}"  mode="scaleToFill"/>
+          <image src="{{item.p1}}"  mode="scaleToFill"/>
         </view>
         <view class='info'>
-          <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>拾取者姓名：{{item.person_name}}</view>
-          <view class='place'>拾取地点：{{item.goods_place}}</view>
-          <view class="time">拾取时间：{{item.goods_time}}</view>
+          <view class='title'>{{item.good_title}}</view>
+          <view class='name'>拾取者姓名：{{item.deliver}}</view>
+          <view class='place'>拾取地点：{{item.found_place}}</view>
+          <view class="time">拾取时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
     </view>
