@@ -91,8 +91,8 @@ Page({
         var data = res.data;
         console.log(data);
         this.setData({
-          dataList1: data.filter(item => {return item.stateof === 'false';}),
-          dataList2: data.filter(item => {return item.stateof === 'true';})
+          dataList1: data.filter(item => {return item.stateof == false;}),
+          dataList2: data.filter(item => {return item.stateof == true;})
         });
         wx.hideLoading();
       },
