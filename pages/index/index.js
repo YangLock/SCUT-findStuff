@@ -162,6 +162,31 @@ Page({
       }
     });
   },
+  onPullDownRefresh: function () {
+    // 标题栏显示刷新图标，转圈圈
+    wx.showNavigationBarLoading()
+    console.log("onPullDownRefresh");
+    // 请求最新数据
+    this.get_goods('all');
+
+    setTimeout(() => {
+      // 标题栏隐藏刷新转圈圈图标
+      wx.hideNavigationBarLoading()
+
+    }, 2000);
+
+  },
+
+  /**
+
+   * 加载更多
+
+   */
+
+  onReachBottom: function () {
+
+    console.log('onReachBottom')
+  },
   getbook:function(){
     this.get_goods('书籍');
   },

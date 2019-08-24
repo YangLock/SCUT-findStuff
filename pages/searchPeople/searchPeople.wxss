@@ -1,6 +1,8 @@
+
 .search{
   width: 80%;
 }
+
 .my-search{
   display: flex;
   flex-direction: row;

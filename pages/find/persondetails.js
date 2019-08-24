@@ -23,10 +23,10 @@ Page({
     place: '',
     detail: '',
     //deliver_time: '',
-    contracter:'',
-    tel:'',
-    wechat:'',
-    qq:'',
+    contracter: '',
+    tel: '',
+    wechat: '',
+    qq: '',
     imgUrls: ['1.png', '2.png', '3.png'],
     indicatorDots: true, //小点
   },
@@ -65,9 +65,12 @@ Page({
 
   },
   getgood(id) {
+    wx.showLoading({
+      title: "加载中"
+    })
     var that = this;
     wx.request({
-      url: app.globalData.baseurl + '/api/get/onegood/' + id,
+      url: app.globalData.baseurl + '/api/get/oneperson/' + id,
       header: {
         'content-type': 'application/json'
       },
@@ -79,15 +82,16 @@ Page({
           good_id: data.good_id,
           //deliver: '',
           good_title: data.good_title,
-          place: data.lost_place,
+          place: data.place,
           detail: data.detail,
           //deliver_time: '',
-          contracter: data.detail,
-          tel: data.detail,
-          wechat: data.detail,
-          qq: data.detail,
-          imgUrls: data,
+          contracter: data.contacter,
+          tel: data.tel,
+          wechat: data.wechat,
+          qq: data.qq,
+          imgUrls: data.imgUrls,
         });
+        wx.hideLoading();
       }
     })
   },
