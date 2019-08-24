@@ -119,9 +119,9 @@ Page({
       })
     }
   },
-  jumpTo: function(){
+  jumpTo: function(event){
     wx.navigateTo({
-      url: '/pages/reedit/reedit',
+      url: '../../reEditPerson/reEditPerson?id=' + event.currentTarget.good_id,
     })
   }
 })

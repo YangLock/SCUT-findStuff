@@ -1,5 +1,5 @@
-// pages/find/release/things.js
-var gene = require('../../../utils/generateID');
+// reEditPerson.js
+
 const app = getApp();
 Page({
 
@@ -25,6 +25,7 @@ Page({
     tel: null,
     wechat: null,
     qq: null,
+    good_id: ''
   },
   /**
    * 点击下拉按钮
@@ -50,7 +51,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var id = options.good_id;
+    this.setData({
+      good_id: id
+    })
   },
 
   //选择图片方法
@@ -215,14 +219,12 @@ async function upload_file_server(url, that, upload_picture_list, j) {
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
       console.log(upload_picture_list);
       wx.request({
-        url: app.globalData.baseurl + '/api/release/findPerson',
-        method: 'POST',
+        url: app.globalData.baseurl + '/api/reEdit/findPerson/' + good_id,
+        method: "PUT",
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
-          deliver: app.globalData.open_id,
-          good_id: gene.generateGoodID(),
           pictures: upload_picture_list1,
           title: that.data.title,
           type: that.data.uploadData[that.data.index],
@@ -232,7 +234,6 @@ async function upload_file_server(url, that, upload_picture_list, j) {
           tel: that.data.tel,
           wechat: that.data.wechat,
           qq: that.data.qq,
-          time: Date.now()
         },
         success: (res) => {
           console.log(res.data);

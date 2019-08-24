@@ -43,7 +43,7 @@
       </navigator>
         <view class='btn'>
         <button bindtap="confirm" good_id="{{item.goods_id}}">确认找回</button>
-        <button bindtap="jumpTo">编辑</button>
+        <button bindtap="jumpTo" good_id="{{item.goods_id}}">编辑</button>
         <button bindtap="refresh" good_id="{{item.goods_id}}">刷新</button>
         <button bindtap="deleteRecord" good_id="{{item.goods_id}}">删除</button>
         </view>

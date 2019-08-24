@@ -1,4 +1,6 @@
-// pages/find/release/people.js
+// reEditGood.js
+
+const app = getApp();
 Page({
 
   /**
@@ -12,15 +14,18 @@ Page({
     list: '',
     upload_picture_list: [],
     show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
-    selectData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包/钱', '卡'], //下拉列表要显示的内容
+    selectData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包/钱', '卡'],   //下拉列表要显示的内容
+    uploadData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包', '卡'],
     index: 0,      //选择的下拉列表的下标，默认是0
-    getTitle: null,
-    getWho: null,
-    getPlace: null,
-    getDescribe: null,
-    getTel: null,
-    getWechat: null,
-    getQQ: null
+    title: null,
+    type: null,
+    who: null,
+    place: null,
+    detail: null,
+    tel: null,
+    wechat: null,
+    qq: null,
+    good_id: ''
   },
   /**
    * 点击下拉按钮
@@ -41,11 +46,15 @@ Page({
       show: !this.data.show
     });
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var id = options.good_id;
+    this.setData({
+      good_id: id
+    })
   },
 
   //选择图片方法
@@ -63,7 +72,7 @@ Page({
           //把选择的图片 添加到集合里
           for (let i in tempFiles) {
             tempFiles[i]['upload_percent'] = 0
-            tempFiles[i]['path_server'] = ''
+            tempFiles[i].path_server = '';
             upload_picture_list.push(tempFiles[i])
           }
           //显示
@@ -82,7 +91,7 @@ Page({
     }
   },
   //点击上传图片
-  uploadimage() {
+  async uploadimage() {
     let page = this
     let upload_picture_list = page.data.upload_picture_list
     //循环把图片上传到服务器 并显示进度       
@@ -90,7 +99,7 @@ Page({
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
         //上传图片后端地址
-        upload_file_server('https://www.x..fds.af..a.fd.sa', page, upload_picture_list, j)
+        upload_file_server('http://localhost:3000/upload', page, upload_picture_list, j)
       }
     }
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
@@ -117,67 +126,62 @@ Page({
       urls: imgs
     })
   },
-  /**
-   * 获取用户输入的标题
-   */
-  getTitle: function(e){
-    this.setData({
-      getTitle: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的联系人
-   */
-  getWho: function(e){
-    this.setData({
-      getWho: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的地点
-   */
-  getPlace: function(e){
-    this.setData({
-      getPlace: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的详情描述
-   */
-  getDescribe: function(e){
-    this.setData({
-      getDescribe: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的电话号码
-   */
-  getTel: function(e){
-    this.setData({
-      getTel: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的微信
-   */
-  getWechat: function(e){
-    this.setData({
-      getWechat: e.detail.value
-    })
-  },
-  /**
-   * 获取用户输入的QQ
-   */
-  getQQ: function(e){
-    this.setData({
-      getQQ: e.detail.value
-    })
-  },
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
+  },
+  titleinput: function (e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  whoinput: function (e) {
+    this.setData({
+      who: e.detail.value
+    })
+  },
+  placeinput: function (e) {
+    this.setData({
+      place: e.detail.value
+    })
+  },
+  detailinput: function (e) {
+    this.setData({
+      detail: e.detail.value
+    })
+  },
+  telinput: function (e) {
+    this.setData({
+      tel: e.detail.value
+    })
+  },
+  wechatinput: function (e) {
+    this.setData({
+      wechat: e.detail.value
+    })
+  },
+  qqinput: function (e) {
+    this.setData({
+      qq: e.detail.value
+    })
+  },
+  async release() {
+    var that = this;
+    this.uploadimage()
+  },
+  dealpicarr(arr) {
+    var arr1 = new Array(8);
+    var i = 0;
+    for (i = 0; i < arr.length; i++) {
+      arr1[i] = arr[i];
+    }
+    for (; i < 8; i++) {
+      arr1[i] = { path_server: null };
+    }
+    return arr1;
   }
 })
 
@@ -186,37 +190,67 @@ Page({
 /**
  * 上传图片方法
  */
-function upload_file_server(url, that, upload_picture_list, j) {
+async function upload_file_server(url, that, upload_picture_list, j) {
   //上传返回值
   const upload_task = wx.uploadFile({
     // 模拟https
     url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
-    filePath: upload_picture_list[j]['path'], //上传的文件本地地址    
+    filePath: upload_picture_list[j]['path'], //上传的文件本地地址
+    header: {
+      'content-type': 'multipart/form-data'
+    },
     name: 'file',
+
     formData: {
       'num': j
     },
     //附近数据，这里为路径     
     success: function (res) {
+      console.log(res.data);
       var data = JSON.parse(res.data);
       // //字符串转化为JSON  
-      if (data.Success == true) {
-        var filename = data.file //存储地址 显示
-        upload_picture_list[j]['path_server'] = filename
-      } else {
-        upload_picture_list[j]['path_server'] = filename
-      }
+      var file = data.file;
+      console.log(j);
+      upload_picture_list[j]['path_server'] = file
+      console.log(upload_picture_list[j]);
       that.setData({
         upload_picture_list: upload_picture_list
       });
+      let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
+      console.log(upload_picture_list);
+      wx.request({
+        url: app.globalData.baseurl + '/api/reEdit/findGood/' + good_id,
+        method: "PUT",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          pictures: upload_picture_list1,
+          title: that.data.title,
+          type: that.data.uploadData[that.data.index],
+          who: that.data.who,
+          place: that.data.place,
+          describe: that.data.detail,
+          tel: that.data.tel,
+          wechat: that.data.wechat,
+          qq: that.data.qq,
+        },
+        success: (res) => {
+          console.log(res.data);
+        }
+      })
       wx.setStorageSync('imgs', upload_picture_list);
+    },
+    fail: function () {
+      console.log('fail');
     }
   })
+  const a = console.log('ok');
   //上传 进度方法
-  upload_task.onProgressUpdate((res) => {
-    upload_picture_list[j]['upload_percent'] = res.progress
-    that.setData({
-      upload_picture_list: upload_picture_list
-    });
-  });
+  // upload_task.onProgressUpdate((res) => {
+  //   upload_picture_list[j]['upload_percent'] = res.progress
+  //   that.setData({
+  //     upload_picture_list: upload_picture_list
+  //   });
+  // });
 }

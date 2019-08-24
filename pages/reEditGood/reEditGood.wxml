@@ -1,4 +1,4 @@
-<!--pages/find/release/people.wxml-->
+<!-- reEditGood.wxml -->
 <view class="swiper">
   <view class="picture_list">
     <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
@@ -50,7 +50,7 @@
   <view class="search">
     <input name="place" bindinput="placeinput"/>
   </view>
-  <text class='small-text'>拾取地点：</text>
+  <text class='small-text'>丢失地点：</text>
 </view>
 
 <text class='big-text'>详情描述：</text>
@@ -76,6 +76,6 @@
   </view>
   <text class='small-text'>QQ：</text>
 </view>
-<button class="btn-stytle" form-type='submit' bindtap="release" >确认发布</button>
+<button class="btn-stytle" form-type='submit' bindtap="release" >确认编辑</button>
 </form>
 </view>

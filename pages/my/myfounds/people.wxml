@@ -15,9 +15,9 @@
         </view>
         <view class='info'>
           <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>失主姓名：{{item.person_name}}</view>
-          <view class='place'>丢失地点：{{item.goods_place}}</view>
-          <view class="time">丢失时间：{{item.goods_time}}</view>
+          <view class='name'>拾取者姓名：{{item.person_name}}</view>
+          <view class='place'>拾取地点：{{item.goods_place}}</view>
+          <view class="time">拾取时间：{{item.goods_time}}</view>
         </view>
       </navigator>
         <view class='btn1'>
@@ -36,9 +36,9 @@
         </view>
         <view class='info'>
           <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>失主姓名：{{item.person_name}}</view>
-          <view class='place'>丢失地点：{{item.goods_place}}</view>
-          <view class="time">丢失时间：{{item.goods_time}}</view>
+          <view class='name'>拾取者姓名：{{item.person_name}}</view>
+          <view class='place'>拾取地点：{{item.goods_place}}</view>
+          <view class="time">拾取时间：{{item.goods_time}}</view>
         </view>
       </navigator>
         <view class='btn'>

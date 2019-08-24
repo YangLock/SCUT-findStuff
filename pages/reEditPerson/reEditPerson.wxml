@@ -1,4 +1,4 @@
-<!--pages/find/release/people.wxml-->
+<!-- reEditPerson.wxml -->
 <view class="swiper">
   <view class="picture_list">
     <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
@@ -76,6 +76,6 @@
   </view>
   <text class='small-text'>QQ：</text>
 </view>
-<button class="btn-stytle" form-type='submit' bindtap="release" >确认发布</button>
+<button class="btn-stytle" form-type='submit' bindtap="release" >确认编辑</button>
 </form>
 </view>
