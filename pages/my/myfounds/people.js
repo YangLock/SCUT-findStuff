@@ -86,7 +86,7 @@ Page({
       success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
         var data = res.data;
         console.log(data);
-        this.setData({
+        that.setData({
           dataList1: data.filter(item => {return item.stateof == true;}),
           dataList2: data.filter(item => {return item.stateof == false;})
         });
@@ -115,7 +115,7 @@ Page({
   //点击切换
   clickTab: function (e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
+    if (that.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
       that.setData({

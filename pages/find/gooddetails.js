@@ -142,7 +142,7 @@ Page({
         //token: app.globalData.token
       },
       success: res => {
-        console.log(res)
+        console.log(res.data)
         if (res.data.success) {
           wx.showToast({
             title: "评论成功"

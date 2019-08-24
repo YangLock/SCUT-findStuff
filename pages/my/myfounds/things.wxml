@@ -21,7 +21,7 @@
         </view>
       </navigator>
         <view class='btn1'>
-        <button bindtap="deleteRecord" id="item.good_id">删除</button>
+        <button bindtap="deleteRecord" id="{{item.good_id}}">删除</button>
         </view>
     </view>
   </block>
