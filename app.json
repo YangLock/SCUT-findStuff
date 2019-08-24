@@ -11,7 +11,8 @@
     "pages/find/details",
     "pages/find/release/things",
     "pages/find/release/people",
-    "pages/reedit/reedit"
+    "pages/reEditGood/reEditGood",
+    "pages/reEditPerson/reEditPerson"
   ],
   "window": {
     "backgroundTextStyle": "light",
