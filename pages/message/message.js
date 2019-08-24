@@ -6,65 +6,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messageList: [
-      {
-        user_img: "/images/avatar.png",
-        user_name: "Alice",
-        content: "我找到了你的书"
-      },{
-        user_img: "/images/avatar.png",
-        user_name: "Smith",
-        content: "我找的了你的笔"
-      },{
-        user_img: "/images/avatar.png",
-        user_name: "Stan",
-        content: "我找到了你的帽子"
-      },{
-        user_img: "/images/avatar.png",
-        user_name:"Sean",
-        content: "我找到了你的篮球"
-      },{
-        user_img: "/images/avatar.png",
-        user_name: "Jack",
-        content: "我在C10找到了你的水杯"
-      },{
-        user_img: "/images/avatar.png",
-        user_name: "Miachel",
-        content: "我找到了你的女朋友"
-      }
-    ]
+    messageList: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_mes();
+    this.getMessage();
   },
   //从数据库获得新数据
-  get_mes: function () {
+  getMessage: function () {
     wx.showLoading({
       title: '加载中',
     })
     var that = this;
     wx.request({
-      url: 'https://www.4singledogs.cn/get/get_mes',
-      data: {
-        userID: app.globalData.open_id
-      },
+      url: app.globalData.baseurl + '/getmessage/' + app.globalData.open_id,
       header: {
         'content-type': 'application/json'
       },
       method: "GET",
       success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
         console.log(res.data);
-        let array2 = res.data;
-        let array1 = that.data.messageList;
-        array1 = array1.concat(array2);
         that.setData({
-          messageList: array1
+          messageList: res.data
         });
-
+        wx.hideLoading();
       },
       fail: function (res) {
         wx.hideLoading();
