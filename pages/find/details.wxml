@@ -1,49 +1,63 @@
 <!--pages/find/details.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" >
-<view>
-         <block wx:for="{{imgUrls}}">  
+<swiper indicator-dots="{{indicatorDots}}">
+  <view>
+    <block wx:for="{{imgUrls}}">
 
-           <swiper-item>  
-               <image src="{{item}}" class='slide-image' />  
-           </swiper-item>  
+      <swiper-item>
+        <image src="{{item}}" class='slide-image' />
+      </swiper-item>
 
-         </block>
-         </view>  
-
- </swiper>
-
- <text class='title'>联系方式</text>
- <view class='contract'>
- <text>电话：{{this.data.what}}</text>
- </view>
-  <view class='contract'>
- <text>微信：{{wechat}}</text>
- </view>
-  <view class='contract'>
- <text>QQ：{{qqnum}}</text>
- </view>
-  <text class='title'>详情描述</text>
-   <view class='contract'>
-  <text>{{content}}aaaaaaaa
-  aaaaaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  aaaaaaaa
-  </text>
+    </block>
   </view>
-  <button class="round-click" >留言</button>
-  <text class='title'>留言：</text>
+</swiper>
+<text class='title'>联系方式</text>
+<view class='contract'>
+  <text>电话：{{this.data.what}}</text>
+</view>
+<view class='contract'>
+  <text>微信：{{wechat}}</text>
+</view>
+<view class='contract'>
+  <text>QQ：{{qqnum}}</text>
+</view>
+<view class='contract'>
+  <text class='title'>详情描述</text>
+  <text>{{content}}</text>
+</view>    
+
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh">
+  <view class="pro-con">
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="pro-box">
+        <view class="head">
+          <image class="img" src="{{item.userPhoto}}" mode="aspectFit"></image>
+          <view class="box">
+            <view class="shead clear">
+              <view class="names fl">{{item.userName}}
+
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="addr-info">
+          <view class="addr-text">
+            {{item.comment}}
+          </view>
+        </view>
+        <view class="info">
+          <view class="text">
+            <text decode="true">{{item.insertTime}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<form bindsubmit="submitForm" report-submit="true">
+  <view class="release">
+    <view class="replyinfo2">
+      <textarea placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="请输入评论" name="comment"></textarea>
+      <button form-type="submit" class="submit">发送</button>
+    </view>
+  </view>
+</form>
