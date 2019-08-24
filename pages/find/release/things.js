@@ -236,6 +236,14 @@ async function upload_file_server(url, that, upload_picture_list, j) {
         },
         success: (res) => {
           console.log(res.data);
+          wx.showToast({
+            title: '发布成功',  //标题
+            icon: 'none',
+            duration: 1000
+          });
+          wx.switchTab({
+            url: '../../index/index',
+          })
         }
       })
       wx.setStorageSync('imgs', upload_picture_list);

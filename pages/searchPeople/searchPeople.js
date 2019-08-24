@@ -51,7 +51,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    this.getopenid();
     this.get_goods('all');
   },
   //从数据库获得新数据
@@ -91,76 +90,30 @@ Page({
       url: '../find/release/people',
     })
   },
-  getopenid: function () {
-    var that = this;
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-    //登录凭证校验。通过 wx.login() 接口获得临时登录凭证 code 后传到开发者服务器调用此接口完成登录流程。
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log("res.code:" + res.code);
-          var d = app.globalData;//这里存储了appid、secret、token串  
-          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + d.appid + '&secret=' + d.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
-          wx.request({
-            url: l,
-            data: {},
-            method: 'GET',
-            success: function (res) {
-              var obj = {};
-              obj.openid = res.data.openid;
-              app.globalData.open_id = obj.openid;
-              console.log("openid:" + obj.openid);
-              console.log("session_key:" + res.data.session_key);
-              obj.expires_in = Date.now() + res.data.expires_in;
-              wx.setStorageSync('user', obj);//存储openid 
-              that.getcheck(app.globalData.open_id, app.globalData.userInfo.nickName, app.globalData.userInfo.avatarUrl);
-            }
-          });
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
+  onPullDownRefresh: function () {
+    // 标题栏显示刷新图标，转圈圈
+    wx.showNavigationBarLoading()
+    console.log("onPullDownRefresh");
+    // 请求最新数据
+    this.get_goods('all');
+
+    setTimeout(() => {
+      // 标题栏隐藏刷新转圈圈图标
+      wx.hideNavigationBarLoading()
+
+    }, 2000);
+
   },
-  getcheck: function (user_id, user_name, user_avatar) {
-    var that = this;
-    wx.request({
-      url: app.globalData.baseurl + '/api/get/checkuser',
-      data: {
-        user_id: user_id,
-        user_name: user_name,
-        user_avatar: user_avatar
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log(res.data);
-      }
-    });
+
+  /**
+
+   * 加载更多
+
+   */
+
+  onReachBottom: function () {
+
+    console.log('onReachBottom')
   },
   getbook: function () {
     this.get_goods('书籍');

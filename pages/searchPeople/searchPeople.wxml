@@ -1,4 +1,4 @@
-<!-- searchPeople.wxml -->
+<!-- index.wxml -->
 
 <!-- 顶栏所有组件的实现 -->
 <view class="button-line">
@@ -54,14 +54,14 @@
 <view class='list'>
   <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
-      <navigator url='../find/details?good_id={{item.good_id}}'>
+      <navigator url='../find/persondetails?good_id={{item.good_id}}'>
         <view class='img'>
           <image src="{{item.p1}}"  mode="scaleToFill"/>
         </view>
         <view class='info'>
           <view class='title'>{{item.good_title}}</view>
           <view class='name'>拾取者姓名：{{item.deliver}}</view>
-          <view class='place'>拾取地点：{{item.found_place}}</view>
+          <view class='place'>拾取地点：{{item.lost_place}}</view>
           <view class="time">拾取时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
