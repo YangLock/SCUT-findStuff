@@ -99,7 +99,7 @@ Page({
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
         //上传图片后端地址
-        upload_file_server('http://localhost:3000/upload', page, upload_picture_list, j)
+        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j)
       }
     }
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
