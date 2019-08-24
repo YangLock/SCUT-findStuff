@@ -15,6 +15,7 @@ Page({
     upload_picture_list: [],
     show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
     selectData: ['书籍','文具','电子产品','服饰','日用品','证件','钱包/钱','卡'],   //下拉列表要显示的内容
+    uploadData: ['书籍', '文具', '电子产品', '服饰', '日用品', '证件', '钱包', '卡'],
     index: 0,      //选择的下拉列表的下标，默认是0
     title:null,
     type:null,
@@ -165,7 +166,7 @@ Page({
   },
   async release(){
     var that = this;
-    this.uploadimage()
+    this.uploadimage();
   },
   dealpicarr(arr){
     var arr1=new Array(8);
@@ -224,7 +225,7 @@ async function upload_file_server(url, that, upload_picture_list, j) {
           good_id: gene.generateGoodID(),
           pictures: upload_picture_list1,
           title: that.data.title,
-          type: that.data.type,
+          type: that.data.uploadData[that.data.index],
           who: that.data.who,
           place: that.data.place,
           describe: that.data.detail,

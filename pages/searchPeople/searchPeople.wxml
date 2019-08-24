@@ -54,7 +54,7 @@
 <view class='list'>
   <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
-      <navigator url='../find/details?good_id={{item.good_id}}&what=1'>
+      <navigator url='../find/details?good_id={{item.good_id}}'>
         <view class='img'>
           <image src="{{item.p1}}"  mode="scaleToFill"/>
         </view>

@@ -17,26 +17,27 @@ Page({
       }
 
     ],
-    what: 0,
     good_id: '',
-    deliver: '',
+    //deliver: '',
     good_title: '',
-    find_place: '',
+    place: '',
     detail: '',
-    deliver_time: '',
+    //deliver_time: '',
+    contracter:'',
+    tel:'',
+    wechat:'',
+    qq:'',
     imgUrls: ['1.png', '2.png', '3.png'],
     indicatorDots: true, //小点
   },
-  onLoad: async function (options) {
+  onLoad: function (options) {
     var id = options.good_id;
-    var what = options.what;
     var that = this;
     this.setData({
       good_id: id,
-      what: what
     });
-    await that.getgood(id);
-    getsomething();
+    that.getgood(id);
+    //getsomething();
   },
   getsomething: function () {
     var that = this;
@@ -75,12 +76,17 @@ Page({
         var data = res.data;
         console.log(data);
         that.setData({
-          deliver: data[0].deliver,
-          good_title: data[0].good_title,
-          lost_place: data[0].lost_place,
-          detail: data[0].detail,
-          //    deliver_time: '',
-          //    imgUrls: ['1.png', '2.png', '3.png'],
+          good_id: data.good_id,
+          //deliver: '',
+          good_title: data.good_title,
+          place: data.lost_place,
+          detail: data.detail,
+          //deliver_time: '',
+          contracter: data.detail,
+          tel: data.detail,
+          wechat: data.detail,
+          qq: data.detail,
+          imgUrls: data,
         });
       }
     })
