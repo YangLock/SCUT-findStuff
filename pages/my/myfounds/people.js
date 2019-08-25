@@ -10,17 +10,13 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     //动态计算高度
     this.myFindPerson();
-    var line = this.data.dataList.length;
-    this.setData({
-      aheight:  369 * line
-    });
   },
 
   //确认认领
   confirm: function(event){
     var that = this;
-    console.log(event.currentTarget.good_id);
-    var goodID = event.currentTarget.good_id;
+    console.log(event.currentTarget.id);
+    var goodID = event.currentTarget.id;
     wx.request({
       url: app.globalData.baseurl + '/api/claimConfirm/' + goodID,
       header: {
@@ -40,7 +36,7 @@ Page({
   //刷新记录
   refresh: function(event){
     var that = this;
-    var goodID = event.currentTarget.good_id;
+    var goodID = event.currentTarget.id;
     wx.request({
       url: app.globalData.baseurl + '/api/refresh/findPerson/' + goodID,
       header: {
@@ -60,13 +56,13 @@ Page({
   //删除记录
   deleteRecord: function(event){
     var that = this;
-    var goodID = event.currentTarget.good_id;
+    var goodID = event.currentTarget.id;
     wx.request({
       url: app.globalData.baseurl + '/api/delete/findPerson/' + goodID,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      method: "PUT",
+      method: "DELETE",
       success: function(res){
         console.log('successfully delete the record');
         that.myFindPerson();
@@ -90,9 +86,17 @@ Page({
       success: function (res) { //成功后根据当前的页面刷新次数进行黏接或重填
         var data = res.data;
         console.log(data);
-        this.setData({
-          dataList1: data.filter(item => {return item.stateof == false;}),
-          dataList2: data.filter(item => {return item.stateof == true;})
+        that.setData({
+          dataList1: data.filter(item => {return item.stateof == true;}),
+          dataList2: data.filter(item => {return item.stateof == false;})
+        });
+        var line = 0;
+        if (that.data.dataList1.length > that.data.dataList2.length) {
+          line = that.data.dataList1.length;
+        }
+        else { line = that.data.dataList2.length; }
+        that.setData({
+          aheight: 369 * line
         });
         wx.hideLoading();
       },
@@ -111,7 +115,7 @@ Page({
   //点击切换
   clickTab: function (e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
+    if (that.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
       that.setData({
@@ -121,7 +125,7 @@ Page({
   },
   jumpTo: function(event){
     wx.navigateTo({
-      url: '../../reEditPerson/reEditPerson?id=' + event.currentTarget.good_id,
+      url: '../../reEditPerson/reEditPerson?id=' + event.currentTarget.id,
     })
   }
 })

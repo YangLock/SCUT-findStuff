@@ -7,45 +7,45 @@
 <swiper  current="{{currentTab}}" duration="200"  bindchange="swiperTab" style="height:{{aheight}}rpx">
 <swiper-item>
 <view class='list'>
-  <block wx:for='{{dataList1}}' wx:key='list' wx:for-item="item">
+  <block wx:for='{{dataList1}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='details?id={{item.goods_id}}'>
+      <navigator url='/find/gooddetails?id={{item.good_id}}'>
         <view class='img'> 
-          <image src="{{item.goods_img}}"  mode="aspectFit"/>
+          <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
         <view class='info'>
-          <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>失主姓名：{{item.person_name}}</view>
-          <view class='place'>丢失地点：{{item.goods_place}}</view>
-          <view class="time">丢失时间：{{item.goods_time}}</view>
+          <view class='title'>{{item.good_title}}</view>
+          <view class='name'>失主姓名：{{item.deliver}}</view>
+          <view class='place'>丢失地点：{{item.lost_place}}</view>
+          <view class="time">丢失时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
         <view class='btn1'>
-        <button bindtap="deleteRecord" good_id="item.goods_id">删除</button>
+        <button bindtap="deleteRecord" id="{{item.good_id}}">删除</button>
         </view>
     </view>
   </block>
 </view>
 </swiper-item>
     <swiper-item><view class='list'>
-  <block wx:for='{{dataList2}}' wx:key='list' wx:for-item="item">
+  <block wx:for='{{dataList2}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='details?id={{item.goods_id}}'>
+      <navigator url='/find/gooddetails?id={{item.good_id}}'>
         <view class='img'> 
-          <image src="{{item.goods_img}}"  mode="aspectFit"/>
+          <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
         <view class='info'>
-          <view class='title'>{{item.goods_title}}</view>
-          <view class='name'>失主姓名：{{item.person_name}}</view>
-          <view class='place'>丢失地点：{{item.goods_place}}</view>
-          <view class="time">丢失时间：{{item.goods_time}}</view>
+          <view class='title'>{{item.good_title}}</view>
+          <view class='name'>失主姓名：{{item.deliver}}</view>
+          <view class='place'>丢失地点：{{item.lost_place}}</view>
+          <view class="time">丢失时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
         <view class='btn'>
-        <button bindtap="confirm" good_id="{{item.goods_id}}">确认找回</button>
-        <button bindtap="jumpTo" good_id="{{item.goods_id}}">编辑</button>
-        <button bindtap="refresh" good_id="{{item.goods_id}}">刷新</button>
-        <button bindtap="deleteRecord" good_id="{{item.goods_id}}">删除</button>
+        <button bindtap="confirm" id="{{item.good_id}}">确认找回</button>
+        <button bindtap="jumpTo" id="{{item.good_id}}">编辑</button>
+        <button bindtap="refresh" id="{{item.good_id}}">刷新</button>
+        <button bindtap="deleteRecord" id="{{item.good_id}}">删除</button>
         </view>
     </view>
   </block>

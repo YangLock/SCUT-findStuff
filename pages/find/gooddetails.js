@@ -1,20 +1,19 @@
-// pages/find/details.js
+// pages/find/gooddetails.js
 const app = getApp();
 Page({
   data: {
-    list: [
-      {
-        userPhoto: '1.png',
-        userName: 'jack',
-        comment: 'nothing wrong',
-        insertTime: '2017-4-3'
-      },
-      {
-        userPhoto: '1.png',
-        userName: 'jack',
-        comment: 'nothing wrong',
-        insertTime: '2017-4-3'
-      }
+    list: [{
+      userPhoto: '1.png',
+      user_name: 'jack',
+      com_detail: 'nothing wrong',
+      com_time: '2017-4-3'
+    },
+    {
+      userPhoto: '1.png',
+      user_name: 'jack',
+      com_detail: 'nothing wrong',
+      com_time: '2017-4-3'
+    }
 
     ],
     good_id: '',
@@ -37,29 +36,31 @@ Page({
       good_id: id,
     });
     that.getgood(id);
-    //getsomething();
+    that.getsomething();
   },
+  //获取评论
   getsomething: function () {
     var that = this;
     wx.showToast({
       title: "加载中"
     })
     wx.request({
-      url: "",
+      url: app.globalData.baseurl + '/api/get/goodCom',
       method: "GET",
       data: {
         good_id: that.data.good_id
       },
       header: {
         "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+        //token: app.globalData.token
       },
       success: res => {
-        console.log(res);
-        that.data.list = res.data;
+        console.log(res)
+        var data = res.data;
+        console.log(data);
         that.setData({
-          list: that.data.list
-        })
-        wx.hideLoading();
+          List: res.data
+        });
       }
     })
 
@@ -119,6 +120,7 @@ Page({
   submitForm(e) {
     var form = e.detail.value;
     var that = this;
+    var com_id = Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
     console.log(app.globalData.open_id);
     if (form.comment == "") {
       util.showLog('请输入评论');
@@ -127,7 +129,7 @@ Page({
 
     // 提交评论
     wx.request({
-      url: app.globalData.baseurl + '/api/get/findGood/',
+      url: app.globalData.baseurl + '/api/release/goodCom',
       method: "POST",
       data: {
         com_id: com_id,
@@ -140,7 +142,7 @@ Page({
         //token: app.globalData.token
       },
       success: res => {
-        console.log(res)
+        console.log(res.data)
         if (res.data.success) {
           wx.showToast({
             title: "评论成功"
