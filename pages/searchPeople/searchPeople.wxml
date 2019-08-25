@@ -5,8 +5,8 @@
   <view class="search">
     <view class="my-search">
       <icon class="searchIcon" size="18" type="search"></icon>
-      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput'></input>
-      <button bindtap="getsearch"></button>
+      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput' bindconfirm="getsearch"></input>
+      <button class="searchbut" bindtap="getsearch"><text>搜索</text></button>
     </view>
   </view>
   <view class="button-line1">
@@ -62,7 +62,7 @@
           <view class='title'>{{item.good_title}}</view>
           <view class='name'>拾取者姓名：{{item.contacter}}</view>
           <view class='place'>拾取地点：{{item.find_place}}</view>
-          <view class="time">拾取时间：{{item.deliver_time}}</view>
+          <view class="time">发布时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
     </view>

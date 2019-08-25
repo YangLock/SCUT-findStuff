@@ -4,15 +4,24 @@
   margin-top: 40rpx;
   margin-left: 40rpx;
 }
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin-left: 70rpx;
+  margin-top: 62rpx;
+  border-radius: 50%;
+}
 .userAvatar{
   height: 100rpx;
   width: 100rpx;
+  margin-top: 12rpx;
+  margin-left: 20rpx;
   border-radius: 50%;
   overflow: hidden;
 }
 .userName{
   margin-left: 40rpx;
-  margin-top: 30rpx;
+  margin-top: 40rpx;
 }
 
 .buttonClass{

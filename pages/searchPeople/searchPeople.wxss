@@ -2,7 +2,15 @@
 .search{
   width: 80%;
 }
-
+.searchbut{
+  margin-right: 1rpx;
+  font-size: 25rpx;
+  width: 100rpx;
+  background-color: rgb(223, 139, 30);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 .my-search{
   display: flex;
   flex-direction: row;
@@ -152,10 +160,11 @@
   position: fixed;
   bottom: 50rpx;
   right: 10rpx;
+  z-index: 999;
 }
 .release{
-  height: 70rpx;
-  width: 70rpx;
+  height: 100rpx;
+  width: 100rpx;
 }
 
 .clear{

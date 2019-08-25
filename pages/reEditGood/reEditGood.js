@@ -22,6 +22,9 @@ Page({
     who: null,
     place: null,
     detail: null,
+    inittitle:'',
+    initplace:'',
+    initdetail:'',
     inittel: null,
     initwechat: null,
     initqq: null,
@@ -64,7 +67,7 @@ Page({
   getinitinfo: function () {
     var that = this;
     wx.request({
-      url: app.globalData.baseurl + '/getuserinfor/' + app.globalData.open_id,
+      url: app.globalData.baseurl + '/api/get/onegood/' +that.data.goodID,
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -73,10 +76,13 @@ Page({
         var data = res.data;
         console.log(res.data);
         that.setData({
-          initwho: data.user_name,
-          inittel: data.tel_num,
-          initwechat: data.wechat_num,
-          initqq: data.qq_num
+          inittitle: data.good_title,
+          initplace: data.place,
+          initdetail: data.detail,
+          initwho: data.contacter,
+          inittel: data.tel,
+          initwechat: data.wechat,
+          initqq: data.qq
         })
       }
     })

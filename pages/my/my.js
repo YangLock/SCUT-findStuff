@@ -65,6 +65,31 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onPullDownRefresh: function () {
+    // 标题栏显示刷新图标，转圈圈
+    wx.showNavigationBarLoading()
+    console.log("onPullDownRefresh");
+    // 请求最新数据
+    this.getinitinfo();
+
+    setTimeout(() => {
+      // 标题栏隐藏刷新转圈圈图标
+      wx.hideNavigationBarLoading()
+
+    }, 100);
+
+  },
+
+  /**
+
+   * 加载更多
+
+   */
+
+  onReachBottom: function () {
+
+    console.log('onReachBottom')
+  },
   getinitinfo: function () {
     var that = this;
     wx.request({
@@ -78,7 +103,7 @@ Page({
         console.log(res.data);
         that.setData({
           userimg: data.user_avatar,
-          username: data.user_name
+          user_name: data.user_name
         })
       }
     })

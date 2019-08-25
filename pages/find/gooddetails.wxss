@@ -3,15 +3,30 @@
  height: 150px;
  width: 100%;
 }
+.bigtitle{
+  font-size: 23px;
+  color: rgb(189, 33, 33);
+  margin-left: 50rpx;
+  margin-top: 250rpx;
+}
 .title{
-  font-size: 20px;
+  font-size: 17px;
   color: #707070;
-  margin: 20rpx;
+  margin-left: 20rpx;
+}
+.detai{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  margin-left: 50rpx;
+  word-break:break-all;
 }
 .contract{
   display: flex;
   flex-direction: row;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
   margin-left: 50rpx;
   word-break:break-all;
 }

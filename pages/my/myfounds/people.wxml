@@ -17,7 +17,7 @@
           <view class='title'>{{item.good_title}}</view>
           <view class='name'>拾取者姓名：{{item.contacter}}</view>
           <view class='place'>拾取地点：{{item.find_place}}</view>
-          <view class="time">拾取时间：{{item.deliver_time}}</view>
+          <view class="time">发布时间：{{item.deliver_time}}</view>
         </view>
       </navigator>
         <view class='btn1'>
