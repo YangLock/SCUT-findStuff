@@ -9,7 +9,7 @@
 <view class='list'>
   <block wx:for='{{dataList1}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='/find/gooddetails?id={{item.good_id}}'>
+      <navigator url='../../find/gooddetails?good_id={{item.good_id}}'>
         <view class='img'> 
           <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
@@ -30,7 +30,7 @@
     <swiper-item><view class='list'>
   <block wx:for='{{dataList2}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='/find/gooddetails?id={{item.good_id}}'>
+      <navigator url='../../find/gooddetails?good_id={{item.good_id}}'>
         <view class='img'> 
           <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
