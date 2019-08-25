@@ -60,10 +60,11 @@ Page({
     wx.request({
       url: app.globalData.baseurl + '/api/delete/findGood/' + goodID,
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       method: "DELETE",
       success: function (res) {
+        console.log(res);
         console.log('successfully delete the record');
         that.myFindGood();
       },

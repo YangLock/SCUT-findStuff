@@ -25,6 +25,10 @@ Page({
     tel: null,
     wechat: null,
     qq: null,
+    inittel: null,
+    initwechat: null,
+    initqq: null,
+    initwho: null,
   },
   /**
    * 点击下拉按钮
@@ -50,7 +54,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getinitinfo();
+  },
+  getinitinfo: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl + '/getuserinfor/' + app.globalData.open_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        var data = res.data;
+        console.log(res.data);
+        that.setData({
+          initwho: data.user_name,
+          inittel: data.tel_num,
+          initwechat: data.wechat_num,
+          initqq: data.qq_num
+        })
+      }
+    })
   },
 
   //选择图片方法
@@ -87,15 +111,16 @@ Page({
     }
   },
   //点击上传图片
-  async uploadimage() {
+  async uploadimage(e) {
     let page = this
     let upload_picture_list = page.data.upload_picture_list
-    //循环把图片上传到服务器 并显示进度       
+    //循环把图片上传到服务器 并显示进度
+    var amount=upload_picture_list.length;       
     for (let j in upload_picture_list) {
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
         //上传图片后端地址
-        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j)
+        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j,e,amount)
       }
     }
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
@@ -129,44 +154,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  titleinput: function (e) {
-    this.setData({
-      title: e.detail.value
-    })
-  },
-  whoinput: function (e) {
-    this.setData({
-      who: e.detail.value
-    })
-  },
-  placeinput: function (e) {
-    this.setData({
-      place: e.detail.value
-    })
-  },
-  detailinput: function (e) {
-    this.setData({
-      detail: e.detail.value
-    })
-  },
-  telinput: function (e) {
-    this.setData({
-      tel: e.detail.value
-    })
-  },
-  wechatinput: function (e) {
-    this.setData({
-      wechat: e.detail.value
-    })
-  },
-  qqinput: function (e) {
-    this.setData({
-      qq: e.detail.value
-    })
-  },
-  async release() {
+  async release(e) {
     var that = this;
-    this.uploadimage()
+    this.uploadimage(e)
   },
   dealpicarr(arr) {
     var arr1 = new Array(8);
@@ -186,7 +176,7 @@ Page({
 /**
  * 上传图片方法
  */
-async function upload_file_server(url, that, upload_picture_list, j) {
+async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
   //上传返回值
   const upload_task = wx.uploadFile({
     // 模拟https
@@ -214,6 +204,7 @@ async function upload_file_server(url, that, upload_picture_list, j) {
       });
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
       console.log(upload_picture_list);
+      if(j==amount-1){
       wx.request({
         url: app.globalData.baseurl + '/api/release/findPerson',
         method: 'POST',
@@ -224,14 +215,14 @@ async function upload_file_server(url, that, upload_picture_list, j) {
           deliver: app.globalData.open_id,
           good_id: gene.generateGoodID(),
           pictures: upload_picture_list1,
-          title: that.data.title,
+          title: e.detail.value.title,
           type: that.data.uploadData[that.data.index],
-          who: that.data.who,
-          place: that.data.place,
-          describe: that.data.detail,
-          tel: that.data.tel,
-          wechat: that.data.wechat,
-          qq: that.data.qq,
+          who: e.detail.value.who,
+          place: e.detail.value.place,
+          describe: e.detail.value.detail,
+          tel: e.detail.value.TEL,
+          wechat: e.detail.value.WECHAT,
+          qq: e.detail.value.QQ,
           time: Date.now()
         },
         success: (res) => {
@@ -245,7 +236,7 @@ async function upload_file_server(url, that, upload_picture_list, j) {
             url: '../../searchPeople/searchPeople',
           })
         }
-      })
+      })}
       wx.setStorageSync('imgs', upload_picture_list);
     },
     fail: function () {

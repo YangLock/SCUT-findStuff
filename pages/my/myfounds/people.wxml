@@ -9,13 +9,13 @@
 <view class='list'>
   <block wx:for='{{dataList1}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='/find/persondetails?id={{item.good_id}}'>
+      <navigator url='../../find/persondetails?good_id={{item.good_id}}'>
         <view class='img'> 
           <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
         <view class='info'>
           <view class='title'>{{item.good_title}}</view>
-          <view class='name'>拾取者姓名：{{item.deliver}}</view>
+          <view class='name'>拾取者姓名：{{item.contacter}}</view>
           <view class='place'>拾取地点：{{item.find_place}}</view>
           <view class="time">拾取时间：{{item.deliver_time}}</view>
         </view>
@@ -30,13 +30,13 @@
     <swiper-item><view class='list'>
   <block wx:for='{{dataList2}}' wx:key='lis' wx:for-item="item">
     <view class="list_item">
-      <navigator url='/find/persondetails?id={{item.good_id}}'>
+      <navigator url='../../find/persondetails?good_id={{item.good_id}}'>
         <view class='img'> 
           <image src="{{item.p1}}"  mode="aspectFit"/>
         </view>
         <view class='info'>
           <view class='title'>{{item.good_title}}</view>
-          <view class='name'>拾取者姓名：{{item.deliver}}</view>
+          <view class='name'>拾取者姓名：{{item.contacter}}</view>
           <view class='place'>拾取地点：{{item.find_place}}</view>
           <view class="time">拾取时间：{{item.deliver_time}}</view>
         </view>
