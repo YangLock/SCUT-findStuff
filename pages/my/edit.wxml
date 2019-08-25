@@ -13,7 +13,7 @@
     <input  class='fonts' type='text' name='telnum' placeholder='手机号码' placeholder-class="temp-edit"></input>
   </view>
   <view class='info'>
-    <input class='fonts' type='text' name='wechat' placeholder='微信' placeholder-class="temp-edit"></input>
+    <input class='fonts' type='text' name='wechat' placeholder='微信' placeholder-class="temp-edit" value="111"></input>
   </view>
   <view class='info'>
     <input class='fonts' type='text' name='qqnum' placeholder='QQ' placeholder-class="temp-edit"></input>
