@@ -57,8 +57,8 @@
 <form bindsubmit="submitForm" report-submit="true">
   <view class="release">
     <view class="replyinfo2">
-      <textarea placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="请输入评论" name="comment"></textarea>
-      <button form-type="submit" class="submit">发送</button>
+      <textarea placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="请输入留言" name="comment"></textarea>
+      <button form-type="submit" class="submit">留言</button>
     </view>
   </view>
 </form>

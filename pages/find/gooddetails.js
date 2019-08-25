@@ -124,7 +124,7 @@ Page({
     var com_id = Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
     console.log(app.globalData.open_id);
     if (form.comment == "") {
-      util.showLog('请输入评论');
+      util.showLog('请输入留言');
       return;
     }
 
@@ -146,11 +146,11 @@ Page({
         console.log(res.data)
         if (res.data.success) {
           wx.showToast({
-            title: "评论成功"
+            title: "留言成功"
           })
         } else {
           wx.showToast({
-            title: '评论失败，请检查您的网络',
+            title: '留言失败，请检查您的网络',
           })
         }
         that.getsomething();
