@@ -4,19 +4,17 @@
     <block wx:for="{{imgUrls}}" wx:key='list' wx:for-item="item">
 
       <swiper-item>
-        <image src="{{item}}" class='slide-image' />
+        <image src="{{item}}" class='slide-image' mode="aspectFit"/>
       </swiper-item>
 
     </block>
   </view>
 </swiper>
-<text class='title'>{{good_title}}</text>
+<text class='bigtitle'>{{good_title}}</text>
 <text class='contract'>丢失地点：{{place}}</text>
-<view class='contract'>
-  <text class='title'>详情描述</text>
-  <text>{{detail}}</text>
-</view>
-<text class='title'>联系方式</text>
+  <!-- <text class='title'>详情:\n</text> -->
+  <text class="detai">详细描述：{{detail}}\n</text>
+<!-- <text class='title'>联系方式</text> -->
 <view class='contract'>
   <text>联系人：{{contracter}}</text>
 </view>

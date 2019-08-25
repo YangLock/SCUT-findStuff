@@ -21,7 +21,7 @@
 <form bindsubmit="release">
 <view class="section">
   <view class="search">
-    <input name="title" />
+    <input name="title" value="{{inittitle}}"/>
   </view>
   <text class='small-text'>标题：</text>
 </view>
@@ -48,14 +48,14 @@
 </view>
 <view class="section">
   <view class="search">
-    <input name="place" />
+    <input name="place" value="{{initplace}}"/>
   </view>
   <text class='small-text'>拾取地点：</text>
 </view>
 
 <text class='big-text'>详情描述：</text>
 <view class='discribe'>
-  <textarea name="detail" ></textarea>
+  <textarea name="detail" value="{{initdetail}}"></textarea>
 </view>
 <text class='big-text'>联系方式：</text>
 <view class="section">

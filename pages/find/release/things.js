@@ -202,8 +202,8 @@ async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
         upload_picture_list: upload_picture_list
       });
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-      console.log(upload_picture_list); 
       if(j==amount-1){
+        console.log(upload_picture_list1); 
       wx.request({
         url: app.globalData.baseurl + '/api/release/findGood',
         method: 'POST',
