@@ -5,8 +5,8 @@
   <view class="search">
     <view class="my-search">
       <icon class="searchIcon" size="18" type="search"></icon>
-      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput'></input>
-      <button bindtap="getsearch"></button>
+      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput' bindconfirm="getsearch"></input>
+      <button class="searchbut" bindtap="getsearch">搜索</button>
     </view>
   </view>
   <view class="button-line1">
