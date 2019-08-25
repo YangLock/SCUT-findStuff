@@ -1,4 +1,4 @@
-<!-- reEditPerson.wxml -->
+<!--pages/find/release/people.wxml-->
 <view class="swiper">
   <view class="picture_list">
     <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
@@ -18,10 +18,10 @@
 </view>
 
 
-<form>
+<form bindsubmit="release">
 <view class="section">
   <view class="search">
-    <input name="title" bindinput="titleinput"/>
+    <input name="title" />
   </view>
   <text class='small-text'>标题：</text>
 </view>
@@ -42,40 +42,40 @@
 
 <view class="section">
   <view class="search">
-    <input name="who" bindinput="whoinput"/>
+    <input name="who"  value="{{initwho}}"/>
   </view>
   <text class='small-text'>联系人：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="place" bindinput="placeinput"/>
+    <input name="place" />
   </view>
   <text class='small-text'>拾取地点：</text>
 </view>
 
 <text class='big-text'>详情描述：</text>
 <view class='discribe'>
-  <textarea bindinput="detailinput"></textarea>
+  <textarea name="detail" ></textarea>
 </view>
 <text class='big-text'>联系方式：</text>
 <view class="section">
   <view class="search">
-    <input name="TEL" bindinput="telinput"/>
+    <input name="TEL"  value="{{inittel}}"/>
   </view>
   <text class='small-text'>TEL：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="WECHAT" bindinput="wechatinput"/>
+    <input name="WECHAT"  value="{{initwechat}}"/>
   </view>
   <text class='small-text'>微信：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="QQ" bindinput="qqinput"/>
+    <input name="QQ"  value="{{initqq}}"/>
   </view>
   <text class='small-text'>QQ：</text>
 </view>
-<button class="btn-stytle" form-type='submit' bindtap="release" >确认编辑</button>
+<button class="btn-stytle" form-type='submit'  >确认编辑</button>
 </form>
 </view>

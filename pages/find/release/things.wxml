@@ -76,6 +76,6 @@
   </view>
   <text class='small-text'>QQ：</text>
 </view>
-<button class="btn-stytle" form-type='submit' bindtap="release" >确认发布</button>
+<button class="btn-stytle" form-type='submit'>确认发布</button>
 </form>
 </view>

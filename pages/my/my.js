@@ -6,14 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userimg:'',
+    user_name:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getinitinfo();
   },
 
   /**
@@ -63,6 +64,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getinitinfo: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl + '/getuserinfor/' + app.globalData.open_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        var data = res.data;
+        console.log(res.data);
+        that.setData({
+          userimg: data.user_avatar,
+          username: data.user_name
+        })
+      }
+    })
   },
   getUserInfo: function (e) {
     console.log(e)

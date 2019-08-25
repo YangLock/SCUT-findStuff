@@ -125,7 +125,7 @@ Page({
   },
   jumpTo: function(event){
     wx.navigateTo({
-      url: '../../reEditPerson/reEditPerson?id=' + event.currentTarget.id,
+      url: '../../reEditPerson/reEditPerson?good_id=' + event.currentTarget.id,
     })
   }
 })

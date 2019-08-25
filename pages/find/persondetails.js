@@ -41,7 +41,7 @@ Page({
   //获取评论
   getsomething: function () {
     var that = this;
-    wx.showToast({
+    wx.showLoading({
       title: "加载中"
     })
     wx.request({
@@ -59,8 +59,9 @@ Page({
         var data = res.data;
         console.log(data);
         that.setData({
-          List: res.data
+          list: res.data
         });
+        wx.hideLoading();
       }
     })
 
@@ -152,6 +153,7 @@ Page({
             title: '评论失败，请检查您的网络',
           })
         }
+        that.getsomething();
       }
     })
   }

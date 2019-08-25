@@ -2,6 +2,8 @@
 <view class="userinfo">
   <open-data type="userAvatarUrl" class="userAvatar"></open-data>
   <open-data type="userNickName" class="userName"></open-data>
+  <!-- <image type="userAvatarUrl" src="{{userimg}}"></image>
+  <text type="userNickName" value="{{user_name}}"></text> -->
 </view>
 
 <view class="buttonClass">

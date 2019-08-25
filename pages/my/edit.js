@@ -1,13 +1,17 @@
 // pages/my/edit.js
 
 const app = getApp();
-const generate = require('../../utils/generateID.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    initname:'',
+    inittel: '',
+    initwechat: '',
+    initqq: '',
     userimg: "1.png"
   },
 
@@ -15,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getinitinfo();
   },
 
   /**
@@ -91,6 +95,27 @@ Page({
             that.chooseWxImageShop('camera');//手机拍照
           }
         }
+      }
+    })
+  },
+  getinitinfo: function () {
+    var that = this;
+    wx.request({
+      url: app.globalData.baseurl + '/getuserinfor/' + app.globalData.open_id,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        var data = res.data;
+        console.log(res.data);
+        that.setData({
+          userimg: data.user_avatar,
+          initname:data.user_name,
+          inittel: data.tel_num,
+          initwechat: data.wechat_num,
+          initqq: data.qq_num
+        })
       }
     })
   },

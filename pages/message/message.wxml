@@ -5,11 +5,11 @@
   <block wx:for='{{messageList}}' wx:key='list' wx:for-item="item">
     <view class="list_item">
       <view class="picture">
-        <image src="{{item.user_img}}" class="userAvatar"></image>
+        <image src="{{item.deliver_ava}}" class="userAvatar"></image>
       </view>
       <view class='messageText'>
-        <view class="userName">{{item.user_name}}</view>
-        <view class="messageContent">{{item.content}}</view>
+        <view class="userName">{{item.deliver_name}}</view>
+        <view class="messageContent">{{item.com_detail}}</view>
       </view>
     </view>
   </block>
