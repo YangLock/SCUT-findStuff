@@ -21,7 +21,7 @@
 <form>
 <view class="section">
   <view class="search">
-    <input name="title" bindinput="titleinput"/>
+    <input name="title" bindinput="titleinput" />
   </view>
   <text class='small-text'>标题：</text>
 </view>
@@ -42,7 +42,7 @@
 
 <view class="section">
   <view class="search">
-    <input name="who" bindinput="whoinput"/>
+    <input name="who" bindinput="whoinput" value="{{initwho}}"/>
   </view>
   <text class='small-text'>联系人：</text>
 </view>
@@ -60,19 +60,19 @@
 <text class='big-text'>联系方式：</text>
 <view class="section">
   <view class="search">
-    <input name="TEL" bindinput="telinput"/>
+    <input name="TEL" bindinput="telinput" value='{{inittel}}'/>
   </view>
   <text class='small-text'>TEL：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="WECHAT" bindinput="wechatinput"/>
+    <input name="WECHAT" bindinput="wechatinput" value='{{initwechat}}'/>
   </view>
   <text class='small-text'>微信：</text>
 </view>
 <view class="section">
   <view class="search">
-    <input name="QQ" bindinput="qqinput"/>
+    <input name="QQ" bindinput="qqinput" value="{{initqq}}"/>
   </view>
   <text class='small-text'>QQ：</text>
 </view>

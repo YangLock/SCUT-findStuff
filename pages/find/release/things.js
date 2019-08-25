@@ -22,6 +22,10 @@ Page({
     who:null,
     place:null,
     detail:null,
+    inittel:null,
+    initwechat:null,
+    initqq:null,
+    initwho:null,
     tel:null,
     wechat:null,
     qq:null,
@@ -50,9 +54,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getinitinfo();
   },
-
+  getinitinfo:function(){
+    var that=this;
+    wx.request({
+      url: app.globalData.baseurl +'/getuserinfor/'+app.globalData.open_id,
+      method:'GET',
+      header:{
+        'content-type': 'application/json'
+      },
+      success:(res)=>{
+        var data=res.data;
+        console.log(res.data);
+        that.setData({
+          initwho: data.user_name,
+          inittel:data.tel_num,
+          initwechat:data.wechat_num,
+          initqq:data.qq_num
+        })
+      }
+    })
+  },
   //选择图片方法
   uploadpic: function (e) {
     if (this.data.upload_picture_list.length < 8){
