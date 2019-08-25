@@ -15,7 +15,7 @@
         </view>
         <view class='info'>
           <view class='title'>{{item.good_title}}</view>
-          <view class='name'>失主姓名：{{item.deliver}}</view>
+          <view class='name'>失主姓名：{{item.contacter}}</view>
           <view class='place'>丢失地点：{{item.lost_place}}</view>
           <view class="time">丢失时间：{{item.deliver_time}}</view>
         </view>
@@ -36,7 +36,7 @@
         </view>
         <view class='info'>
           <view class='title'>{{item.good_title}}</view>
-          <view class='name'>失主姓名：{{item.deliver}}</view>
+          <view class='name'>失主姓名：{{item.contacter}}</view>
           <view class='place'>丢失地点：{{item.lost_place}}</view>
           <view class="time">丢失时间：{{item.deliver_time}}</view>
         </view>
