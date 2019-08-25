@@ -176,6 +176,7 @@ textarea{
   border-top: 0;
   background: #fff;
   transition: height 0.3s;
+  z-index: 999;
 }
 .option{
   display: block;
