@@ -113,12 +113,13 @@ Page({
   async uploadimage(e) {
     let page = this
     let upload_picture_list = page.data.upload_picture_list
-    //循环把图片上传到服务器 并显示进度       
+    //循环把图片上传到服务器 并显示进度
+    var amount=upload_picture_list.length;       
     for (let j in upload_picture_list) {
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
         //上传图片后端地址
-        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j,e)
+        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j,e,amount)
       }
     }
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
@@ -174,7 +175,7 @@ Page({
 /**
  * 上传图片方法
  */
-async function upload_file_server(url, that, upload_picture_list, j,e) {
+async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
   //上传返回值
   const upload_task = wx.uploadFile({
     // 模拟https
@@ -202,7 +203,7 @@ async function upload_file_server(url, that, upload_picture_list, j,e) {
       });
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
       console.log(upload_picture_list); 
-      console.log(e.detail.value);
+      if(j==amount-1){
       wx.request({
         url: app.globalData.baseurl + '/api/release/findGood',
         method: 'POST',
@@ -235,6 +236,7 @@ async function upload_file_server(url, that, upload_picture_list, j,e) {
           })
         }
       })
+      }
       wx.setStorageSync('imgs', upload_picture_list);
     },
     fail: function () {
