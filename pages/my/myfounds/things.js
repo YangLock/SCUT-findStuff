@@ -129,7 +129,7 @@ Page({
   },
   jumpTo: function(event){
     wx.navigateTo({
-      url: '../../reEditGood/reEditGood?id=' + event.currentTarget.id,
+      url: '../../reEditGood/reEditGood?good_id=' + event.currentTarget.id,
     })
   }
 })

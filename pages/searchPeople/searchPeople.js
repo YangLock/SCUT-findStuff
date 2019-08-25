@@ -106,9 +106,7 @@ Page({
   },
 
   /**
-
    * 加载更多
-
    */
 
   onReachBottom: function () {
