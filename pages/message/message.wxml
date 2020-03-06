@@ -3,14 +3,16 @@
 <!-- 消息列表的实现 -->
 <view class='List'>
   <block wx:for='{{messageList}}' wx:key='list' wx:for-item="item">
-    <view class="list_item">
-      <view class="picture">
-        <image src="{{item.deliver_ava}}" class="userAvatar"></image>
-      </view>
-      <view class='messageText'>
-        <view class="userName">{{item.deliver_name}}</view>
-        <view class="messageContent">{{item.com_detail}}</view>
-      </view>
+  <navigator>
+    <view class="list_item" data-id="{{item.good_id}}" bindtap="go_detail">
+        <view class="picture">
+          <image src="{{item.deliver_ava}}" class="userAvatar"></image>
+        </view>
+        <view class='messageText'>
+          <view class="userName">{{item.deliver_name}}</view>
+          <view class="messageContent">{{item.com_detail}}</view>
+        </view>
     </view>
+  </navigator>
   </block>
 </view>

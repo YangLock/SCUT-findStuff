@@ -87,6 +87,19 @@ Page({
   onShareAppMessage: function () {
     
   },
+  go_detail:function(event){
+    var good_id = event.currentTarget.dataset.id
+    if(good_id.toString().charAt(0)=='1'){
+      wx.navigateTo({
+        url: '../find/gooddetails?good_id=' + good_id,
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '../find/persondetails?good_id=' + good_id,
+      })
+    }
+  },
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
