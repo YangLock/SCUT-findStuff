@@ -231,8 +231,8 @@ async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
             icon: 'none',
             duration: 1000
           });
-          wx.switchTab({
-            url: '../../index/index',
+          wx.navigateBack({
+            // url: '../../index/index',
           })
         }
       })

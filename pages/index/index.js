@@ -54,6 +54,12 @@ Page({
     this.getopenid();
     this.get_goods('all');
   },
+  onShow: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.get_goods('all');
+  },
 //从数据库获得新数据
   get_goods:function(key){
     var that = this;
