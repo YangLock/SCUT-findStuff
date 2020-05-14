@@ -1,15 +1,14 @@
 <!-- index.wxml -->
 
 <!-- 顶栏所有组件的实现 -->
-<view class="button-line">
-  <view class="search">
+  <!-- <view class="search">
     <view class="my-search">
       <icon class="searchIcon" size="18" type="search"></icon>
       <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput' bindconfirm="getsearch"></input>
       <button class="searchbut" bindtap="getsearch">搜索</button>
     </view>
-  </view>
-  <view class="button-line1">
+  </view> -->
+  <!-- <view class="button-line1">
     <view class="my-book" bindtap="getbook">
       <image class="book" src="/images/book.png"></image>
       <text id="book-message">书籍</text>
@@ -44,8 +43,56 @@
       <image class="card" src="/images/card.png"></image>
       <text id="card-message">卡</text>
     </view>
+  </view> -->
+
+<!-- 顶部栏重置版 -->
+<view class="button-line">
+
+  <view class="page_bd">
+    <mp-searchbar placeholder="请输入物品名称"></mp-searchbar>
   </view>
+
+  <view class="weui-flex" id="button-line1">
+    <view class="weui-flex__item" bindtap="getbook">
+      <image class="book" src="/images/book.png"></image>
+      <view id="book-message">书籍</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getstationery">
+      <image class="stationery" src="/images/stationery.png"></image>
+      <view id="stationery-message">文具</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getelectronics">
+      <image class="electronics" src="/images/electronics.png"></image>
+      <view id="electronics-message">电子产品</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getclothes">
+      <image class="clothes" src="/images/clothes.png"></image>
+      <view id="clothes-message">服饰</view>
+    </view>
+  </view>
+
+  <view class="weui-flex" id="button-line2">
+    <view class="weui-flex__item" bindtap="getdailyStuff">
+      <image class="dailyStuff" src="/images/dailyStuff.png"></image>
+      <view id="dailyStuff-message">日用品</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getdocument">
+      <image class="document" src="/images/document.png"></image>
+      <view id="document-message">证件</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getwallet">
+      <image class="wallet" src="/images/wallet.png"></image>
+      <view id="wallet-message">钱包/钱</view>
+    </view>
+    <view class="weui-flex__item" bindtap="getcard">
+      <image class="card" src="/images/card.png"></image>
+      <view id="card-message">卡</view>
+    </view>
+  </view>
+
 </view>
+
+<!-- 发布按钮 -->
 <view class="my-release" bindtap='release'>
   <image class="release" src="/images/release.png"></image>
 </view>

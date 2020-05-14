@@ -1,162 +1,111 @@
-
-.search{
-  width: 80%;
+.button-line{
+  background-color: rgb(255, 255, 255);
 }
-.searchbut{
-  margin-right: 1rpx;
-  font-size: 25rpx;
-  width: 150rpx;
-  background-color: rgb(223, 139, 30);
-  align-items: center;
-  display: flex;
-  justify-content: center;
+#button-line2{
+  margin-top: 20rpx;
 }
-
-.my-search{
-  display: flex;
-  flex-direction: row;
-  height: 40rpx;
-  width: 500rpx;
-  background-color: #fff;
-  border: 3rpx solid #707070;
-  border-radius: 10rpx;
-  margin-left: 120rpx;
-}
-.center{
-  margin-left: 140rpx;
-  font-size: 25rpx;
-}
-
 .book{
   height: 76rpx;
   width: 78rpx;
-  margin-top: 8rpx;
+  margin-top: 10rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .stationery{
   height: 82rpx;
   width: 82rpx;
+  display: block;
+  margin-top: 10rpx;
+  margin-left: auto;
+  margin-right: auto;
 }
 .electronics{
   height: 82rpx;
   width: 82rpx;
+  display: block;
+  margin-top: 10rpx;
+  margin-left: auto;
+  margin-right: auto;
 }
 .clothes{
   height: 88rpx;
   width: 88rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .dailyStuff{
   height: 77rpx;
   width: 78rpx;
   margin-top: 8rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .document{
   height: 85rpx;
   width: 85rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .wallet{
   height: 85rpx;
   width: 85rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .card{
   height: 89rpx;
   width: 89rpx;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.my-book{
-  height: 76rpx;
-  width: 78rpx;
-}
-.my-stationery{
-  height: 82rpx;
-  width: 82rpx;
-}
-.my-electronics{
-  height: 82rpx;
-  width: 82rpx;
-}
-.my-clothes{
-  height: 88rpx;
-  width: 88rpx;
-}
-.my-dailyStuff{
-  height: 77rpx;
-  width: 78rpx;
-}
-.my-document{
-  height: 85rpx;
-  width: 85rpx;
-}
-.my-wallet{
-  height: 85rpx;
-  width: 85rpx;
-}
-.my-card{
-  height: 89rpx;
-  width: 89rpx;
-}
-
-.button-line{
-  background-color: #F5D33F;
-}
-.button-line1{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 10rpx;
-}
-.button-line2{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 40rpx;
-  height: 145rpx;
-}
 #book-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 18rpx;
+  text-align: center;
 }
 #stationery-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 18rpx;
+  text-align: center;
 }
 #electronics-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 3rpx;
+  text-align: center;
 }
 #clothes-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 24rpx;
+  text-align: center;
 }
 #dailyStuff-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 8rpx;
+  text-align: center;
 }
 #document-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 19rpx;
+  text-align: center;
 }
 #wallet-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 10rpx;
+  text-align: center;
 }
 #card-message{
   font-size: 20rpx;
   color: #707070;
-  margin-left: 35rpx;
+  text-align: center;
 }
 
-.searchIcon{
-  margin-top: 6rpx;
-}
 .my-release{
   position: fixed;
   bottom: 50rpx;
