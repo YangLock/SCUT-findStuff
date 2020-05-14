@@ -1,0 +1,25 @@
+{
+  "name": "findstuff",
+  "version": "1.0.0",
+  "description": "Help students to find their lost things",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YangLock/SCUT-findStuff.git"
+  },
+  "keywords": [
+    "find"
+  ],
+  "author": "Yang&Xie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YangLock/SCUT-findStuff/issues"
+  },
+  "homepage": "https://github.com/YangLock/SCUT-findStuff#readme",
+  "devDependencies": {
+    "weui-miniprogram": "^1.0.3"
+  }
+}
