@@ -67,42 +67,42 @@
 
 #book-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #stationery-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #electronics-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #clothes-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #dailyStuff-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #document-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #wallet-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 #card-message{
   font-size: 20rpx;
-  color: #707070;
+  color: #888888;
   text-align: center;
 }
 
@@ -157,20 +157,20 @@ navigator{
 }
  
 .list .list_item .info .name{
-  color:#747474;
+  color:#888888;
   margin-left:22rpx;
   margin-top: 55rpx;
   font-size:20rpx;
 }
  
 .list .list_item .info .place{
-  color:#747474;
+  color:#888888;
   margin-left:22rpx;
   font-size:20rpx;
 }
 
 .list .list_item .info .time{
-  color: #747474;
+  color: #888888;
   margin-left: 22rpx;
   font-size: 20rpx;
 }

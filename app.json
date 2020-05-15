@@ -16,15 +16,15 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F5D33F",
+    "navigationBarBackgroundColor": "#1a8dee",
     "navigationBarTitleText": "华工失物招领平台",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "position": "bottom",
     "borderStyle": "white",
     "backgroundColor": "#F4F4F4",
-    "selectedColor": "#D5237B",
+    "selectedColor": "#077ddf",
     "list": [
       {
         "pagePath": "pages/index/index",

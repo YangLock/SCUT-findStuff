@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-searchbar": "/miniprogram_npm/weui-miniprogram/searchbar/searchbar"
+  },
   "enablePullDownRefresh": true,
   "backgroundColor": "#f0145a",
   "backgroundTextStyle": "dark"
