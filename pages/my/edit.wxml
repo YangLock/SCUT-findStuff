@@ -1,11 +1,5 @@
 <!--pages/my/edit.wxml-->
-<form bindsubmit="formSubmit">
-  <view class='head_img'>
-    <view class='img'>
-      <image class='userinfo-avatar' src='{{userimg}}' bindtap='upShopLogo'></image>
-      <text id="words">点击图片编辑头像</text>
-    </view>
-  </view>
+<!-- <form bindsubmit="formSubmit">
   <view class='info'>
     <input class='fonts' value='{{initname}}' type='text' name='username' placeholder='用户名' placeholder-class="temp-edit"></input>
   </view>
@@ -21,4 +15,33 @@
   <button class="btn-stytle" form-type='submit' placeholder-class="temp-edit">
     <text class='fonts'>确认修改</text>
   </button>
-</form>
+</form> -->
+
+<!-- 重置版 -->
+<view class="page_bd">
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <view class='head_img'>
+      <view class='img'>
+        <image class='userinfo-avatar' src='{{userimg}}' bindtap='upShopLogo'></image>
+        <text id="words">点击图片编辑头像</text>
+      </view>
+    </view>
+    <mp-cells>
+      <mp-cell prop="username" title="用户名">
+        <input bindinput="formInputChange" data-field="username" class="weui-input" placeholder="请输入用户名"/>
+      </mp-cell>
+      <mp-cell prop="telnum" title="手机号">
+        <input bindinput="formInputChange" data-field="telnum" class="weui-input" placeholder="请输入手机号码"/>
+      </mp-cell>
+      <mp-cell prop="wechat" title="微信">
+        <input bindinput="formInputChange" data-field="wechat" class="weui-input" placeholder="请输入微信号"/>
+      </mp-cell>
+      <mp-cell prop="qqnum" title="QQ">
+        <input bindinput="formInputChange" data-field="qqnum" class="weui-input" placeholder="请输入QQ号"/>
+      </mp-cell>
+    </mp-cells>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="submitForm">确认修改</button>
+    </view>
+  </mp-form>
+</view>
