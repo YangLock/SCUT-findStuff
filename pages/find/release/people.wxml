@@ -2,17 +2,25 @@
 
 <!-- 重置版 -->
 <!-- 以下为重置版 -->
-<view class="page_bd">
-  <mp-cells>
-    <mp-cell>
-      <mp-uploader bindfail="uploadError" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="8" title="上传图片" tips="最大上传数量为8张"></mp-uploader>
-    </mp-cell>
-  </mp-cells>
-</view>
 
-<view class="page_bd">
-
-  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+<view class="page_bd" >
+  <view class="picture_list">
+    <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
+      <image wx:if="{{item.upload_percent < 100}}" src="{{item.path}}" mode="aspectFill"></image>
+      <image wx:if="{{item.upload_percent == 100}}" src="{{item.path_server}}" mode="aspectFill"></image>
+      <!-- <view class="upload_progress" wx:if="{{item.upload_percent < 100}}" data-index="{{index}}" bindtap="previewImg">{{item.upload_percent}}%
+      </view> -->
+      <text class='del' bindtap='deleteImg' data-src='{{image}}' style='display:{{isDel}}' data-index="{{index}}">x
+      </text>
+    </view>
+    <view class='picture_item'>
+      <view  class="add-image" bindtap='uploadpic'>
+        <text id="plus">+</text>
+      </view>
+      <text id="words">上传图片</text>
+    </view>
+  </view>
+  <mp-form id="form">
     <mp-cells title="具体信息">
       <!-- 下拉列表的实现 -->
       <view class="drop-list">
@@ -27,26 +35,26 @@
           </view>
         </view>
       </view>
-      <mp-cell prop="mytitle" title="标题">
-        <input bindinput="formInputChange" data-field="mytitle" class="weui-input" placeholder="请输入标题"/>
+      <mp-cell title="标题">
+        <input name="title" bindinput="titleChange" class="weui-input" placeholder="请输入标题"/>
       </mp-cell>
-      <mp-cell prop="contacter" title="联系人">
-        <input bindinput="formInputChange" data-field="contacter" class="weui-input" placeholder="请输入联系人称呼"/>
+      <mp-cell title="联系人">
+        <input name="who" bindinput="whoChange" value="{{who}}" class="weui-input" placeholder="请输入联系人称呼"/>
       </mp-cell>
-      <mp-cell prop="place" title="拾取地点">
-        <input bindinput="formInputChange" data-field="place" class="weui-input" placeholder="请输入拾取地点"/>
+      <mp-cell title="拾取地点">
+        <input name="place" bindinput="placeChange" class="weui-input" placeholder="请输入丢失地点"/>
       </mp-cell>
     </mp-cells>
 
     <mp-cells title="联系方式" footer="请如实填写信息，以便物主与您取得联系">
-      <mp-cell prop="telnum" title="手机号">
-        <input bindinput="formInputChange" data-field="telnum" class="weui-input" placeholder="请输入手机号"/>
+      <mp-cell title="手机号">
+        <input name="TEL"  bindinput="telChange" value="{{tel}}" class="weui-input" placeholder="请输入手机号"/>
       </mp-cell>
-      <mp-cell prop="wechatnum" title="微信">
-        <input bindinput="formInputChange" data-field="wechatnum" class="weui-input" placeholder="请输入微信号"/>
+      <mp-cell title="微信">
+        <input name="WECHAT"  bindinput="wecharChange" value="{{wechat}}" class="weui-input" placeholder="请输入微信号"/>
       </mp-cell>
-      <mp-cell prop="qqnum" title="QQ">
-        <input bindinput="formInputChange" data-field="qqnum" class="weui-input" placeholder="请输入QQ号"/>
+      <mp-cell title="QQ">
+        <input name="QQ"  bindinput="qqChange" value="{{qq}}" class="weui-input" placeholder="请输入QQ号"/>
       </mp-cell>
     </mp-cells>
 
@@ -54,14 +62,14 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
         <view class="weui-cell__bd">
-          <textarea class="weui-textarea" placeholder="请输入物品具体描述信息" style="height: 3.3em" />
+          <textarea name="detail" bindinput="detailChange" class="weui-textarea" placeholder="请输入物品具体描述信息" style="height: 3.3em" />
           <view class="weui-textarea-counter">0/200</view>
         </view>
       </view>
     </view>
 
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="submitForm">确认发布</button>
+      <button class="weui-btn" type="primary" bindtap="release" >确认发布</button>
     </view>
   </mp-form>
 

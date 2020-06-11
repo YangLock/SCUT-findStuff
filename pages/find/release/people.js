@@ -25,10 +25,6 @@ Page({
     tel: null,
     wechat: null,
     qq: null,
-    inittel: null,
-    initwechat: null,
-    initqq: null,
-    initwho: null,
   },
   /**
    * 点击下拉按钮
@@ -38,7 +34,41 @@ Page({
       show: !this.data.show
     });
   },
-
+  titleChange(e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+  whoChange(e) {
+    this.setData({
+      who: e.detail.value
+    })
+  },
+  placeChange(e) {
+    this.setData({
+      place: e.detail.value
+    })
+  },
+  telChange(e) {
+    this.setData({
+      tel: e.detail.value
+    })
+  },
+  wechatChange(e) {
+    this.setData({
+      wechat: e.detail.value
+    })
+  },
+  qqChange(e) {
+    this.setData({
+      qq: e.detail.value
+    })
+  },
+  detailChange(e) {
+    this.setData({
+      detail: e.detail.value
+    })
+  },
   /**
    * 点击下拉框中的内容
    */
@@ -68,15 +98,14 @@ Page({
         var data = res.data;
         console.log(res.data);
         that.setData({
-          initwho: data.user_name,
-          inittel: data.tel_num,
-          initwechat: data.wechat_num,
-          initqq: data.qq_num
+          who: data.user_name,
+          tel: data.tel_num,
+          wechat: data.wechat_num,
+          qq: data.qq_num
         })
       }
     })
   },
-
   //选择图片方法
   uploadpic: function (e) {
     if (this.data.upload_picture_list.length < 8) {
@@ -111,16 +140,16 @@ Page({
     }
   },
   //点击上传图片
-  async uploadimage(e) {
+  uploadimage(e) {
     let page = this
     let upload_picture_list = page.data.upload_picture_list
     //循环把图片上传到服务器 并显示进度
-    var amount=upload_picture_list.length;       
+    var amount = upload_picture_list.length;
     for (let j in upload_picture_list) {
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
         //上传图片后端地址
-        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j,e,amount)
+        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j, e, amount)
       }
     }
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
@@ -154,9 +183,8 @@ Page({
   onShareAppMessage: function () {
 
   },
-  async release(e) {
-    var that = this;
-    this.uploadimage(e)
+  release(e) {
+    this.uploadimage(e);
   },
   dealpicarr(arr) {
     var arr1 = new Array(8);
@@ -176,7 +204,7 @@ Page({
 /**
  * 上传图片方法
  */
-async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
+function upload_file_server(url, that, upload_picture_list, j, e, amount) {
   //上传返回值
   const upload_task = wx.uploadFile({
     // 模拟https
@@ -192,58 +220,55 @@ async function upload_file_server(url, that, upload_picture_list, j,e,amount) {
     },
     //附近数据，这里为路径     
     success: function (res) {
-      console.log(res.data);
       var data = JSON.parse(res.data);
       // //字符串转化为JSON  
       var file = data.file;
-      console.log(j);
       upload_picture_list[j]['path_server'] = file
-      console.log(upload_picture_list[j]);
       that.setData({
         upload_picture_list: upload_picture_list
       });
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-      console.log(upload_picture_list);
-      if(j==amount-1){
-      wx.request({
-        url: app.globalData.baseurl + '/api/release/findPerson',
-        method: 'POST',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          deliver: app.globalData.open_id,
-          good_id: gene.generateGoodID(),
-          pictures: upload_picture_list1,
-          title: e.detail.value.title,
-          type: that.data.uploadData[that.data.index],
-          who: e.detail.value.who,
-          place: e.detail.value.place,
-          describe: e.detail.value.detail,
-          tel: e.detail.value.TEL,
-          wechat: e.detail.value.WECHAT,
-          qq: e.detail.value.QQ,
-          time: Date.now()
-        },
-        success: (res) => {
-          console.log(res.data);
-          wx.showToast({
-            title: '发布成功',  //标题
-            icon: 'none',
-            duration: 1000
-          });
-          wx.switchTab({
-            url: '../../searchPeople/searchPeople',
-          })
-        }
-      })}
+      if (j == amount - 1) {
+        console.log(upload_picture_list1);
+        wx.request({
+          url: app.globalData.baseurl + '/api/release/findPerson',
+          method: 'POST',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            deliver: app.globalData.open_id,
+            good_id: gene.generateGoodID(),
+            pictures: upload_picture_list1,
+            title: that.data.title,
+            type: that.data.uploadData[that.data.index],
+            who: that.data.who,
+            place: that.data.place,
+            describe: that.data.detail,
+            tel: that.data.tel,
+            wechat: that.data.wechat,
+            qq: that.data.qq,
+            time: Date.now()
+          },
+          success: (res) => {
+            console.log(res.data);
+            wx.showToast({
+              title: '发布成功',  //标题
+              icon: 'none',
+              duration: 1000
+            });
+            wx.navigateBack({
+              // url: '../../index/index',
+            })
+          }
+        })
+      }
       wx.setStorageSync('imgs', upload_picture_list);
     },
     fail: function () {
       console.log('fail');
     }
   })
-  const a = console.log('ok');
   //上传 进度方法
   // upload_task.onProgressUpdate((res) => {
   //   upload_picture_list[j]['upload_percent'] = res.progress
