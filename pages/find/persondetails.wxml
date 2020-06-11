@@ -10,21 +10,31 @@
     </block>
   </view>
 </swiper>
-<text class='bigtitle'>{{good_title}}</text>
-<text class='contract'>拾取地点：{{place}}</text>
-  <text class="detai">详情描述：{{detail}}\n</text>  
-<view class='contract'>
-  <text>联系人：{{contracter}}</text>
-</view>
-<view class='contract'>
-  <text>电话：{{tel}}</text>
-</view>
-<view class='contract'>
-  <text>微信：{{wechat}}</text>
-</view>
-<view class='contract'>
-  <text>QQ：{{qq}}</text>
-</view>
+
+<mp-cells title="物品信息">
+  <mp-cell>
+    <text class="text-style">物品名称：{{good_title}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">拾取地点：{{place}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">联系人：{{contracter}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">电话：{{tel}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">微信：{{wechat}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">QQ：{{qq}}</text>
+  </mp-cell>
+  <mp-cell>
+    <text class="text-style">详细描述：{{detail}}\n</text>
+  </mp-cell>
+</mp-cells>
+
 
 <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh">
   <view class="pro-con">
