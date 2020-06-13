@@ -25,6 +25,7 @@ Page({
     tel: null,
     wechat: null,
     qq: null,
+    picAmount:0
   },
   /**
    * 点击下拉按钮
@@ -145,6 +146,9 @@ Page({
     let upload_picture_list = page.data.upload_picture_list
     //循环把图片上传到服务器 并显示进度
     var amount = upload_picture_list.length;
+    page.setData({
+      picAmount:amount
+    })
     for (let j in upload_picture_list) {
       if (upload_picture_list[j]['upload_percent'] == 0) {
 
@@ -184,6 +188,9 @@ Page({
 
   },
   release(e) {
+    wx.showLoading({
+      title: '发布中',
+    })
     this.uploadimage(e);
   },
   dealpicarr(arr) {
@@ -223,12 +230,15 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
       var data = JSON.parse(res.data);
       // //字符串转化为JSON  
       var file = data.file;
-      upload_picture_list[j]['path_server'] = file
+      upload_picture_list[j]['path_server'] = app.globalData.baseurl+file
       that.setData({
         upload_picture_list: upload_picture_list
       });
       let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-      if (j == amount - 1) {
+      that.setData({
+        picAmount: that.data.picAmount - 1
+      })
+      if (that.data.picAmount==0) {
         console.log(upload_picture_list1);
         wx.request({
           url: app.globalData.baseurl + '/api/release/findGood',
@@ -252,6 +262,7 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
           },
           success: (res) => {
             console.log(res.data);
+            wx.hideLoading();
             wx.showToast({
               title: '发布成功',  //标题
               icon: 'none',

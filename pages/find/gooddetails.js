@@ -7,17 +7,8 @@ Page({
       user_name: 'jack',
       com_detail: 'nothing wrong',
       com_time: '2017-4-3'
-    },
-    {
-      userPhoto: '1.png',
-      user_name: 'jack',
-      com_detail: 'nothing wrong',
-      com_time: '2017-4-3'
-    }
-
-    ],
+    }],
     good_id: '',
-    //deliver: '',
     good_title: '',
     place: '',
     detail: '',
@@ -28,6 +19,7 @@ Page({
     qq: '',
     imgUrls: ['1.png', '2.png', '3.png'],
     indicatorDots: true, //小点
+    commentValue: '',
   },
   onLoad: function (options) {
     var id = options.good_id;
@@ -55,7 +47,9 @@ Page({
         //token: app.globalData.token
       },
       success: res => {
-        console.log(res)
+        that.setData({
+          commentValue:""
+        })
         var data = res.data;
         console.log(data);
         that.setData({
@@ -122,9 +116,11 @@ Page({
     var form = e.detail.value;
     var that = this;
     var com_id = Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
-    console.log(app.globalData.open_id);
     if (form.comment == "") {
-      util.showLog('请输入留言');
+      wx.showToast({
+        icon:'none',
+        title: '请输入留言'
+      })
       return;
     }
 
@@ -143,17 +139,15 @@ Page({
         //token: app.globalData.token
       },
       success: res => {
-        console.log(res.data)
-        if (res.data.success) {
-          wx.showToast({
-            title: "留言成功"
-          })
-        } else {
-          wx.showToast({
-            title: '留言失败，请检查您的网络',
-          })
-        }
+        wx.showToast({
+          title: "留言成功"
+        })
         that.getsomething();
+      },
+      fail: () => {
+        wx.showToast({
+          title: '留言失败，请检查您的网络',
+        })
       }
     })
   }

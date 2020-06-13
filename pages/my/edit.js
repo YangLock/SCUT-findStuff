@@ -8,10 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    initname:'',
-    inittel: '',
-    initwechat: '',
-    initqq: '',
+    name:'',
+    tel: '',
+    wechat: '',
+    qq: '',
     userimg: "1.png"
   },
 
@@ -70,7 +70,26 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  nameChange(e){
+    this.setData({
+      name:e.detail.value
+    })
+  },
+  telChange(e){
+    this.setData({
+      tel: e.detail.value
+    })
+  },
+  wechatChange(e) {
+    this.setData({
+      wechat: e.detail.value
+    })
+  },
+  qqChange(e) {
+    this.setData({
+      qq: e.detail.value
+    })
+  },
   //提交表单内容
   formSubmit: function(e){
     var that = this;
@@ -111,10 +130,10 @@ Page({
         console.log(res.data);
         that.setData({
           userimg: data.user_avatar,
-          initname:data.user_name,
-          inittel: data.tel_num,
-          initwechat: data.wechat_num,
-          initqq: data.qq_num
+          name:data.user_name,
+          tel: data.tel_num,
+          wechat: data.wechat_num,
+          qq: data.qq_num
         })
       }
     })
@@ -126,6 +145,7 @@ Page({
     wx.chooseImage({
       sizeType: ['original', 'compressed'],
       sourceType: [type],
+      count:1,
       success: function (res) {
         let userimg= res.tempFilePaths[0];
         that.setData({
@@ -153,22 +173,21 @@ async function upload_file_server(url, that, upload_picture,e) {
       var data = JSON.parse(res.data);
       // //字符串转化为JSON  
       var file = data.file;
-      upload_picture = file
+      upload_picture = app.globalData.baseurl+file
       console.log(upload_picture);
       that.setData({
         userimg: upload_picture
       });
-      console.log(e.detail.value.telnum);
       wx.request({
         url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
         method: 'PUT',
         data: {
           userID: app.globalData.open_id,
           userAva: that.data.userimg,
-          userName: e.detail.value.username,
-          telNum: e.detail.value.telnum,
-          weChat: e.detail.value.wechat,
-          qqNum: e.detail.value.qqnum
+          userName: that.data.name,
+          telNum: that.data.tel,
+          weChat: that.data.wechat,
+          qqNum: that.data.qq
         },
         header: {
           'content-type': 'application/json'
@@ -180,9 +199,8 @@ async function upload_file_server(url, that, upload_picture,e) {
             icon: 'none',
             duration: 1000
           });
-          wx.switchTab({
-            url: './my',
-          })
+          wx.navigateBack({
+          });
         }
       })
       //wx.setStorageSync('imgs', userimg);

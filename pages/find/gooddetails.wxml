@@ -64,7 +64,7 @@
 <form bindsubmit="submitForm" report-submit="true">
   <view class="release">
     <view class="replyinfo2">
-      <textarea placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="请输入留言" name="comment"></textarea>
+      <textarea placeholder-class="input_null" fixed="true" maxlength="-1" show-confirm-bar="false" cursor-spacing="15" auto-height="true" placeholder="请输入留言" name="comment" value='{{commentValue}}'></textarea>
       <button form-type="submit" class="submit">留言</button>
     </view>
   </view>

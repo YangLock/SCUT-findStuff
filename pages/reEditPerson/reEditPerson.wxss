@@ -1,4 +1,4 @@
-/* reEditPerson.wxss */
+/* pages/find/release/things.wxss */
 image {
   width: 40rpx;
   height: 40rpx;
@@ -88,7 +88,7 @@ image {
   border-radius: 36rpx;
 }
 .search{
-    display: flex;
+  display: flex;
   flex-direction:row;
   justify-content:space-between;
   align-items: center;
@@ -127,8 +127,8 @@ image {
   margin: 10rpx;
 }
 .small-text{
-  font-size: 15px;
-  color: #707070;
+  font-size: 17px;
+  color: #000000;
 }
 input{
   margin-left: 10rpx;
@@ -154,8 +154,9 @@ textarea{
   padding: 0 20rpx;
 }
 .select_text{
-  font-size: 15px;
+  font-size: 17px;
   flex: 1;
+  color: #707070;
 }
 .select_img{
   width: 40rpx;
@@ -176,6 +177,7 @@ textarea{
   border-top: 0;
   background: #fff;
   transition: height 0.3s;
+  z-index: 999;
 }
 .option{
   display: block;
@@ -187,5 +189,7 @@ textarea{
 .drop-list{
   display: flex;
   flex-direction: row;
-  margin-left: 106rpx;
+  margin-left: 34rpx;
+  margin-top: 25rpx;
+  text-align: center;
 }

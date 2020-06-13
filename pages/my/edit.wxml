@@ -27,21 +27,21 @@
       </view>
     </view>
     <mp-cells>
-      <mp-cell prop="username" title="用户名">
-        <input bindinput="formInputChange" data-field="username" class="weui-input" placeholder="请输入用户名"/>
+      <mp-cell title="用户名">
+        <input bindinput="nameChange" class="weui-input" value='{{name}}' placeholder="请输入用户名"/>
       </mp-cell>
-      <mp-cell prop="telnum" title="手机号">
-        <input bindinput="formInputChange" data-field="telnum" class="weui-input" placeholder="请输入手机号码"/>
+      <mp-cell title="手机号">
+        <input bindinput="telChange" class="weui-input" value='{{tel}}' placeholder="请输入手机号码"/>
       </mp-cell>
-      <mp-cell prop="wechat" title="微信">
-        <input bindinput="formInputChange" data-field="wechat" class="weui-input" placeholder="请输入微信号"/>
+      <mp-cell title="微信">
+        <input bindinput="wechatChange" class="weui-input" value='{{wechat}}' placeholder="请输入微信号"/>
       </mp-cell>
-      <mp-cell prop="qqnum" title="QQ">
-        <input bindinput="formInputChange" data-field="qqnum" class="weui-input" placeholder="请输入QQ号"/>
+      <mp-cell title="QQ">
+        <input bindinput="qqChange" class="weui-input" value='{{qq}}' placeholder="请输入QQ号"/>
       </mp-cell>
     </mp-cells>
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="submitForm">确认修改</button>
+      <button class="weui-btn" type="primary" bindtap="formSubmit">确认修改</button>
     </view>
   </mp-form>
 </view>
