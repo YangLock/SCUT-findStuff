@@ -130,21 +130,18 @@ Page({
       success: function (res) {
         if (res.code) {
           console.log("res.code:" + res.code);
-          var d = app.globalData;//这里存储了appid、secret、token串  
-          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + d.appid + '&secret=' + d.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
           wx.request({
-            url: l,
-            data: {},
+            url: app.globalData.baseurl+'/api/get/openid',
+            data: {
+              code:res.code
+            },
             method: 'GET',
             success: function (res) {
+              console.log(res)
               var obj = {};
               obj.openid = res.data.openid;
               app.globalData.open_id = obj.openid;
-              console.log("openid:" + obj.openid);
-              console.log("session_key:" + res.data.session_key);
-              obj.expires_in = Date.now() + res.data.expires_in;
-              wx.setStorageSync('user', obj);//存储openid 
-              that.getcheck(app.globalData.open_id, app.globalData.userInfo.nickName, app.globalData.userInfo.avatarUrl);
+              that.getcheck(app.globalData.open_id, '用户' + app.globalData.open_id, '../../images/my.png');
             }
           });
         } else {

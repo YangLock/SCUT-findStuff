@@ -24,7 +24,8 @@ Page({
     tel: null,
     wechat: null,
     qq: null,
-    picAmount: 0
+    picAmount: 0,
+    goodId:null
   },
   /**
    * 点击下拉按钮
@@ -254,7 +255,7 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
           },
           data: {
             deliver: app.globalData.open_id,
-            good_id: gene.generateGoodID(),
+            good_id: that.data.goodID,
             pictures: upload_picture_list1,
             title: that.data.title,
             type: that.data.uploadData[that.data.index],
