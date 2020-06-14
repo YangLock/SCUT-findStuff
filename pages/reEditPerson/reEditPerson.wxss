@@ -140,7 +140,7 @@ textarea{
 
 .select_box{
   background: #fff;
-  width: 504rpx;
+  width: 100%;
   position: relative;
 }
 .select{
@@ -189,7 +189,7 @@ textarea{
 .drop-list{
   display: flex;
   flex-direction: row;
-  margin-left: 34rpx;
-  margin-top: 25rpx;
+  /* margin-left: 34rpx;
+  margin-top: 25rpx; */
   text-align: center;
 }

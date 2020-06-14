@@ -18,8 +18,9 @@
   <mp-form id="form">
     <mp-cells title="具体信息">
       <!-- 下拉列表的实现 -->
+      <mp-cell title="拾物种类">
       <view class="drop-list">
-        <text class="small-text">拾物种类：</text>
+        <!-- <text class="small-text"></text> -->
         <view class='select_box'>
           <view class='select' bindtap='selectTap'>
             <text class='select_text'>{{selectData[index]}}</text>
@@ -30,6 +31,7 @@
           </view>
         </view>
       </view>
+      </mp-cell>
       <mp-cell title="标题">
         <input name="title" bindinput="titleChange" value='{{title}}' class="weui-input" placeholder="请输入标题"/>
       </mp-cell>
