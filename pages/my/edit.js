@@ -12,7 +12,8 @@ Page({
     tel: '',
     wechat: '',
     qq: '',
-    userimg: "1.png"
+    userimg: "1.png",
+    inituserimg:null
   },
 
   /**
@@ -93,7 +94,15 @@ Page({
   //提交表单内容
   formSubmit: function(e){
     var that = this;
-    upload_file_server(app.globalData.baseurl+'/upload',that,that.data.userimg,e);
+    wx.showLoading({
+      title: '修改中',
+    })
+    if(that.data.inituserimg==that.data.userimg){
+      simpleChange(that);
+    }
+    else{
+      upload_file_server(app.globalData.baseurl + '/upload', that, that.data.userimg);
+    }
   },
   //点击上传图片
   upShopLogo: function () 
@@ -130,6 +139,7 @@ Page({
         console.log(res.data);
         that.setData({
           userimg: data.user_avatar,
+          inituserimg: data.user_avatar,
           name:data.user_name,
           tel: data.tel_num,
           wechat: data.wechat_num,
@@ -157,7 +167,35 @@ Page({
 
   //上传图片到服务器
 })
-async function upload_file_server(url, that, upload_picture,e) {
+function simpleChange(that){
+  wx.request({
+    url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
+    method: 'PUT',
+    data: {
+      userID: app.globalData.open_id,
+      userAva: that.data.userimg,
+      userName: that.data.name,
+      telNum: that.data.tel,
+      weChat: that.data.wechat,
+      qqNum: that.data.qq
+    },
+    header: {
+      'content-type': 'application/json'
+    },
+    success(res) {
+      console.log(res.data);
+      wx.hideLoading();
+      wx.showToast({
+        title: '修改成功',  //标题
+        icon: 'none',
+        duration: 1000
+      });
+      wx.navigateBack({
+      });
+    }
+  })
+}
+function upload_file_server(url, that, upload_picture) {
   //上传返回值
   const upload_task = wx.uploadFile({
     // 模拟https
@@ -178,32 +216,7 @@ async function upload_file_server(url, that, upload_picture,e) {
       that.setData({
         userimg: upload_picture
       });
-      wx.request({
-        url: app.globalData.baseurl + '/api/editMyInfo/' + app.globalData.open_id,
-        method: 'PUT',
-        data: {
-          userID: app.globalData.open_id,
-          userAva: that.data.userimg,
-          userName: that.data.name,
-          telNum: that.data.tel,
-          weChat: that.data.wechat,
-          qqNum: that.data.qq
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success(res) {
-          console.log(res.data);
-          wx.showToast({
-            title: '修改成功',  //标题
-            icon: 'none',
-            duration: 1000
-          });
-          wx.navigateBack({
-          });
-        }
-      })
-      //wx.setStorageSync('imgs', userimg);
+      simpleChange(that);
     },
     fail: function () {
       console.log('fail');

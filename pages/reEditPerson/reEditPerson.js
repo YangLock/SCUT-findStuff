@@ -9,7 +9,6 @@ Page({
     /**
      * 图片
      */
-    imgs: [],
     list: '',
     upload_picture_list: [],
     show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
@@ -102,15 +101,26 @@ Page({
       success: (res) => {
         var data = res.data;
         console.log(res.data);
+        var picture_list=new Array(data.imgUrls.length);
+        for (let i in data.imgUrls){
+          var obj={};
+          obj.path = data.imgUrls[i];
+          obj.upload_percent=0;
+          obj.path_server = data.imgUrls[i];
+          picture_list[i]=obj;
+        }
         that.setData({
+          upload_picture_list:picture_list,
           title: data.good_title,
           place: data.place,
           detail: data.detail,
           who: data.contacter,
           tel: data.tel,
           wechat: data.wechat,
-          qq: data.qq
+          qq: data.qq,
+          goodId:data.good_id
         })
+        console.log(that.data.upload_picture_list);
       }
     })
   },
@@ -126,6 +136,7 @@ Page({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: function (res) { // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片 
           let tempFiles = res.tempFiles
+          console.log(tempFiles)
           //把选择的图片 添加到集合里
           for (let i in tempFiles) {
             tempFiles[i]['upload_percent'] = 0
@@ -157,13 +168,15 @@ Page({
       picAmount: amount
     })
     for (let j in upload_picture_list) {
-      if (upload_picture_list[j]['upload_percent'] == 0) {
-
-        //上传图片后端地址
+      if(upload_picture_list[j].path_server!=''){
+        final_upload(page);
+      }
+      else{
+                //上传图片后端地址
         upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j, e, amount)
       }
     }
-    let imgs = wx.setStorageSync('imgs', upload_picture_list);
+    //let imgs = wx.setStorageSync('imgs', upload_picture_list);
   },
   // 点击删除图片
   deleteImg(e) {
@@ -200,6 +213,7 @@ Page({
     })
     this.uploadimage(e);
   },
+  //把传送的数组固定为长度为8
   dealpicarr(arr) {
     var arr1 = new Array(8);
     var i = 0;
@@ -215,6 +229,45 @@ Page({
 
 
 
+function final_upload(that){
+  that.setData({
+    picAmount: that.data.picAmount - 1
+  })
+  if (that.data.picAmount == 0) {
+    let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
+    wx.request({
+      url: app.globalData.baseurl + '/api/reEdit/findPerson/' + that.data.goodId,
+      method: 'PUT',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        deliver: app.globalData.open_id,
+        pictures: upload_picture_list1,
+        title: that.data.title,
+        type: that.data.uploadData[that.data.index],
+        who: that.data.who,
+        place: that.data.place,
+        describe: that.data.detail,
+        tel: that.data.tel,
+        wechat: that.data.wechat,
+        qq: that.data.qq,
+      },
+      success: (res) => {
+        console.log(res.data);
+        wx.hideLoading();
+        wx.showToast({
+          title: '发布成功',  //标题
+          icon: 'none',
+          duration: 1000
+        });
+        wx.navigateBack({
+          // url: '../../index/index',
+        })
+      }
+    })
+  }
+}
 /**
  * 上传图片方法
  */
@@ -241,47 +294,8 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
       that.setData({
         upload_picture_list: upload_picture_list
       });
-      let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-      that.setData({
-        picAmount: that.data.picAmount - 1
-      })
-      if (that.data.picAmount == 0) {
-        console.log(upload_picture_list1);
-        wx.request({
-          url: app.globalData.baseurl + '/api/release/findGood',
-          method: 'POST',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            deliver: app.globalData.open_id,
-            good_id: that.data.goodId,
-            pictures: upload_picture_list1,
-            title: that.data.title,
-            type: that.data.uploadData[that.data.index],
-            who: that.data.who,
-            place: that.data.place,
-            describe: that.data.detail,
-            tel: that.data.tel,
-            wechat: that.data.wechat,
-            qq: that.data.qq,
-            time: Date.now()
-          },
-          success: (res) => {
-            console.log(res.data);
-            wx.hideLoading();
-            wx.showToast({
-              title: '发布成功',  //标题
-              icon: 'none',
-              duration: 1000
-            });
-            wx.navigateBack({
-              // url: '../../index/index',
-            })
-          }
-        })
-      }
-      wx.setStorageSync('imgs', upload_picture_list);
+      final_upload(that);
+      //wx.setStorageSync('imgs', upload_picture_list);
     },
     fail: function () {
       console.log('fail');

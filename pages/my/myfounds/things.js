@@ -11,7 +11,9 @@ Page({
     //动态计算高度
     this.myFindGood();
   },
-
+  onShow: function (options) {
+    this.myFindGood();
+  },
   //确认认领
   confirm: function (event) {
     var that = this;

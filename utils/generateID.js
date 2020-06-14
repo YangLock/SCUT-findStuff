@@ -18,8 +18,12 @@ function generateComID() {
   return Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
 }
 
+function generateUserName() {
+  return Number('4' + Math.random().toString().substr(3, 3) + Date.now().toString().substr(7, 4));
+}
 module.exports = {
   generateGoodID: generateGoodID,
   generatePersonID: generatePersonID,
-  generateComID: generateComID
+  generateComID: generateComID,
+  generateUserName: generateUserName
 }
