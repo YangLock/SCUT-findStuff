@@ -1,3 +1,44 @@
+.search{
+  width: 100%;
+  height: 120rpx;
+  background-color: rgb(243, 243, 243);
+  display: flex;
+}
+.searchbut{
+  color: rgb(126, 126, 126);
+  margin-right: 38rpx;
+  align-self: center;
+  font-size: 25rpx;
+  height: 80rpx;
+  background-color: #fff;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.my-search{
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  width: 545rpx;
+  background-color: #fff;
+  margin-left: 38rpx;
+  border-radius: 10rpx;
+  align-self: center;
+}
+.center{
+  margin-left: 140rpx;
+  font-size: 25rpx;
+}
+.searchIcon{
+  align-self: center;
+   margin-left: 5rpx;
+}
+.my-input{
+  height: 80rpx;
+  margin-left: 20rpx;
+}
+
 .button-line{
   background-color: rgb(255, 255, 255);
 }

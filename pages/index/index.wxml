@@ -48,8 +48,15 @@
 <!-- 顶部栏重置版 -->
 <view class="button-line">
 
-  <view class="page_bd">
+  <!-- <view class="page_bd">
     <mp-searchbar placeholder="请输入物品名称"></mp-searchbar>
+  </view> -->
+  <view class="search">
+    <view class="my-search">
+      <icon class="searchIcon" size="16" type="search"></icon>
+      <input class="my-input" placeholder="请输入关键字" placeholder-class="center" value="{{searchValue}}" bindinput='searchinput' bindconfirm="getsearch"></input>
+    </view>
+    <button class="searchbut" bindtap="getsearch">搜索</button>
   </view>
 
   <view class="weui-flex" id="button-line1">
