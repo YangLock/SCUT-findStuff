@@ -1,51 +1,14 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const util=require('../../utils/generateID.js')
 Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
     canIUse: false,
     searchvalue:null,
-    dataList: [
-      {
-        goods_id: 1,
-        goods_title: '物品标题1',
-        goods_img: 'http://localhost:3001/1566226210749.png',
-        person_name: '谢振轩',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题2',
-        goods_img: '/images/wallet.png',
-        person_name: '吴斌峰',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题3',
-        goods_img: '/images/wallet.png',
-        person_name: '杨宗霖',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题4',
-        goods_img: '/images/wallet.png',
-        person_name: '熊景涛',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题5',
-        goods_img: '/images/wallet.png',
-        person_name: '方思政',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }
-    ],
+    dataList: [],
   },
   onLoad: function () {
     wx.showLoading({
@@ -141,7 +104,7 @@ Page({
               var obj = {};
               obj.openid = res.data.openid;
               app.globalData.open_id = obj.openid;
-              that.getcheck(app.globalData.open_id, '用户' + app.globalData.open_id, '../../images/my.png');
+              that.getcheck(app.globalData.open_id, '用户' + util.generateUserName(), '../../images/my.png');
             }
           });
         } else {

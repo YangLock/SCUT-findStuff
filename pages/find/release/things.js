@@ -234,11 +234,11 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
       that.setData({
         upload_picture_list: upload_picture_list
       });
-      let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
       that.setData({
         picAmount: that.data.picAmount - 1
       })
       if (that.data.picAmount==0) {
+        let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
         console.log(upload_picture_list1);
         wx.request({
           url: app.globalData.baseurl + '/api/release/findGood',

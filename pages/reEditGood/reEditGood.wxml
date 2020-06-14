@@ -2,7 +2,7 @@
   <view class="picture_list">
     <view wx:for="{{upload_picture_list}}" class="picture_item" wx:key="{{index}}">
       <image wx:if="{{item.upload_percent < 100}}" src="{{item.path}}" mode="aspectFill"></image>
-      <image wx:if="{{item.upload_percent == 100}}" src="{{item.path_server}}" mode="aspectFill"></image>
+      <!-- <image wx:if="{{item.upload_percent == 100}}" src="{{item.path_server}}" mode="aspectFill"></image> -->
       <!-- <view class="upload_progress" wx:if="{{item.upload_percent < 100}}" data-index="{{index}}" bindtap="previewImg">{{item.upload_percent}}%
       </view> -->
       <text class='del' bindtap='deleteImg' data-src='{{image}}' style='display:{{isDel}}' data-index="{{index}}">x
@@ -64,7 +64,7 @@
     </view>
 
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="release" >确认发布</button>
+      <button class="weui-btn" type="primary" bindtap="release" >确认编辑</button>
     </view>
   </mp-form>
 
