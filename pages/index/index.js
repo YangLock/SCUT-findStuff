@@ -18,13 +18,13 @@ Page({
     this.get_goods('all');
   },
   onShow: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     this.get_goods('all');
   },
 //从数据库获得新数据
   get_goods:function(key){
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this;
     wx.request({
       url: app.globalData.baseurl +'/api/get/findGood/'+key,
@@ -183,6 +183,9 @@ Page({
     })
   },
   getsearch:function(){
+    wx.showLoading({
+      title: '加载中',
+    })
     var that=this;
     console.log(that.data);
     var keyword=that.data.searchvalue;
@@ -203,6 +206,10 @@ Page({
         that.setData({
           dataList: res.data
         });
+        wx.hideLoading()
+      },
+      fail:()=>{
+        wx.hideLoading()
       }
       })
   }

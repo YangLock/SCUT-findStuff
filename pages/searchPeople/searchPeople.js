@@ -8,44 +8,7 @@ Page({
     hasUserInfo: false,
     canIUse: false,
     searchvalue: null,
-    dataList: [
-      {
-        goods_id: 1,
-        goods_title: '物品标题1',
-        goods_img: 'http://localhost:3001/1566226210749.png',
-        person_name: '谢振轩',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题2',
-        goods_img: '/images/wallet.png',
-        person_name: '吴斌峰',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题3',
-        goods_img: '/images/wallet.png',
-        person_name: '杨宗霖',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题4',
-        goods_img: '/images/wallet.png',
-        person_name: '熊景涛',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }, {
-        goods_id: 1,
-        goods_title: '物品标题5',
-        goods_img: '/images/wallet.png',
-        person_name: '方思政',
-        goods_place: 'A1-308',
-        goods_time: '上午3、4节'
-      }
-    ],
+    dataList: [],
   },
   onLoad: function () {
     wx.showLoading({
@@ -54,13 +17,13 @@ Page({
     this.get_goods('all');
   },
   onShow: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     this.get_goods('all');
   },
   //从数据库获得新数据
   get_goods: function (key) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this;
     wx.request({
       url: app.globalData.baseurl + '/api/get/findPerson/' + key,
@@ -153,9 +116,15 @@ Page({
     console.log(that.data);
     var keyword = that.data.searchvalue;
     console.log(keyword)
+    if(keyword==''){
+      return;
+    }
     that.search(keyword);
   },
   search: function (keyword) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this;
     wx.request({
       url: app.globalData.baseurl + '/api/get/searchPerson/' + keyword,
@@ -169,6 +138,10 @@ Page({
         that.setData({
           dataList: res.data
         });
+        wx.hideLoading();
+      },
+      fail: () => {
+        wx.hideLoading()
       }
     })
   }

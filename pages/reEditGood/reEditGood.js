@@ -1,5 +1,14 @@
 // pages/find/release/things.js
 const app = getApp();
+var map=new Map();
+map.set("书籍", 0)
+map.set("文具", 1)
+map.set("电子产品", 2)
+map.set("服饰", 3)
+map.set("日用品", 4)
+map.set("证件", 5)
+map.set("钱包/钱", 6)
+map.set("卡", 7)
 Page({
 
   /**
