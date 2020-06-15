@@ -80,10 +80,9 @@ Page({
     this.get_goods('all');
 
     setTimeout(() => {
-      // 标题栏隐藏刷新转圈圈图标
       wx.hideNavigationBarLoading()
-
-    }, 2000);
+      wx.stopPullDownRefresh()
+    }, 500);
 
   },
 

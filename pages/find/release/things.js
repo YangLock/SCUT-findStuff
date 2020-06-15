@@ -10,7 +10,7 @@ Page({
     /**
      * 图片
      */
-    imgs: [],
+    imgs: [], 
     list: '',
     upload_picture_list: [],
     show: false,     //控制下拉列表是显示还是隐藏，false为隐藏
@@ -149,13 +149,13 @@ Page({
     page.setData({
       picAmount:amount
     })
-    for (let j in upload_picture_list) {
-      if (upload_picture_list[j]['upload_percent'] == 0) {
-
-        //上传图片后端地址
-        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j, e, amount)
-      }
+    if(amount>0){
+      upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, 0)
     }
+    else{
+      page.final_upload();
+    }
+        //上传图片后端地址
     let imgs = wx.setStorageSync('imgs', upload_picture_list);
   },
   // 点击删除图片
@@ -203,6 +203,44 @@ Page({
       arr1[i] = { path_server: null };
     }
     return arr1;
+  },
+  final_upload(){
+    var that=this;
+    let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
+    console.log(upload_picture_list1);
+    wx.request({
+      url: app.globalData.baseurl + '/api/release/findGood',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        deliver: app.globalData.open_id,
+        good_id: gene.generateGoodID(),
+        pictures: upload_picture_list1,
+        title: that.data.title,
+        type: that.data.uploadData[that.data.index],
+        who: that.data.who,
+        place: that.data.place,
+        describe: that.data.detail,
+        tel: that.data.tel,
+        wechat: that.data.wechat,
+        qq: that.data.qq,
+        time: Date.now()
+      },
+      success: (res) => {
+        console.log(res.data);
+        wx.hideLoading();
+        wx.showToast({
+          title: '发布成功',  //标题
+          icon: 'none',
+          duration: 1000
+        });
+        wx.navigateBack({
+          // url: '../../index/index',
+        })
+      }
+    })
   }
 })
 
@@ -211,9 +249,9 @@ Page({
 /**
  * 上传图片方法
  */
-function upload_file_server(url, that, upload_picture_list, j, e, amount) {
+function upload_file_server(url, that, upload_picture_list,j) {
   //上传返回值
-  const upload_task = wx.uploadFile({
+  wx.uploadFile({
     // 模拟https
     url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
     filePath: upload_picture_list[j]['path'], //上传的文件本地地址
@@ -234,45 +272,11 @@ function upload_file_server(url, that, upload_picture_list, j, e, amount) {
       that.setData({
         upload_picture_list: upload_picture_list
       });
-      that.setData({
-        picAmount: that.data.picAmount - 1
-      })
-      if (that.data.picAmount==0) {
-        let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-        console.log(upload_picture_list1);
-        wx.request({
-          url: app.globalData.baseurl + '/api/release/findGood',
-          method: 'POST',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            deliver: app.globalData.open_id,
-            good_id: gene.generateGoodID(),
-            pictures: upload_picture_list1,
-            title: that.data.title,
-            type: that.data.uploadData[that.data.index],
-            who: that.data.who,
-            place: that.data.place,
-            describe: that.data.detail,
-            tel: that.data.tel,
-            wechat: that.data.wechat,
-            qq: that.data.qq,
-            time: Date.now()
-          },
-          success: (res) => {
-            console.log(res.data);
-            wx.hideLoading();
-            wx.showToast({
-              title: '发布成功',  //标题
-              icon: 'none',
-              duration: 1000
-            });
-            wx.navigateBack({
-              // url: '../../index/index',
-            })
-          }
-        })
+      if (that.data.picAmount==j+1) {
+        that.final_upload();
+      }
+      else{
+        upload_file_server(url, that, upload_picture_list, j+1)
       }
       wx.setStorageSync('imgs', upload_picture_list);
     },

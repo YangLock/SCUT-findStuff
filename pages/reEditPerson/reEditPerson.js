@@ -177,14 +177,11 @@ Page({
     page.setData({
       picAmount: amount
     })
-    for (let j in upload_picture_list) {
-      if(upload_picture_list[j].path_server!=''){
-        final_upload(page);
-      }
-      else{
-                //上传图片后端地址
-        upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, j, e, amount)
-      }
+    if (amount > 0) {
+      upload_file_server(app.globalData.baseurl + '/upload', page, upload_picture_list, 0)
+    }
+    else {
+      final_upload(page);
     }
     //let imgs = wx.setStorageSync('imgs', upload_picture_list);
   },
@@ -239,78 +236,84 @@ Page({
 
 
 
-function final_upload(that){
-  that.setData({
-    picAmount: that.data.picAmount - 1
+function final_upload(that) {
+  let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
+  console.log(upload_picture_list1);
+  wx.request({
+    url: app.globalData.baseurl + '/api/reEdit/findPerson/' + that.data.goodID,
+    method: 'PUT',
+    header: {
+      'content-type': 'application/json'
+    },
+    data: {
+      deliver: app.globalData.open_id,
+      good_id: that.data.goodID,
+      pictures: upload_picture_list1,
+      title: that.data.title,
+      type: that.data.uploadData[that.data.index],
+      who: that.data.who,
+      place: that.data.place,
+      describe: that.data.detail,
+      tel: that.data.tel,
+      wechat: that.data.wechat,
+      qq: that.data.qq,
+    },
+    success: (res) => {
+      console.log(res.data);
+      wx.hideLoading();
+      wx.showToast({
+        title: '发布成功',  //标题
+        icon: 'none',
+        duration: 1000
+      });
+      wx.navigateBack({
+        // url: '../../index/index',
+      })
+    }
   })
-  if (that.data.picAmount == 0) {
-    let upload_picture_list1 = that.dealpicarr(that.data.upload_picture_list);
-    wx.request({
-      url: app.globalData.baseurl + '/api/reEdit/findPerson/' + that.data.goodId,
-      method: 'PUT',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        deliver: app.globalData.open_id,
-        pictures: upload_picture_list1,
-        title: that.data.title,
-        type: that.data.uploadData[that.data.index],
-        who: that.data.who,
-        place: that.data.place,
-        describe: that.data.detail,
-        tel: that.data.tel,
-        wechat: that.data.wechat,
-        qq: that.data.qq,
-      },
-      success: (res) => {
-        console.log(res.data);
-        wx.hideLoading();
-        wx.showToast({
-          title: '发布成功',  //标题
-          icon: 'none',
-          duration: 1000
-        });
-        wx.navigateBack({
-          // url: '../../index/index',
-        })
-      }
-    })
-  }
 }
 /**
  * 上传图片方法
  */
-function upload_file_server(url, that, upload_picture_list, j, e, amount) {
-  //上传返回值
-  const upload_task = wx.uploadFile({
-    // 模拟https
-    url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
-    filePath: upload_picture_list[j]['path'], //上传的文件本地地址
-    header: {
-      'content-type': 'multipart/form-data'
-    },
-    name: 'file',
-
-    formData: {
-      'num': j
-    },
-    //附近数据，这里为路径     
-    success: function (res) {
-      var data = JSON.parse(res.data);
-      // //字符串转化为JSON  
-      var file = data.file;
-      upload_picture_list[j]['path_server'] = app.globalData.baseurl + file
-      that.setData({
-        upload_picture_list: upload_picture_list
-      });
-      final_upload(that);
-      //wx.setStorageSync('imgs', upload_picture_list);
-    },
-    fail: function () {
-      console.log('fail');
+function upload_file_server(url, that, upload_picture_list, j) {
+  if (upload_picture_list.length == j) {
+    final_upload(that);
+  }
+  else {
+    if (upload_picture_list[j].path_server != '') {
+      upload_file_server(url, that, upload_picture_list, j + 1)
     }
-  })
+    else {
+      wx.uploadFile({
+        // 模拟https
+        url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
+        filePath: upload_picture_list[j]['path'], //上传的文件本地地址
+        header: {
+          'content-type': 'multipart/form-data'
+        },
+        name: 'file',
+
+        formData: {
+          'num': j
+        },
+        //附近数据，这里为路径     
+        success: function (res) {
+          var data = JSON.parse(res.data);
+          // //字符串转化为JSON  
+          var file = data.file;
+          upload_picture_list[j]['path_server'] = app.globalData.baseurl + file
+          that.setData({
+            upload_picture_list: upload_picture_list
+          });
+          upload_file_server(url, that, upload_picture_list, j + 1);
+          //wx.setStorageSync('imgs', upload_picture_list);
+        },
+        fail: function () {
+          console.log('fail');
+        }
+      })
+    }
+  }
   //上传 进度方法
   // upload_task.onProgressUpdate((res) => {
   //   upload_picture_list[j]['upload_percent'] = res.progress
