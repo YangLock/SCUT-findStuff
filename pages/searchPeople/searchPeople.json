@@ -3,6 +3,6 @@
     "mp-searchbar": "/miniprogram_npm/weui-miniprogram/searchbar/searchbar"
   },
   "enablePullDownRefresh": true,
-  "backgroundColor": "#f0145a",
+  "backgroundColor": "white",
   "backgroundTextStyle": "dark"
 }

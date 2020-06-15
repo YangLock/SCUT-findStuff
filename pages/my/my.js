@@ -97,7 +97,7 @@ Page({
    */
   need_login:function(){
     this.setData({
-      userimg:'../../images/logo.png',
+      userimg:'../../images/logo.jpg',
       user_name:'请登录'
     })
   },

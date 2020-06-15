@@ -76,7 +76,6 @@ Page({
   onPullDownRefresh: function () {
     // 标题栏显示刷新图标，转圈圈
     wx.showNavigationBarLoading()
-    console.log("onPullDownRefresh");
     // 请求最新数据
     this.get_goods('all');
 
@@ -132,7 +131,7 @@ Page({
     console.log(that.data);
     var keyword=that.data.searchvalue;
     console.log(keyword)
-    if (keyword == null) {
+    if (keyword == null || keyword.match(/^[ ]*$/)) {
       return;
     }
     else{
