@@ -3,7 +3,7 @@
   <!-- <open-data type="userAvatarUrl" class="userAvatar"></open-data>
   <open-data type="userNickName" class="userName"></open-data> -->
   <image type="userAvatarUrl" class='userAvatar' src="{{userimg}}"></image>
-  <text type="userNickName" class="userName">{{user_name}}</text>
+  <text type="userNickName" class="userName">请登录</text>
 </view>
 
 <view class="buttonClass">
@@ -35,4 +35,4 @@
     </view>
   </button>
 </view>
-<button wx:if="{{!logined}}" id="sign-in" open-type="getUserInfo" bindgetuserinfo="login">登陆</button>
+<button id="sign-in" open-type="getUserInfo" bindgetuserinfo="login">登陆</button>

@@ -11,10 +11,6 @@ Page({
     dataList: [],
   },
   onLoad: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    this.get_goods('all');
   },
   onShow: function () {
     this.get_goods('all');
@@ -55,9 +51,27 @@ Page({
     })
   },
   release: function () {
-    wx.navigateTo({
-      url: '../find/release/people',
-    })
+    if (app.globalData.userInfo == null) {
+      wx.showModal({
+        title: '登录提示',
+        content: '发布内容前需要授权登录',
+        cancelText: "取消",
+        confirmText: "登录",
+        success(res) {
+          if (res.cancel) { }
+          else {
+            wx.navigateTo({
+              url: '../my/my',
+            })
+          }
+        }
+      })
+    }
+    else {
+      wx.navigateTo({
+        url: '../find/release/people',
+      })
+    }
   },
   onPullDownRefresh: function () {
     // 标题栏显示刷新图标，转圈圈
@@ -116,10 +130,13 @@ Page({
     console.log(that.data);
     var keyword = that.data.searchvalue;
     console.log(keyword)
-    if(keyword==''){
+    if(keyword==null){
+      console.log(123);
       return;
     }
-    that.search(keyword);
+    else{
+      that.search(keyword);
+    }
   },
   search: function (keyword) {
     wx.showLoading({

@@ -11,11 +11,6 @@ Page({
     dataList: [],
   },
   onLoad: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
-    this.getopenid();
-    this.get_goods('all');
   },
   onShow: function () {
     this.get_goods('all');
@@ -47,86 +42,36 @@ Page({
     })
   },
 
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  // getUserInfo: function(e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  // },
   release: function () {
-    wx.navigateTo({
-      url: '../find/release/things',
-    })
-  },
-  getopenid: function () {
-    var that = this;
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+    if(app.globalData.userInfo==null){
+      wx.showModal({
+        title: '登录提示',
+        content: '发布内容前需要授权登录',
+        cancelText:"取消",
+        confirmText:"登录",
+        success(res){
+          if(res.cancel){}
+          else{
+            wx.navigateTo({
+              url: '../my/my',
+            })
+          }
         }
       })
     }
-    //登录凭证校验。通过 wx.login() 接口获得临时登录凭证 code 后传到开发者服务器调用此接口完成登录流程。
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log("res.code:" + res.code);
-          wx.request({
-            url: app.globalData.baseurl+'/api/get/openid',
-            data: {
-              code:res.code
-            },
-            method: 'GET',
-            success: function (res) {
-              console.log(res)
-              var obj = {};
-              obj.openid = res.data.openid;
-              app.globalData.open_id = obj.openid;
-              that.getcheck(app.globalData.open_id, '用户' + util.generateUserName(), '../../images/my.png');
-            }
-          });
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
-  },
-  getcheck:function(user_id,user_name,user_avatar){
-    var that=this;
-    wx.request({
-      url: app.globalData.baseurl+'/api/get/checkuser',
-      data:{
-        user_id:user_id,
-        user_name:user_name,
-        user_avatar: user_avatar
-      },
-      method:'GET',
-      success: function (res) {
-        console.log(res.data);
-      }
-    });
+    else{
+      wx.navigateTo({
+        url: '../find/release/things',
+      })
+    }
   },
   onPullDownRefresh: function () {
     // 标题栏显示刷新图标，转圈圈
@@ -183,16 +128,21 @@ Page({
     })
   },
   getsearch:function(){
-    wx.showLoading({
-      title: '加载中',
-    })
     var that=this;
     console.log(that.data);
     var keyword=that.data.searchvalue;
     console.log(keyword)
-    that.search(keyword);
+    if (keyword == null) {
+      return;
+    }
+    else{
+      that.search(keyword);
+    }
   },
   search:function(keyword){
+    wx.showLoading({
+      title: '加载中',
+    })
     var that =this;
     wx.request({
       url: app.globalData.baseurl +'/api/get/searchGood/'+keyword,

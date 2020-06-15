@@ -35,11 +35,11 @@
       <mp-cell title="标题">
         <input name="title" bindinput="titleChange" value='{{title}}' class="weui-input" placeholder="请输入标题"/>
       </mp-cell>
-      <mp-cell title="联系人">
+      <!-- <mp-cell title="联系人">
         <input name="who" bindinput="whoChange" value="{{who}}" class="weui-input" placeholder="请输入联系人称呼"/>
-      </mp-cell>
+      </mp-cell> -->
       <mp-cell title="拾取地点">
-        <input name="place" bindinput="placeChange" value ='{{place}}'class="weui-input" placeholder="请输入丢失地点"/>
+        <input name="place" bindinput="placeChange" value ='{{place}}'class="weui-input" placeholder="请输入拾取地点"/>
       </mp-cell>
     </mp-cells>
 
@@ -48,7 +48,7 @@
         <input name="TEL"  bindinput="telChange" value="{{tel}}" class="weui-input" placeholder="请输入手机号"/>
       </mp-cell>
       <mp-cell title="微信">
-        <input name="WECHAT"  bindinput="wecharChange" value="{{wechat}}" class="weui-input" placeholder="请输入微信号"/>
+        <input name="WECHAT"  bindinput="wechatChange" value="{{wechat}}" class="weui-input" placeholder="请输入微信号"/>
       </mp-cell>
       <mp-cell title="QQ">
         <input name="QQ"  bindinput="qqChange" value="{{qq}}" class="weui-input" placeholder="请输入QQ号"/>

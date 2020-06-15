@@ -7,9 +7,6 @@ Page({
     dataList2: ''
   },
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    //动态计算高度
-    this.myFindPerson();
   },
   onShow:function (options){
     this.myFindPerson();

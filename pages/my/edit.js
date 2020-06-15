@@ -12,7 +12,7 @@ Page({
     tel: '',
     wechat: '',
     qq: '',
-    userimg: "1.png",
+    userimg: "",
     inituserimg:null
   },
 

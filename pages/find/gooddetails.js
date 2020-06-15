@@ -2,12 +2,7 @@
 const app = getApp();
 Page({
   data: {
-    list: [{
-      userPhoto: '1.png',
-      user_name: 'jack',
-      com_detail: 'nothing wrong',
-      com_time: '2017-4-3'
-    }],
+    list: [],
     good_id: '',
     good_title: '',
     place: '',
@@ -17,7 +12,7 @@ Page({
     tel: '',
     wechat: '',
     qq: '',
-    imgUrls: ['1.png', '2.png', '3.png'],
+    imgUrls: [],
     indicatorDots: true, //小点
     commentValue: '',
   },
@@ -113,42 +108,59 @@ Page({
     })
   },
   submitForm(e) {
-    var form = e.detail.value;
-    var that = this;
-    var com_id = Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
-    if (form.comment == "") {
-      wx.showToast({
-        icon:'none',
-        title: '请输入留言'
+    if(app.globalData.userInfo==null){
+      wx.showModal({
+        title: '登录提示',
+        content: '发布留言前需要授权登录',
+        cancelText: "取消",
+        confirmText: "登录",
+        success(res) {
+          if (res.cancel) { }
+          else {
+            wx.navigateTo({
+              url: '../../my/my',
+            })
+          }
+        }
       })
-      return;
     }
-
-    // 提交评论
-    wx.request({
-      url: app.globalData.baseurl + '/api/release/goodCom',
-      method: "POST",
-      data: {
-        com_id: com_id,
-        com_detail: form.comment,
-        com_deliver: app.globalData.open_id,
-        good_id: that.data.good_id
-      },
-      header: {
-        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
-        //token: app.globalData.token
-      },
-      success: res => {
+    else{
+      var form = e.detail.value;
+      var that = this;
+      var com_id = Number('3' + Math.random().toString().substr(3, 5) + Date.now().toString().substr(7, 6));
+      if (form.comment == "") {
         wx.showToast({
-          title: "留言成功"
+          icon: 'none',
+          title: '请输入留言'
         })
-        that.getsomething();
-      },
-      fail: () => {
-        wx.showToast({
-          title: '留言失败，请检查您的网络',
+        return;
+      }
+      // 提交评论
+      wx.request({
+        url: app.globalData.baseurl + '/api/release/goodCom',
+        method: "POST",
+        data: {
+          com_id: com_id,
+          com_detail: form.comment,
+          com_deliver: app.globalData.open_id,
+          good_id: that.data.good_id
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          //token: app.globalData.token
+        },
+        success: res => {
+          wx.showToast({
+            title: "留言成功"
+          })
+          that.getsomething();
+        },
+        fail: () => {
+          wx.showToast({
+            title: '留言失败，请检查您的网络',
+          })
+          }
         })
       }
-    })
-  }
+    }
 })

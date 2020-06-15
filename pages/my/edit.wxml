@@ -27,9 +27,9 @@
       </view>
     </view>
     <mp-cells>
-      <mp-cell title="用户名">
+      <!-- <mp-cell title="用户名">
         <input bindinput="nameChange" class="weui-input" value='{{name}}' placeholder="请输入用户名"/>
-      </mp-cell>
+      </mp-cell> -->
       <mp-cell title="手机号">
         <input bindinput="telChange" class="weui-input" value='{{tel}}' placeholder="请输入手机号码"/>
       </mp-cell>

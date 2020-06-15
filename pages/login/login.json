@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "授权登陆小程序",
+  "usingComponents": {
+    "mp-halfScreenDialog": "/miniprogram_npm/weui-miniprogram/half-screen-dialog/half-screen-dialog"
+  },
+    "backgroundColor": "#f0145a",
+    "backgroundTextStyle": "dark"
+}

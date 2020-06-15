@@ -120,6 +120,7 @@ Page({
           picture_list[i] = obj;
         }
         that.setData({
+          index:map.get(data.good_type),
           upload_picture_list:picture_list,
           title: data.good_title,
           place: data.place,

@@ -17,7 +17,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1a8dee",
-    "navigationBarTitleText": "华工失物招领平台",
+    "navigationBarTitleText": "校园寻物",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

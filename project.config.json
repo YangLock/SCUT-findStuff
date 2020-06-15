@@ -25,7 +25,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.5",
+	"libVersion": "2.11.1",
 	"appid": "wx1f08d278ddf3988e",
 	"projectname": "%E5%8D%8E%E5%B7%A5%E5%AF%BB%E7%89%A9",
 	"isGameTourist": false,
