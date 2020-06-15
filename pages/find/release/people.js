@@ -215,7 +215,7 @@ Page({
       },
       data: {
         deliver: app.globalData.open_id,
-        good_id: gene.generateGoodID(),
+        good_id: gene.generatePersonID(),
         pictures: upload_picture_list1,
         title: that.data.title,
         type: that.data.uploadData[that.data.index],

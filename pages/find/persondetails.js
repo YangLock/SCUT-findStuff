@@ -115,8 +115,8 @@ Page({
         success(res) {
           if (res.cancel) { }
           else {
-            wx.navigateTo({
-              url: '../../my/my',
+            wx.switchTab({
+              url: '../my/my',
             })
           }
         }
@@ -135,7 +135,7 @@ Page({
       }
       // 提交评论
       wx.request({
-        url: app.globalData.baseurl + '/api/release/goodCom',
+        url: app.globalData.baseurl + '/api/release/personCom',
         method: "POST",
         data: {
           com_id: com_id,

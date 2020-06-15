@@ -95,6 +95,7 @@ Page({
       })
     }
     else{
+      console.log(123);
       wx.navigateTo({
         url: '../find/persondetails?good_id=' + good_id,
       })

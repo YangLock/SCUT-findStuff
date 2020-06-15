@@ -60,7 +60,7 @@ Page({
         success(res){
           if(res.cancel){}
           else{
-            wx.navigateTo({
+            wx.switchTab({
               url: '../my/my',
             })
           }

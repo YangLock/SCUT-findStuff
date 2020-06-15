@@ -117,8 +117,8 @@ Page({
         success(res) {
           if (res.cancel) { }
           else {
-            wx.navigateTo({
-              url: '../../my/my',
+            wx.switchTab({
+              url: '../my/my',
             })
           }
         }
